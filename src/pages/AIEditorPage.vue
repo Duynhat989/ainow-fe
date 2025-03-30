@@ -1,8 +1,8 @@
 <template>
     <div class="editor-page">
         <div class="container">
-            <h1 class="page-title">Công Cụ Chỉnh Sửa Ảnh AI</h1>
-            <p class="page-subtitle">Chỉnh sửa ảnh của bạn với sức mạnh của trí tuệ nhân tạo</p>
+            <h1 class="page-title">AI Image Editor Tool</h1>
+            <p class="page-subtitle">Edit your images with the power of artificial intelligence</p>
 
             <div class="editor-container">
                 <div class="upload-section" v-if="!selectedImage">
@@ -13,49 +13,45 @@
                             <input type="file" ref="fileInput" @change="handleFileSelect" accept="image/*"
                                 class="file-input" />
                             <div class="upload-icon">📁</div>
-                            <h3>Tải ảnh lên để bắt đầu</h3>
-                            <p>Kéo thả ảnh vào đây hoặc nhấp để chọn</p>
-                            <p class="upload-formats">Hỗ trợ JPG, PNG, WEBP (Tối đa 10MB)</p>
+                            <h3>Upload an image to start</h3>
+                            <p>Drag and drop your image here or click to select</p>
+                            <p class="upload-formats">Supports JPG, PNG, WEBP (Maximum 10MB)</p>
                         </div>
 
                         <div class="divider">
-                            <span>HOẶC</span>
+                            <span>OR</span>
                         </div>
 
                         <div class="generate-area">
                             <div class="generate-icon">🎨</div>
-                            <h3>Tạo ảnh với AI</h3>
-                            <p>Mô tả ảnh bạn muốn tạo</p>
+                            <h3>Generate an image with AI</h3>
+                            <p>Describe the image you want to create</p>
 
-                            <!-- Phần chọn tỷ lệ ảnh -->
+                            <!-- Image ratio selection section -->
                             <div class="image-ratio-selector">
-                                <p>Tỷ lệ ảnh:</p>
+                                <p>Image ratio:</p>
                                 <div class="ratio-options">
-                                    <button class="ratio-option" :class="{ active: selectedRatio === '1-1' }"
-                                        @click="selectedRatio = '1-1'">1-1</button>
-                                    <button class="ratio-option" :class="{ active: selectedRatio === '3-4' }"
-                                        @click="selectedRatio = '3-4'">3-4</button>
-                                    <button class="ratio-option" :class="{ active: selectedRatio === '4-3' }"
-                                        @click="selectedRatio = '4-3'">4-3</button>
-                                    <button class="ratio-option" :class="{ active: selectedRatio === '9-16' }"
-                                        @click="selectedRatio = '9-16'">9-16</button>
-                                    <button class="ratio-option" :class="{ active: selectedRatio === '16-9' }"
-                                        @click="selectedRatio = '16-9'">16-9</button>
+                                    <button class="ratio-option" :class="{ active: selectedRatio === 'square' }"
+                                        @click="selectedRatio = 'square'">1-1</button>
+                                    <button class="ratio-option" :class="{ active: selectedRatio === 'vertical' }"
+                                        @click="selectedRatio = 'vertical'">9-16</button>
+                                    <button class="ratio-option" :class="{ active: selectedRatio === 'horizontal' }"
+                                        @click="selectedRatio = 'horizontal'">16-9</button>
                                 </div>
                             </div>
 
                             <div class="prompt-input">
                                 <input type="text" v-model="imagePrompt"
-                                    placeholder="Ví dụ: Một bãi biển nhiệt đới với nước trong xanh và cây dừa"
+                                    placeholder="Example: A tropical beach with clear blue water and palm trees"
                                     class="prompt-field" />
                                 <button class="btn-generate" @click="generateImage"
                                     :disabled="!imagePrompt || isGenerating">
-                                    {{ isGenerating ? 'Đang tạo...' : 'Tạo ảnh' }}
+                                    {{ isGenerating ? 'Generating...' : 'Generate image' }}
                                 </button>
                             </div>
 
                             <div class="generate-examples">
-                                <p>Gợi ý:</p>
+                                <p>Suggestions:</p>
                                 <div class="example-tags">
                                     <span v-for="(temp, index) of examplePrompt"
                                         @click="setExamplePrompt(temp.description)">{{ temp.title }}</span>
@@ -73,8 +69,8 @@
 
                         <div class="editor-tools">
                             <div class="tools-header">
-                                <h3>Công cụ chỉnh sửa</h3>
-                                <button class="btn-reset" @click="resetImage">Đặt lại</button>
+                                <h3>Editing tools</h3>
+                                <button class="btn-reset" @click="resetImage">Reset</button>
                             </div>
 
                             <div class="tools-tabs">
@@ -90,23 +86,23 @@
                                     <div class="ai-tools-grid">
                                         <button class="tool-button" @click="applyAIEffect('enhance')">
                                             <span class="tool-icon">✨</span>
-                                            <span>Làm đẹp ảnh</span>
+                                            <span>Enhance image</span>
                                         </button>
                                         <button class="tool-button" @click="applyAIEffect('restore')">
                                             <span class="tool-icon">🔄</span>
-                                            <span>Phục hồi ảnh cũ</span>
+                                            <span>Restore old photo</span>
                                         </button>
                                         <button class="tool-button" @click="applyAIEffect('remove-bg')">
                                             <span class="tool-icon">🖼️</span>
-                                            <span>Xóa phông nền</span>
+                                            <span>Remove background</span>
                                         </button>
                                         <button class="tool-button" @click="applyAIEffect('portrait')">
                                             <span class="tool-icon">👤</span>
-                                            <span>Làm đẹp khuôn mặt</span>
+                                            <span>Enhance face</span>
                                         </button>
                                         <button class="tool-button" @click="applyAIEffect('upscale')">
                                             <span class="tool-icon">🔍</span>
-                                            <span>Tăng độ phân giải</span>
+                                            <span>Increase resolution</span>
                                         </button>
                                     </div>
                                 </div>
@@ -133,8 +129,7 @@
                                             <div class="chat-attachment">
                                                 <input type="file" id="chat-file-input" @change="handleChatAttachment"
                                                     accept="image/*" multiple class="chat-file-input" />
-                                                <label for="chat-file-input" class="attachment-btn"
-                                                    title="Thêm hình ảnh">
+                                                <label for="chat-file-input" class="attachment-btn" title="Add images">
                                                     <span class="attachment-icon">📎</span>
                                                 </label>
                                                 <div class="selected-attachments"
@@ -149,23 +144,24 @@
                                             </div>
                                             <div class="chat-input">
                                                 <input type="text" v-model="chatInput"
-                                                    placeholder="Mô tả chỉnh sửa bạn muốn thực hiện..."
+                                                    placeholder="Describe the edits you want to make..."
                                                     @keyup.enter="sendChatMessage" />
                                                 <button @click="sendChatMessage"
-                                                    :disabled="!chatInput && (!chatAttachments || chatAttachments.length === 0)">Gửi</button>
+                                                    :disabled="!chatInput && (!chatAttachments || chatAttachments.length === 0)">Send</button>
                                             </div>
                                         </div>
 
                                         <div class="chat-suggestions">
-                                            <p>Gợi ý:</p>
+                                            <p>Suggestions:</p>
                                             <div class="suggestion-tags">
                                                 <span
-                                                    @click="setChatSuggestion('Làm mờ nền và tập trung vào chủ thể')">Làm
-                                                    mờ nền</span>
-                                                <span @click="setChatSuggestion('Thay đổi màu áo thành màu xanh')">Thay
-                                                    đổi màu</span>
-                                                <span @click="setChatSuggestion('Thêm hiệu ứng ánh sáng')">Thêm ánh
-                                                    sáng</span>
+                                                    @click="setChatSuggestion('Blur the background and focus on the subject')">Blur
+                                                    background</span>
+                                                <span
+                                                    @click="setChatSuggestion('Change the shirt color to blue')">Change
+                                                    color</span>
+                                                <span @click="setChatSuggestion('Add lighting effects')">Add
+                                                    lighting</span>
                                             </div>
                                         </div>
                                     </div>
@@ -173,8 +169,8 @@
                             </div>
 
                             <div class="editor-actions">
-                                <button class="btn btn-secondary" @click="resetImage">Hủy</button>
-                                <button class="btn btn-primary" @click="saveImage">Lưu ảnh</button>
+                                <button class="btn btn-secondary" @click="resetImage">Cancel</button>
+                                <button class="btn btn-primary" @click="saveImage">Save image</button>
                             </div>
                         </div>
                     </div>
@@ -185,8 +181,9 @@
             <div class="processing-overlay" v-if="isProcessing || isGenerating">
                 <div class="processing-content">
                     <div class="spinner"></div>
-                    <p>{{ isGenerating ? 'AI đang tạo ảnh từ mô tả của bạn...' : 'AI đang xử lý ảnh của bạn...' }}</p>
-                    <p>{{ indexTextShow }}/60</p>
+                    <p>{{ isGenerating ?
+                        'AI is generating an image from your description...'
+                        : 'AI is processing your image...' }}</p>
                 </div>
             </div>
 
@@ -200,6 +197,7 @@
         </div>
     </div>
 </template>
+
 
 <script setup>
 import request from '@/utils/request';
@@ -217,36 +215,35 @@ const imagePrompt = ref('');
 const chatInput = ref('');
 const chatMessagesRef = ref(null);
 const chatMessages = ref([
-    { sender: 'ai', text: 'Xin chào! Tôi là trợ lý AI. Bạn muốn chỉnh sửa ảnh như thế nào?' }
+    { sender: 'ai', text: 'Hello! I am an AI assistant. How would you like to edit your image?' }
 ]);
 const chatAttachments = ref([]);
-const selectedRatio = ref('1-1');
+const selectedRatio = ref('square');
 
-const indexTextShow = ref(0)
 
 const lightboxImage = ref(null);
 
-// Danh sách từ khóa gợi ý cho ảnh
+// Suggestion keywords list for images
 const examplePrompt = [
     {
-        title: 'Phong cảnh núi non hùng vĩ',
-        description: 'Một bức tranh phong cảnh với núi non hùng vĩ và bầu trời xanh trong.'
+        title: 'Majestic mountain landscape',
+        description: 'A landscape painting with majestic mountains and a clear blue sky.'
     },
     {
-        title: 'Chân dung nghệ thuật phong cách watercolor',
-        description: 'Một bức chân dung nghệ thuật với phong cách watercolor đầy màu sắc.'
+        title: 'Artistic portrait in watercolor style',
+        description: 'An artistic portrait with colorful watercolor style.'
     },
     {
-        title: 'Thành phố tương lai với ánh sáng neon',
-        description: 'Một bức tranh về thành phố tương lai với ánh sáng neon rực rỡ.'
+        title: 'Future city with neon lights',
+        description: 'A painting of a futuristic city with vibrant neon lights.'
     }
 ]
 
 
 // Removed basic tab from toolTabs
 const toolTabs = [
-    { id: 'chat', name: 'Chat với AI' },
-    { id: 'ai', name: 'Công cụ AI' }
+    { id: 'chat', name: 'Chat with AI' },
+    { id: 'ai', name: 'AI Tools' }
 ];
 
 // Reactive state
@@ -286,7 +283,7 @@ const handleDrop = (event) => {
 
 const processFile = (file) => {
     if (file.size > 10 * 1024 * 1024) {
-        alert('Kích thước file vượt quá giới hạn 10MB');
+        alert('File size exceeds the 10MB limit');
         return;
     }
 
@@ -307,11 +304,11 @@ const processFile = (file) => {
 };
 
 const resetImage = () => {
-    if (confirm('Bạn có chắc muốn đặt lại ảnh?')) {
+    if (confirm('Are you sure you want to reset the image?')) {
         selectedImage.value = null;
         imagePreview.value = '';
         chatMessages.value = [
-            { sender: 'ai', text: 'Xin chào! Tôi là trợ lý AI. Bạn muốn chỉnh sửa ảnh như thế nào?' }
+            { sender: 'ai', text: 'Hello! I am an AI assistant. How would you like to edit your image?' }
         ];
         chatAttachments.value = [];
     }
@@ -358,69 +355,32 @@ const generateImage = async () => {
     if (!imagePrompt.value) return;
 
     isGenerating.value = true;
-    indexTextShow.value = 0;
-
     try {
         // Get dimensions based on selected ratio
         const response = await request.post('/api/ainow/generate-image', {
             prompt: imagePrompt.value,
-            size: selectedRatio.value
+            sizeText: selectedRatio.value
         });
 
         console.log('Image generation response:', response);
-        
         if (response.success) {
-            // Use a flag to track if we should continue polling
-            let continuePolling = true;
-            
-            // Use a for loop with a condition that can be changed
-            for (let index = 0; index < 60 && continuePolling; index++) {
-                await sleep(5000);
-                indexTextShow.value = index;
-                
-                try {
-                    const res = await request.post('/api/ainow/get_task', {
-                        "processId": response.sessionId
-                    });
-                    
-                    console.log('Image generation progress:', res);
-                    
-                    if (res.success) {
-                        imagePreview.value = res.data[0].origin;
-                        selectedImage.value = 'generated';
-                        isGenerating.value = false;
-                        
-                        // Stop the polling loop
-                        continuePolling = false;
-                    }
-                } catch (error) {
-                    console.error('Error generating image:', error);
-                    
-                    if (!error.success && error.msg == 'pending') {
-                        console.log('Image generation in progress...');
-                        // Continue polling
-                    } else {
-                        alert('Có lỗi xảy ra khi tạo ảnh. Vui lòng thử lại.');
-                        isGenerating.value = false;
-                        
-                        // Stop the polling loop
-                        continuePolling = false;
-                    }
-                }
-            }
-            
-            // If we exited the loop without success
-            if (continuePolling) {
-                alert('Lỗi xảy ra khi tạo ảnh. Vui lòng thử lại.');
-                isGenerating.value = false;
-            }
+            const inlineData = response.result[0]?.candidates[0]?.content.parts[0]?.inlineData
+            console.log(inlineData)
+            const baseStr = inlineData?.data;
+            const mimeType = inlineData?.mimeType;
+
+            imagePreview.value = `data:${mimeType};base64,${baseStr}`;
+            selectedImage.value = 'generated';
+            isGenerating.value = false;
+
+            // Stop the polling loop
         } else {
-            alert('Có lỗi xảy ra khi tạo ảnh. Vui lòng thử lại.');
+            alert('An error occurred while generating the image. Please try again.');
             isGenerating.value = false;
         }
     } catch (error) {
         console.error('Error generating image:', error);
-        alert('Có lỗi xảy ra khi tạo ảnh. Vui lòng thử lại.');
+        alert('An error occurred while generating the image. Please try again.');
         isGenerating.value = false;
     }
 };
@@ -428,41 +388,139 @@ const generateImage = async () => {
 const setExamplePrompt = (prompt) => {
     imagePrompt.value = prompt;
 };
+const convertUrlToBase64 = async (url) => {
+    try {
+        // Fetch the image
+        const response = await fetch(url, {
+            // Include any necessary CORS headers if needed
+            mode: 'cors',
+        });
 
-const applyAIEffect = (effect) => {
-    isProcessing.value = true;
-    // Xử lý nội dung 
-    alert(`Đang áp dụng hiệu ứng: ${effect}`);
-
-
-
-    // Simulate AI processing
-    setTimeout(() => {
-        console.log(`Applying AI effect: ${effect}`);
-        // In a real app, this would call an API to process the image
-        isProcessing.value = false;
-
-        // Add a message to chat if it's a restoration or enhancement
-        if (effect === 'restore' || effect === 'enhance') {
-            chatMessages.value.push({
-                sender: 'ai',
-                text: `Tôi đã ${effect === 'restore' ? 'phục hồi' : 'làm đẹp'} ảnh của bạn. Bạn có muốn điều chỉnh gì thêm không?`
-            });
+        if (!response.ok) {
+            throw new Error(`Failed to fetch image: ${response.status}`);
         }
-    }, 2000);
+
+        // Convert to blob
+        const blob = await response.blob();
+
+        // Convert blob to base64
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+                // This will give you the full data URL (e.g., "data:image/webp;base64,...")
+                const fullBase64 = reader.result;
+
+                // If you need just the base64 part without the prefix:
+                const base64Data = fullBase64.split(',')[1];
+
+                resolve({
+                    fullBase64, // Full data URL
+                    base64Data  // Just the base64 part
+                });
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+        });
+    } catch (error) {
+        console.error("Error converting image to base64:", error);
+        return null;
+    }
 };
 
-const sendChatMessage = () => {
+const applyAIEffect = async (effect) => {
+    isProcessing.value = true;
+    // Process content 
+    console.log(effect)
+    // Xóa nền 
+    if (effect == 'remove-bg') {
+        try {
+            const response = await request.post('/api/ainow/remove_bg', {
+                "images": [
+                    imagePreview.value.replace('data:', '')
+                ]
+            });
+
+            if (response.success) {
+                // Xử lý hàm
+                let processId = response.sessionId;
+
+                // Set up polling with timeout
+                const startTime = Date.now();
+                const timeoutMs = 100 * 1000; // 100 seconds
+                let completed = false;
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                while (Date.now() - startTime < timeoutMs && !completed) {
+                    try {
+                        const res = await request.post('/api/ainow/get_task', {
+                            "processId": processId
+                        });
+
+                        if (res.success) {
+                            completed = true;
+                            // Usage
+                            let origin = res.data[0].origin
+                            let rss = await request.post('/api/ainow/url_basestr', {
+                                "imageUrl": origin
+                            })
+                            imagePreview.value = rss.base64
+                            //     console.log(`Applying AI effect: ${effect}`);
+                            //     // In a real app, this would call an API to process the image
+                            isProcessing.value = false;
+
+                            // Add a message to chat if it's a restoration or enhancement
+                            if (effect === 'restore' || effect === 'enhance' || effect === 'remove-bg') {
+                                chatMessages.value.push({
+                                    sender: 'ai',
+                                    text: `I have ${effect} your image. Would you like any additional adjustments?`
+                                });
+                            }
+                            // Handle successful response here
+                            break;
+                        }
+                    } catch (error) {
+                        // Handle network errors or other exceptions
+                        console.error("Error checking task status:", error);
+                        // else if (res.msg === 'pending') {
+                        //     // Task is still pending, continue polling
+                        //     console.log("Task is pending, continuing to poll...");
+                        // } else {
+                        //     // Some other error occurred
+                        //     throw new Error(`Task failed: ${res.msg}`);
+                        // }
+                    }
+                    // Wait 3 seconds before trying again
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                }
+
+                if (!completed) {
+                    alert('Operation timed out after 100 seconds. Please try again.');
+                }
+
+            } else {
+                alert('An error occurred while generating the image. Please try again.');
+            }
+        } catch (error) {
+            console.error("Error in applyAIEffect:", error);
+            alert('An error occurred. Please try again.');
+        } finally {
+            isGenerating.value = false;
+            isProcessing.value = false;
+        }
+    }
+};
+const sendChatMessage = async () => {
+
     if (!chatInput.value && (!chatAttachments.value || chatAttachments.value.length === 0)) return;
 
     // Create user message with both text and attachments
     const message = {
         sender: 'user',
-        text: chatInput.value || 'Xin vui lòng xử lý những hình ảnh này',
+        text: chatInput.value || 'Please process these images',
         attachments: [...chatAttachments.value]
     };
 
     chatMessages.value.push(message);
+    console.log(message)
 
     const userRequest = chatInput.value;
     chatInput.value = '';
@@ -471,17 +529,32 @@ const sendChatMessage = () => {
     const hadAttachments = chatAttachments.value.length > 0;
     chatAttachments.value = [];
 
-    // Simulate AI processing and response
-    setTimeout(() => {
-        // Add AI response based on whether there were attachments or just text
+
+    isProcessing.value = true;
+    let attachments = []
+    attachments.push({
+        attachment: imagePreview.value.split(',')[1]
+    })
+    for (let index = 0; index < message.attachments.length; index++) {
+        attachments.push({
+            attachment: message.attachments[index].preview.split(',')[1]
+        })
+    }
+    // Thực hiện 
+    // console.log(attachments)
+    const response = await request.post('/api/ainow/generate-image-edit', {
+        prompt: `${message.text}. `,
+        imageArrays: attachments
+    });
+    const sendText = () => {
         let responseText = userRequest
-            ? `Tôi sẽ ${userRequest.toLowerCase()}.`
-            : 'Tôi sẽ xử lý những hình ảnh bạn đã gửi.';
+            ? `I will "${userRequest.toLowerCase()}".`
+            : 'I will process the images you sent.';
 
         if (hadAttachments) {
-            responseText += ' Tôi đã nhận được hình ảnh của bạn. Đang xử lý...';
+            responseText += ' I have received your images. Processing...';
         } else {
-            responseText += ' Đang xử lý...';
+            responseText += ' Processing...';
         }
 
         chatMessages.value.push({
@@ -489,7 +562,6 @@ const sendChatMessage = () => {
             text: responseText
         });
 
-        isProcessing.value = true;
 
         // Simulate processing time
         setTimeout(() => {
@@ -497,15 +569,32 @@ const sendChatMessage = () => {
 
             // Add completion message
             let completionText = hadAttachments
-                ? `Tôi đã hoàn thành việc xử lý hình ảnh`
-                : `Tôi đã hoàn thành việc ${userRequest ? userRequest.toLowerCase() : 'xử lý yêu cầu của bạn'}`;
+                ? `I have completed processing the images`
+                : `I have completed ${userRequest ? userRequest.toLowerCase() : 'processing your request'}`;
 
             chatMessages.value.push({
                 sender: 'ai',
-                text: `${completionText}. Bạn có hài lòng với kết quả không?`
+                text: `${completionText}. Are you satisfied with the result?`
             });
         }, 2000);
-    }, 500);
+    }
+    // console.log('Image generation response:', response);
+    if (response.success) {
+        const inlineData = response.result[0]?.candidates[0]?.content.parts[0]?.inlineData
+        // console.log(inlineData.data)
+        const baseStr = inlineData?.data;
+        const mimeType = inlineData?.mimeType;
+        imagePreview.value = `data:${mimeType};base64,${baseStr}`;
+        selectedImage.value = 'generated';
+        isGenerating.value = false;
+        sendText()
+
+        // Stop the polling loop
+    } else {
+        alert('An error occurred while generating the image. Please try again.');
+        isGenerating.value = false;
+    }
+
 };
 
 const setChatSuggestion = (suggestion) => {
@@ -514,10 +603,9 @@ const setChatSuggestion = (suggestion) => {
 
 const saveImage = () => {
     // In a real app, this would save the edited image
-    alert('Ảnh đã được lưu thành công!');
+    alert('Image has been saved successfully!');
 };
 </script>
-
 <style scoped>
 /* Modern CSS Improvements for AI Image Editor */
 .editor-page {
