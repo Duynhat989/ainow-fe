@@ -45,7 +45,7 @@
         </div>
         
         <div class="footer-bottom">
-          <p>&copy; 2025 AI Image Editor. Tất cả các quyền được bảo lưu.</p>
+          <p>&copy; 2025 AINow. Tất cả các quyền được bảo lưu.</p>
           <div class="language-selector">
             <select>
               <option value="vi">Tiếng Việt</option>
@@ -139,7 +139,9 @@
     border-top: 1px solid #374151;
     color: #9ca3af;
   }
-  
+  .footer-bottom p{
+    color:white;
+  }
   .language-selector select {
     background-color: #374151;
     color: white;
