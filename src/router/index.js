@@ -18,6 +18,7 @@ import SupportPage from '@/components/Support.vue'
 import CommunityPage from '@/components/Community.vue'
 import ProfilePage from '@/components/Profile.vue'
 import PaymentPage from '@/components/Payment.vue'
+import TrendPage from '@/components/Trend.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,12 +41,12 @@ const router = createRouter({
       component: MyGalleryPage,
       meta: { requiresAuth: true }
     },
-    {
-      path: '/templates',
-      name: 'templates',
-      component: TemplatesPage,
-      meta: { requiresAuth: false }
-    },
+    // {
+    //   path: '/templates',
+    //   name: 'templates',
+    //   component: TemplatesPage,
+    //   meta: { requiresAuth: false }
+    // },
     {
       path: '/pricing',
       name: 'pricing',
@@ -86,6 +87,12 @@ const router = createRouter({
       path: '/payment',
       name: 'payment',
       component: PaymentPage,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/explore',
+      name: 'Explore',
+      component: TrendPage,
       meta: { requiresAuth: true }
     },
     {

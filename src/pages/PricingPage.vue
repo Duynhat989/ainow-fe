@@ -1,308 +1,316 @@
 <template>
-    <div class="pricing-page">
-      <!-- Hero Section -->
-      <section class="pricing-hero-section">
-        <div class="container">
-          <div class="pricing-hero-content">
-            <h1>Chọn Gói Phù Hợp Với Nhu Cầu Của Bạn</h1>
-            <p>Trải nghiệm sức mạnh của công nghệ AI trong chỉnh sửa ảnh với các gói dịch vụ linh hoạt</p>
-          </div>
+  <div class="pricing-page">
+    <!-- Hero Section -->
+    <section class="pricing-hero-section">
+      <div class="container">
+        <div class="pricing-hero-content">
+          <h1>Chọn Gói Phù Hợp Với Nhu Cầu Của Bạn</h1>
+          <p>Trải nghiệm sức mạnh của công nghệ AI trong chỉnh sửa ảnh với các gói dịch vụ linh hoạt</p>
         </div>
-      </section>
-  
-      <!-- Pricing Plans Section -->
-      <section class="pricing-plans-section">
-        <div class="container">
-          <div class="pricing-toggle">
-            <span :class="{ 'active': billingType === 'monthly' }" @click="billingType = 'monthly'">Thanh toán tháng</span>
-            <div class="toggle-switch" @click="toggleBilling">
-              <div class="toggle-button" :class="{ 'yearly': billingType === 'yearly' }"></div>
-            </div>
-            <span :class="{ 'active': billingType === 'yearly' }" @click="billingType = 'yearly'">Thanh toán năm <span class="discount-badge">Tiết kiệm 35%</span></span>
-          </div>
-  
-          <div class="pricing-grid">
-            <!-- Basic Plan -->
-            <div class="pricing-card">
-              <div class="pricing-header">
-                <h3>Cơ Bản</h3>
-                <div class="pricing-price">
-                  <span class="price" v-if="billingType === 'monthly'">0₫</span>
-                  <span class="price" v-else>0₫</span>
-                  <span class="period">mãi mãi</span>
-                </div>
-                <p class="pricing-description">Bắt đầu chỉnh sửa ảnh với các công cụ AI cơ bản</p>
-              </div>
-              <div class="pricing-features">
-                <ul>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span><strong>Có hiển thị quảng cáo</strong></span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span><strong>100 lượt chỉnh sửa</strong> mỗi tháng</span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span>Truy cập các công cụ AI cơ bản</span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span>Lưu trữ đám mây 1GB</span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span>Xuất ảnh độ phân giải tiêu chuẩn</span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span>Hỗ trợ qua email</span>
-                  </li>
-                  <li class="feature-disabled">
-                    <span class="feature-cross">×</span>
-                    <span>Có logo watermark trên ảnh</span>
-                  </li>
-                  <li class="feature-disabled">
-                    <span class="feature-cross">×</span>
-                    <span>Không có công cụ AI nâng cao</span>
-                  </li>
-                </ul>
-              </div>
-              <div class="pricing-action">
-                <RouterLink to="/editor" class="btn btn-outline">Đăng Ký Miễn Phí</RouterLink>
-              </div>
-            </div>
-  
-            <!-- Pro Plan -->
-            <div class="pricing-card popular">
-              <div class="popular-badge">Phổ biến</div>
-              <div class="pricing-header">
-                <h3>Pro</h3>
-                <div class="pricing-price">
-                  <span class="price" v-if="billingType === 'monthly'">9.9$</span>
-                  <span class="price" v-else>89$ </span>
-                  <span class="period">{{ billingType === 'monthly' ? 'mỗi tháng' : 'mỗi năm' }}</span>
-                </div>
-                <p class="pricing-description">Trải nghiệm đầy đủ sức mạnh của công nghệ AI</p>
-              </div>
-              <div class="pricing-features">
-                <ul>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span><strong>Không có quảng cáo</strong></span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span><strong>Không giới hạn lượt chỉnh sửa</strong></span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span>Truy cập <strong>tất cả</strong> công cụ AI</span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span>Lưu trữ đám mây không giới hạn</span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span>Xuất ảnh độ phân giải cao (4K)</span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span><strong>Không có watermark</strong></span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span>Ưu tiên xử lý trên máy chủ</span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span>Tải xuống hàng loạt</span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span>Truy cập ứng dụng di động Pro</span>
-                  </li>
-                  <li>
-                    <span class="feature-check">✓</span>
-                    <span>Hỗ trợ ưu tiên 24/7</span>
-                  </li>
-                </ul>
-              </div>
-              <div class="pricing-action">
-                <a class="btn btn-primary" href="/payment?package=pro">Dùng Thử 7 Ngày</a>
-              </div>
-            </div>
-          </div>
-  
-          <div class="pricing-note">
-            <p>Tất cả các gói đều bao gồm hỗ trợ kỹ thuật và cập nhật thường xuyên. Để biết thêm về các gói doanh nghiệp tùy chỉnh, <a href="/contact">liên hệ với chúng tôi</a>.</p>
-          </div>
-        </div>
-      </section>
-  
-      <!-- Features Comparison -->
-      <section class="features-comparison-section">
-        <div class="container">
-          <h2 class="section-title">So Sánh Chi Tiết Các Gói</h2>
-          
-          <div class="comparison-table-wrapper">
-            <table class="comparison-table">
-              <thead>
-                <tr>
-                  <th class="feature-name">Tính năng</th>
-                  <th class="plan-basic">Cơ Bản</th>
-                  <th class="plan-pro">Pro</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="section-header">
-                  <td colspan="3">Giới hạn sử dụng</td>
-                </tr>
-                <tr>
-                  <td>Lượt chỉnh sửa ảnh</td>
-                  <td>5 lần/ngày</td>
-                  <td>Không giới hạn</td>
-                </tr>
-                <tr>
-                  <td>Lưu trữ đám mây</td>
-                  <td>1GB</td>
-                  <td>Không giới hạn</td>
-                </tr>
-                
-                <tr class="section-header">
-                  <td colspan="3">Công cụ AI</td>
-                </tr>
-                <tr>
-                  <td>Xóa phông nền</td>
-                  <td><span class="feature-included">✓</span></td>
-                  <td><span class="feature-included">✓</span></td>
-                </tr>
-                <tr>
-                  <td>Làm đẹp khuôn mặt cơ bản</td>
-                  <td><span class="feature-included">✓</span></td>
-                  <td><span class="feature-included">✓</span></td>
-                </tr>
-                <tr>
-                  <td>Phục hồi ảnh cũ</td>
-                  <td><span class="feature-included">✓</span></td>
-                  <td><span class="feature-included">✓</span></td>
-                </tr>
-                <tr>
-                  <td>Chỉnh sửa bằng chat AI</td>
-                  <td><span class="feature-not-included">×</span></td>
-                  <td><span class="feature-included">✓</span></td>
-                </tr>
-                <tr>
-                  <td>Tạo ảnh từ văn bản</td>
-                  <td><span class="feature-not-included">×</span></td>
-                  <td><span class="feature-included">✓</span></td>
-                </tr>
-                <tr>
-                  <td>Tăng độ phân giải ảnh</td>
-                  <td><span class="feature-not-included">×</span></td>
-                  <td><span class="feature-included">✓</span></td>
-                </tr>
-                <tr>
-                  <td>Xóa vật thể không mong muốn</td>
-                  <td><span class="feature-not-included">×</span></td>
-                  <td><span class="feature-included">✓</span></td>
-                </tr>
-                <tr>
-                  <td>Thay đổi phong cách ảnh</td>
-                  <td><span class="feature-not-included">×</span></td>
-                  <td><span class="feature-included">✓</span></td>
-                </tr>
-                
-                <tr class="section-header">
-                  <td colspan="3">Tính năng khác</td>
-                </tr>
-                <tr>
-                  <td>Watermark</td>
-                  <td>Có</td>
-                  <td>Không</td>
-                </tr>
-                <tr>
-                  <td>Tải xuống hàng loạt</td>
-                  <td><span class="feature-not-included">×</span></td>
-                  <td><span class="feature-included">✓</span></td>
-                </tr>
-                <tr>
-                  <td>Ưu tiên xử lý trên máy chủ</td>
-                  <td><span class="feature-not-included">×</span></td>
-                  <td><span class="feature-included">✓</span></td>
-                </tr>
-                <tr>
-                  <td>Ứng dụng di động</td>
-                  <td>Giới hạn</td>
-                  <td>Đầy đủ</td>
-                </tr>
-                <tr>
-                  <td>Hỗ trợ kỹ thuật</td>
-                  <td>Email</td>
-                  <td>Ưu tiên 24/7</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- CTA Section -->
-      <section class="pricing-cta-section">
-        <div class="container">
-          <div class="pricing-cta-content">
-            <h2>Bắt Đầu Trải Nghiệm Ngay Hôm Nay</h2>
-            <p>Dùng thử miễn phí 7 ngày với gói Pro - không cần thông tin thẻ tín dụng</p>
-            <div class="cta-buttons">
-              <RouterLink to="/pricing" class="btn btn-primary">Dùng Thử Pro</RouterLink>
-              <RouterLink to="/editer" class="btn btn-secondary">Đăng Ký Miễn Phí</RouterLink>
+    <!-- Pricing Plans Section -->
+    <section class="pricing-plans-section">
+      <div class="container">
+        <div class="pricing-toggle">
+          <span :class="{ 'active': billingType === 'monthly' }" @click="billingType = 'monthly'">Thanh toán
+            tháng</span>
+          <div class="toggle-switch" @click="toggleBilling">
+            <div class="toggle-button" :class="{ 'yearly': billingType === 'yearly' }"></div>
+          </div>
+          <span :class="{ 'active': billingType === 'yearly' }" @click="billingType = 'yearly'">Thanh toán năm <span
+              class="discount-badge">Tiết kiệm 35%</span></span>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Basic Plan -->
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3>Cơ Bản</h3>
+              <div class="pricing-price">
+                <span class="price" v-if="billingType === 'monthly'">0₫</span>
+                <span class="price" v-else>0₫</span>
+                <span class="period">mãi mãi</span>
+              </div>
+              <p class="pricing-description">Bắt đầu chỉnh sửa ảnh với các công cụ AI cơ bản</p>
             </div>
-            <div class="cta-note">
-              <p>Không yêu cầu cam kết dài hạn. Hủy bất cứ lúc nào.</p>
+            <div class="pricing-features">
+              <ul>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span><strong>Có hiển thị quảng cáo</strong></span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span><strong>100 lượt chỉnh sửa</strong> mỗi tháng</span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span>Truy cập các công cụ AI cơ bản</span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span>Lưu trữ đám mây 1GB</span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span>Xuất ảnh độ phân giải tiêu chuẩn</span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span>Hỗ trợ qua email</span>
+                </li>
+                <li class="feature-disabled">
+                  <span class="feature-cross">×</span>
+                  <span>Có logo watermark trên ảnh</span>
+                </li>
+                <li class="feature-disabled">
+                  <span class="feature-cross">×</span>
+                  <span>Không có công cụ AI nâng cao</span>
+                </li>
+              </ul>
+            </div>
+            <div class="pricing-action">
+              <RouterLink to="/editor" class="btn btn-outline">Đăng Ký Miễn Phí</RouterLink>
+            </div>
+          </div>
+
+          <!-- Pro Plan -->
+          <div class="pricing-card popular">
+            <div class="popular-badge">Phổ biến</div>
+            <div class="pricing-header">
+              <h3>Pro</h3>
+              <div class="pricing-price">
+                <span class="price" v-if="billingType === 'monthly'">9.9$</span>
+                <span class="price" v-else>89$ </span>
+                <span class="period">{{ billingType === 'monthly' ? 'mỗi tháng' : 'mỗi năm' }}</span>
+              </div>
+              <p class="pricing-description">Trải nghiệm đầy đủ sức mạnh của công nghệ AI</p>
+            </div>
+            <div class="pricing-features">
+              <ul>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span><strong>Không có quảng cáo</strong></span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span><strong>Không giới hạn lượt chỉnh sửa</strong></span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span>Truy cập <strong>tất cả</strong> công cụ AI</span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span>Lưu trữ đám mây không giới hạn</span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span>Xuất ảnh độ phân giải cao (4K)</span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span><strong>Không có watermark</strong></span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span>Ưu tiên xử lý trên máy chủ</span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span>Tải xuống hàng loạt</span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span>Truy cập ứng dụng di động Pro</span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span>Hỗ trợ ưu tiên 24/7</span>
+                </li>
+                <li>
+                  <span class="feature-check">✓</span>
+                  <span><strong>Hoàn tiền trong 7 ngày nếu không hài lòng!</strong></span>
+                </li>
+              </ul>
+            </div>
+            <div class="pricing-action">
+              <a class="btn btn-primary" :href="billingType !== monthly ? `/payment` : `/payment?package=pro`">Dùng Thử 7
+                Ngày</a>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+
+        <div class="pricing-note">
+          <p>Tất cả các gói đều bao gồm hỗ trợ kỹ thuật và cập nhật thường xuyên. Để biết thêm về các gói doanh nghiệp
+            tùy chỉnh, <a href="/contact">liên hệ với chúng tôi</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Comparison -->
+    <section class="features-comparison-section">
+      <div class="container">
+        <h2 class="section-title">So Sánh Chi Tiết Các Gói</h2>
+
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th class="feature-name">Tính năng</th>
+                <th class="plan-basic">Cơ Bản</th>
+                <th class="plan-pro">Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="section-header">
+                <td colspan="3">Giới hạn sử dụng</td>
+              </tr>
+              <tr>
+                <td>Lượt chỉnh sửa ảnh</td>
+                <td>5 lần/ngày</td>
+                <td>Không giới hạn</td>
+              </tr>
+              <tr>
+                <td>Lưu trữ đám mây</td>
+                <td>1GB</td>
+                <td>Không giới hạn</td>
+              </tr>
+
+              <tr class="section-header">
+                <td colspan="3">Công cụ AI</td>
+              </tr>
+              <tr>
+                <td>Xóa phông nền</td>
+                <td><span class="feature-included">✓</span></td>
+                <td><span class="feature-included">✓</span></td>
+              </tr>
+              <tr>
+                <td>Làm đẹp khuôn mặt cơ bản</td>
+                <td><span class="feature-included">✓</span></td>
+                <td><span class="feature-included">✓</span></td>
+              </tr>
+              <tr>
+                <td>Phục hồi ảnh cũ</td>
+                <td><span class="feature-included">✓</span></td>
+                <td><span class="feature-included">✓</span></td>
+              </tr>
+              <tr>
+                <td>Chỉnh sửa bằng chat AI</td>
+                <td><span class="feature-not-included">×</span></td>
+                <td><span class="feature-included">✓</span></td>
+              </tr>
+              <tr>
+                <td>Tạo ảnh từ văn bản</td>
+                <td><span class="feature-not-included">×</span></td>
+                <td><span class="feature-included">✓</span></td>
+              </tr>
+              <tr>
+                <td>Tăng độ phân giải ảnh</td>
+                <td><span class="feature-not-included">×</span></td>
+                <td><span class="feature-included">✓</span></td>
+              </tr>
+              <tr>
+                <td>Xóa vật thể không mong muốn</td>
+                <td><span class="feature-not-included">×</span></td>
+                <td><span class="feature-included">✓</span></td>
+              </tr>
+              <tr>
+                <td>Thay đổi phong cách ảnh</td>
+                <td><span class="feature-not-included">×</span></td>
+                <td><span class="feature-included">✓</span></td>
+              </tr>
+
+              <tr class="section-header">
+                <td colspan="3">Tính năng khác</td>
+              </tr>
+              <tr>
+                <td>Watermark</td>
+                <td>Có</td>
+                <td>Không</td>
+              </tr>
+              <tr>
+                <td>Tải xuống hàng loạt</td>
+                <td><span class="feature-not-included">×</span></td>
+                <td><span class="feature-included">✓</span></td>
+              </tr>
+              <tr>
+                <td>Ưu tiên xử lý trên máy chủ</td>
+                <td><span class="feature-not-included">×</span></td>
+                <td><span class="feature-included">✓</span></td>
+              </tr>
+              <tr>
+                <td>Ứng dụng di động</td>
+                <td>Giới hạn</td>
+                <td>Đầy đủ</td>
+              </tr>
+              <tr>
+                <td>Hỗ trợ kỹ thuật</td>
+                <td>Email</td>
+                <td>Ưu tiên 24/7</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="pricing-cta-section">
+      <div class="container">
+        <div class="pricing-cta-content">
+          <h2>Bắt Đầu Trải Nghiệm Ngay Hôm Nay</h2>
+          <p>Dùng thử miễn phí 7 ngày với gói Pro - không cần thông tin thẻ tín dụng</p>
+          <div class="cta-buttons">
+            <RouterLink to="/pricing" class="btn btn-primary">Dùng Thử Pro</RouterLink>
+            <RouterLink to="/editer" class="btn btn-secondary">Đăng Ký Miễn Phí</RouterLink>
+          </div>
+          <div class="cta-note">
+            <p>Không yêu cầu cam kết dài hạn. Hủy bất cứ lúc nào.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
-  
+
 <script setup>
-  import { ref } from 'vue';
-  import { RouterLink } from 'vue-router';
-  
-  // State for billing toggle
-  const billingType = ref('monthly');
-  
-  // Toggle billing type
-  const toggleBilling = () => {
-    billingType.value = billingType.value === 'monthly' ? 'yearly' : 'monthly';
-  };
-  
-  // Script for FAQ toggle
-  const toggleFaq = (event) => {
-    const question = event.currentTarget;
-    const faqItem = question.parentElement;
-    const isActive = faqItem.classList.contains('active');
-    
-    // Close all other items
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.classList.remove('active');
-      const toggle = item.querySelector('.faq-toggle');
-      if (toggle) toggle.textContent = '+';
-    });
-    
-    // Toggle current item if it wasn't active
-    if (!isActive) {
-      faqItem.classList.add('active');
-      const toggle = question.querySelector('.faq-toggle');
-      if (toggle) toggle.textContent = '-';
-    }
-  };
-  
-  // In a real app, we would add event listeners
-  // But Vue uses @click directives in the template
+import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
+
+// State for billing toggle
+const billingType = ref('monthly');
+
+// Toggle billing type
+const toggleBilling = () => {
+  billingType.value = billingType.value === 'monthly' ? 'yearly' : 'monthly';
+};
+
+// Script for FAQ toggle
+const toggleFaq = (event) => {
+  const question = event.currentTarget;
+  const faqItem = question.parentElement;
+  const isActive = faqItem.classList.contains('active');
+
+  // Close all other items
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.classList.remove('active');
+    const toggle = item.querySelector('.faq-toggle');
+    if (toggle) toggle.textContent = '+';
+  });
+
+  // Toggle current item if it wasn't active
+  if (!isActive) {
+    faqItem.classList.add('active');
+    const toggle = question.querySelector('.faq-toggle');
+    if (toggle) toggle.textContent = '-';
+  }
+};
+
+// In a real app, we would add event listeners
+// But Vue uses @click directives in the template
 </script>
 
 <style scoped>
@@ -456,7 +464,7 @@ section {
   width: 100%;
   height: 100%;
   background-image: linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
   background-size: 20px 20px;
   background-position: center center;
   z-index: 0;
@@ -650,7 +658,8 @@ section {
   color: #111827;
 }
 
-.feature-check, .feature-cross {
+.feature-check,
+.feature-cross {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -883,6 +892,7 @@ section {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1063,15 +1073,15 @@ section {
   .pricing-hero-content h1 {
     font-size: 3rem;
   }
-  
+
   .pricing-hero-content p {
     font-size: 1.2rem;
   }
-  
+
   .pricing-cta-content h2 {
     font-size: 2.5rem;
   }
-  
+
   .comparison-table th,
   .comparison-table td {
     padding: 15px;
@@ -1082,21 +1092,22 @@ section {
   section {
     padding: 80px 0;
   }
-  
+
   .pricing-grid {
     grid-template-columns: 1fr;
     max-width: 500px;
   }
-  
+
   .pricing-card.popular {
     transform: scale(1);
   }
-  
+
   .pricing-card.popular:hover {
     transform: translateY(-10px);
   }
-  
+
   .testimonials-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-} </style>
+}
+</style>
