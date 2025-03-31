@@ -109,29 +109,6 @@
           </div>
         </section>
   
-        <!-- Community Events -->
-        <section class="events-section">
-          <h2 class="section-title">Upcoming Community Events</h2>
-          
-          <div class="events-grid">
-            <div v-for="(event, index) in communityEvents" :key="index" class="event-card">
-              <div class="event-date">
-                <div class="event-month">{{ event.month }}</div>
-                <div class="event-day">{{ event.day }}</div>
-              </div>
-              <div class="event-details">
-                <h3>{{ event.title }}</h3>
-                <p class="event-description">{{ event.description }}</p>
-                <div class="event-meta">
-                  <span class="event-time"><i class="time-icon">🕒</i> {{ event.time }}</span>
-                  <span class="event-location"><i class="location-icon">📍</i> {{ event.location }}</span>
-                </div>
-                <button class="register-button" @click="registerEvent(event)">Register Now</button>
-              </div>
-            </div>
-          </div>
-        </section>
-  
         <!-- Join Community Section -->
         <section class="join-section">
           <div class="join-card">

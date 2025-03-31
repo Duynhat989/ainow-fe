@@ -11,28 +11,19 @@
                     <li><RouterLink to="/">Home</RouterLink></li>
                     <li><RouterLink to="/editor">AI Editor</RouterLink></li>
                     <li><RouterLink to="/explore">Trends Photos</RouterLink></li>
-                    <li class="dropdown">
-                        <a href="#" @click.prevent="toggleDropdown('tools')">
-                            Tutorials
-                            <span class="dropdown-icon" :class="{ 'active': activeDropdown === 'tools' }">▼</span>
-                        </a>
-                        <ul class="dropdown-menu" v-show="activeDropdown === 'tools'">
-                            <!-- <li><RouterLink to="/utilities">Tools</RouterLink></li> -->
-                            <li><RouterLink to="/tutorials">Tutorials</RouterLink></li>
-                        </ul>
-                    </li>
+                    <li><RouterLink to="/pricing">Pricing</RouterLink></li>
                     <li class="dropdown">
                         <a href="#" @click.prevent="toggleDropdown('about')">
                             About Us
-                            <span class="dropdown-icon" :class="{ 'active': activeDropdown === 'about' }">▼</span>
+                            <span class="dropdown-icon" :class="{ 'active': activeDropdown == 'about' }">▼</span>
                         </a>
                         <ul class="dropdown-menu" v-show="activeDropdown === 'about'">
+                            <li><RouterLink to="/tutorials">Tutorials</RouterLink></li>
                             <li><RouterLink to="/about">About Us</RouterLink></li>
                             <li><RouterLink to="/support">Support</RouterLink></li>
-                            <li><RouterLink to="/community">Community</RouterLink></li>
                         </ul>
                     </li>
-                    <li><RouterLink to="/pricing">Pricing</RouterLink></li>
+                    <li><RouterLink to="/community">Community</RouterLink></li>
                 </ul>
             </nav>
 
