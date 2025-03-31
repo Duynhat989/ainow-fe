@@ -600,8 +600,74 @@ const setChatSuggestion = (suggestion) => {
 };
 
 const saveImage = () => {
-    // In a real app, this would save the edited image
-    alert('Image has been saved successfully!');
+    try {
+        // Check if there's an image to save
+        if (!imagePreview.value) {
+            alert('No image to save. Please upload or generate an image first.');
+            return;
+        }
+
+        // Show saving message
+        isProcessing.value = true;
+
+        // Create a temporary image to handle conversion
+        const tempImg = new Image();
+        tempImg.crossOrigin = 'anonymous';
+
+        // Function to continue after image loads
+        tempImg.onload = () => {
+            // Create a canvas to draw the image
+            const canvas = document.createElement('canvas');
+            canvas.width = tempImg.width;
+            canvas.height = tempImg.height;
+
+            // Draw the image on the canvas
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(tempImg, 0, 0);
+
+            // Always save as PNG format
+            const dataURL = canvas.toDataURL('image/png');
+
+            // Generate a filename with timestamp and fixed PNG extension
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const filename = `edited-ainow-${timestamp}.png`;
+
+            // Create a download link element
+            const downloadLink = document.createElement('a');
+            downloadLink.href = dataURL;
+            downloadLink.download = filename;
+
+            // Append the link to the body (required for Firefox)
+            document.body.appendChild(downloadLink);
+
+            // Trigger the download
+            downloadLink.click();
+
+            // Clean up by removing the link
+            document.body.removeChild(downloadLink);
+
+            console.log('Image saved successfully:', filename);
+
+            // Hide saving message
+            isProcessing.value = false;
+
+            // Show success message to the user
+        };
+
+        // Handle load errors
+        tempImg.onerror = (error) => {
+            console.error('Error loading image for saving:', error);
+            isProcessing.value = false;
+            alert('Failed to save the image. There was an error processing the image data.');
+        };
+
+        // Start loading the image
+        tempImg.src = imagePreview.value;
+
+    } catch (error) {
+        console.error('Error saving image:', error);
+        isProcessing.value = false;
+    }
 };
 </script>
 <style scoped>
@@ -1673,104 +1739,105 @@ const saveImage = () => {
 /*  */
 
 .model {
-  display: flex;
-  align-items: center;
-  background-color: #f8fafc;
-  padding: 10px 16px;
-  border-radius: 12px;
-  /* margin-bottom: 16px; */
-  border: 1px solid #e2e8f0;
-  transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    background-color: #f8fafc;
+    padding: 10px 16px;
+    border-radius: 12px;
+    /* margin-bottom: 16px; */
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
 }
 
 .model:hover {
-  background-color: #f1f5f9;
-  border-color: #cbd5e1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .model label {
-  font-weight: 600;
-  color: #475569;
-  font-size: 0.95rem;
-  margin-right: 15px;
-  white-space: nowrap;
+    font-weight: 600;
+    color: #475569;
+    font-size: 0.95rem;
+    margin-right: 15px;
+    white-space: nowrap;
 }
 
 .model-select-wrapper {
-  position: relative;
-  flex: 1;
+    position: relative;
+    flex: 1;
 }
 
 .model select {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 100%;
-  padding: 10px 14px;
-  padding-right: 36px; /* Space for the custom arrow */
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  background-color: white;
-  color: #1e293b;
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    padding: 10px 14px;
+    padding-right: 36px;
+    /* Space for the custom arrow */
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background-color: white;
+    color: #1e293b;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .model select:focus {
-  outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
 /* Custom dropdown arrow */
 .model-select-wrapper::after {
-  content: "▼";
-  font-size: 0.7rem;
-  color: #64748b;
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  transition: all 0.2s ease;
+    content: "▼";
+    font-size: 0.7rem;
+    color: #64748b;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all 0.2s ease;
 }
 
 .model-select-wrapper:hover::after {
-  color: #475569;
+    color: #475569;
 }
 
 /* Model badge indicating quality */
 .model-badge {
-  display: inline-block;
-  padding: 3px 8px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  margin-left: 8px;
-  background-color: #e0f2fe;
-  color: #0284c7;
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 8px;
+    background-color: #e0f2fe;
+    color: #0284c7;
 }
 
 .model-badge.high {
-  background-color: #dcfce7;
-  color: #16a34a;
+    background-color: #dcfce7;
+    color: #16a34a;
 }
 
 .model-badge.medium {
-  background-color: #fef3c7;
-  color: #d97706;
+    background-color: #fef3c7;
+    color: #d97706;
 }
 
 /* Updated model layout in the layout-data container */
 .layout-data {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  gap: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 </style>

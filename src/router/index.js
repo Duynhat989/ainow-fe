@@ -13,6 +13,10 @@ import MyGalleryPage from '@/pages/MyGalleryPage.vue'
 import TemplatesPage from '@/pages/TemplatesPage.vue'
 import PricingPage from '@/pages/PricingPage.vue'
 import TutorialsPage from '@/pages/TutorialsPage.vue'
+import AboutUsPage from '@/components/AboutUs.vue'
+import SupportPage from '@/components/Support.vue'
+import CommunityPage from '@/components/Community.vue'
+import ProfilePage from '@/components/Profile.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +55,30 @@ const router = createRouter({
       path: '/tutorials',
       name: 'tutorials',
       component: TutorialsPage,
+      meta: { requiresAuth: false }
+    },
+    {
+      path: '/about',
+      name: 'aboutus',
+      component: AboutUsPage,
+      meta: { requiresAuth: false }
+    },
+    {
+      path: '/support',
+      name: 'support',
+      component: SupportPage,
+      meta: { requiresAuth: false }
+    },
+    {
+      path: '/community',
+      name: 'community',
+      component: CommunityPage,
+      meta: { requiresAuth: false }
+    },
+    {
+      path: '/my-profile',
+      name: 'profile',
+      component: ProfilePage,
       meta: { requiresAuth: false }
     },
     {

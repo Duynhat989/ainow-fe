@@ -13,11 +13,11 @@
                     <!-- <li><RouterLink to="/templates">Explore</RouterLink></li> -->
                     <li class="dropdown">
                         <a href="#" @click.prevent="toggleDropdown('tools')">
-                            Tools
+                            Tutorials
                             <span class="dropdown-icon" :class="{ 'active': activeDropdown === 'tools' }">▼</span>
                         </a>
                         <ul class="dropdown-menu" v-show="activeDropdown === 'tools'">
-                            <li><RouterLink to="/utilities">Tools</RouterLink></li>
+                            <!-- <li><RouterLink to="/utilities">Tools</RouterLink></li> -->
                             <li><RouterLink to="/tutorials">Tutorials</RouterLink></li>
                         </ul>
                     </li>
@@ -40,7 +40,7 @@
                 <div class="user-avatar" v-if="user.avatar">
                     <img :src="user.avatar" alt="User avatar" />
                 </div>
-                <a href="/me"><span class="user-name">{{ user.fullName }}</span></a>
+                <a href="/my-profile"><span class="user-name">{{ user.fullName }}</span></a>
                 <button class="btn btn-outline btn-sm" @click="handleSignOut">Sign Out</button>
             </div>
             <div v-else class="gmail-login">
@@ -64,11 +64,11 @@
                 <li><RouterLink to="/templates" @click="closeMobileMenu">Explore</RouterLink></li>
                 <li>
                     <div class="mobile-dropdown" @click="toggleMobileSubmenu('tools')">
-                        <span>Tools</span>
+                        <span>Tutorials</span>
                         <span class="mobile-dropdown-icon" :class="{ 'active': mobileSubmenu === 'tools' }">▼</span>
                     </div>
                     <ul class="mobile-submenu" :class="{ 'active': mobileSubmenu === 'tools' }">
-                        <li><RouterLink to="/utilities" @click="closeMobileMenu">Tools</RouterLink></li>
+                        <!-- <li><RouterLink to="/utilities" @click="closeMobileMenu">Tools</RouterLink></li> -->
                         <li><RouterLink to="/tutorials" @click="closeMobileMenu">Tutorials</RouterLink></li>
                     </ul>
                 </li>
