@@ -17,6 +17,7 @@ import AboutUsPage from '@/components/AboutUs.vue'
 import SupportPage from '@/components/Support.vue'
 import CommunityPage from '@/components/Community.vue'
 import ProfilePage from '@/components/Profile.vue'
+import PaymentPage from '@/components/Payment.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -79,7 +80,13 @@ const router = createRouter({
       path: '/my-profile',
       name: 'profile',
       component: ProfilePage,
-      meta: { requiresAuth: false }
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/payment',
+      name: 'payment',
+      component: PaymentPage,
+      meta: { requiresAuth: true }
     },
     {
       path: '/:catchAll(.*)',

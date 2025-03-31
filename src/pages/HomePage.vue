@@ -150,7 +150,7 @@
               </ul>
             </div>
             <div class="pricing-action">
-              <RouterLink to="/signup-pro" class="btn btn-primary">Dùng Thử 7 Ngày</RouterLink>
+              <RouterLink to="/payment" class="btn btn-primary">Dùng Thử 7 Ngày</RouterLink>
             </div>
           </div>
         </div>

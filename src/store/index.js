@@ -3,28 +3,28 @@ import { login, register } from '../api/auth';
 
 const store = createStore({
     state: {
-        user: JSON.parse(localStorage.getItem('user')) || null,
-        token: localStorage.getItem('token') || null,
-        isLogin: !!localStorage.getItem('token') ,
+        user: JSON.parse(localStorage.getItem('ainow_user')) || null,
+        token: localStorage.getItem('ainow_token') || null,
+        isLogin: !!localStorage.getItem('ainow_token') ,
         message: "",
         assistantName: ""
     },
     mutations: {
         setUser(state, user) {
             state.user = user;
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('ainow_user', JSON.stringify(user));
         },
         setToken(state, token) {
             state.token = token;
             state.isLogin = !!token;
-            localStorage.setItem('token', token);
+            localStorage.setItem('ainow_token', token);
         },
         clearAuthData(state) {
             state.user = null;
             state.token = null;
             state.isLogin = false;
-            localStorage.removeItem('user');
-            localStorage.removeItem('token');
+            localStorage.removeItem('ainow_user');
+            localStorage.removeItem('ainow_token');
         },
         setMessage(state, message) {
             state.message = message;

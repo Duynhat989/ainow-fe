@@ -18,7 +18,7 @@
             <div class="toggle-switch" @click="toggleBilling">
               <div class="toggle-button" :class="{ 'yearly': billingType === 'yearly' }"></div>
             </div>
-            <span :class="{ 'active': billingType === 'yearly' }" @click="billingType = 'yearly'">Thanh toán năm <span class="discount-badge">Tiết kiệm 20%</span></span>
+            <span :class="{ 'active': billingType === 'yearly' }" @click="billingType = 'yearly'">Thanh toán năm <span class="discount-badge">Tiết kiệm 35%</span></span>
           </div>
   
           <div class="pricing-grid">
@@ -35,6 +35,10 @@
               </div>
               <div class="pricing-features">
                 <ul>
+                  <li>
+                    <span class="feature-check">✓</span>
+                    <span><strong>Có hiển thị quảng cáo</strong></span>
+                  </li>
                   <li>
                     <span class="feature-check">✓</span>
                     <span><strong>100 lượt chỉnh sửa</strong> mỗi tháng</span>
@@ -66,7 +70,7 @@
                 </ul>
               </div>
               <div class="pricing-action">
-                <RouterLink to="/signup" class="btn btn-outline">Đăng Ký Miễn Phí</RouterLink>
+                <RouterLink to="/editor" class="btn btn-outline">Đăng Ký Miễn Phí</RouterLink>
               </div>
             </div>
   
@@ -76,14 +80,18 @@
               <div class="pricing-header">
                 <h3>Pro</h3>
                 <div class="pricing-price">
-                  <span class="price" v-if="billingType === 'monthly'">199.000₫</span>
-                  <span class="price" v-else>1.990.000₫</span>
+                  <span class="price" v-if="billingType === 'monthly'">9.9$</span>
+                  <span class="price" v-else>89$ </span>
                   <span class="period">{{ billingType === 'monthly' ? 'mỗi tháng' : 'mỗi năm' }}</span>
                 </div>
                 <p class="pricing-description">Trải nghiệm đầy đủ sức mạnh của công nghệ AI</p>
               </div>
               <div class="pricing-features">
                 <ul>
+                  <li>
+                    <span class="feature-check">✓</span>
+                    <span><strong>Không có quảng cáo</strong></span>
+                  </li>
                   <li>
                     <span class="feature-check">✓</span>
                     <span><strong>Không giới hạn lượt chỉnh sửa</strong></span>
@@ -123,7 +131,7 @@
                 </ul>
               </div>
               <div class="pricing-action">
-                <RouterLink to="/signup-pro" class="btn btn-primary">Dùng Thử 7 Ngày</RouterLink>
+                <a class="btn btn-primary" href="/payment?package=pro">Dùng Thử 7 Ngày</a>
               </div>
             </div>
           </div>
