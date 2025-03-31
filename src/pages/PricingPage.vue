@@ -154,18 +154,13 @@
                 </tr>
                 <tr>
                   <td>Lượt chỉnh sửa ảnh</td>
-                  <td>100/tháng</td>
+                  <td>5 lần/ngày</td>
                   <td>Không giới hạn</td>
                 </tr>
                 <tr>
                   <td>Lưu trữ đám mây</td>
                   <td>1GB</td>
                   <td>Không giới hạn</td>
-                </tr>
-                <tr>
-                  <td>Độ phân giải xuất ảnh</td>
-                  <td>Tối đa 1080p</td>
-                  <td>Tối đa 4K</td>
                 </tr>
                 
                 <tr class="section-header">

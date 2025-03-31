@@ -63,7 +63,7 @@
       <div class="container">
         <h2 class="section-title">Các Gói Dịch Vụ</h2>
         <p class="section-subtitle">Lựa chọn gói phù hợp với nhu cầu chỉnh sửa ảnh của bạn</p>
-        
+
         <div class="pricing-grid two-columns">
           <!-- Base Plan -->
           <div class="pricing-card">
@@ -102,7 +102,7 @@
               <!-- <RouterLink to="/signup" class="btn btn-outline">Đăng Ký Miễn Phí</RouterLink> -->
             </div>
           </div>
-          
+
           <!-- Pro Plan -->
           <div class="pricing-card popular">
             <div class="popular-badge">Phổ biến</div>
@@ -154,9 +154,10 @@
             </div>
           </div>
         </div>
-        
+
         <div class="pricing-note">
-          <p>Tất cả các gói đều bao gồm hỗ trợ kỹ thuật và cập nhật thường xuyên. Để biết thêm về các gói doanh nghiệp tùy chỉnh, <a href="/contact">liên hệ với chúng tôi</a>.</p>
+          <p>Tất cả các gói đều bao gồm hỗ trợ kỹ thuật và cập nhật thường xuyên. Để biết thêm về các gói doanh nghiệp
+            tùy chỉnh, <a href="/contact">liên hệ với chúng tôi</a>.</p>
         </div>
       </div>
     </section>
@@ -169,48 +170,36 @@
           <div class="example-item">
             <div class="example-title">Xóa phông nền tự động</div>
             <div class="example-before">
-              <img
-                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=300&width=300"
-                alt="Before editing" />
+              <img :src="car_befor" alt="Before editing" />
               <span>Trước</span>
             </div>
             <div class="example-arrow">→</div>
             <div class="example-after">
-              <img
-                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=300&width=300"
-                alt="After editing" />
+              <img :src="car_after" alt="After editing" />
               <span>Sau</span>
             </div>
           </div>
           <div class="example-item">
             <div class="example-title">Phục hồi ảnh cũ hư hỏng</div>
             <div class="example-before">
-              <img
-                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=300&width=300"
-                alt="Before editing" />
+              <img :src="car_after" alt="Before editing" />
               <span>Trước</span>
             </div>
             <div class="example-arrow">→</div>
             <div class="example-after">
-              <img
-                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=300&width=300"
-                alt="After editing" />
+              <img :src="car_after" alt="After editing" />
               <span>Sau</span>
             </div>
           </div>
           <div class="example-item">
             <div class="example-title">Làm đẹp khuôn mặt tự động</div>
             <div class="example-before">
-              <img
-                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=300&width=300"
-                alt="Before editing" />
+              <img :src="car_after" alt="Before editing" />
               <span>Trước</span>
             </div>
             <div class="example-arrow">→</div>
             <div class="example-after">
-              <img
-                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=300&width=300"
-                alt="After editing" />
+              <img :src="car_after" alt="After editing" />
               <span>Sau</span>
             </div>
           </div>
@@ -289,7 +278,8 @@
               <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer">
-              <p>Không, bạn không cần bất kỳ kỹ năng chỉnh sửa ảnh nào. Công cụ của chúng tôi được thiết kế để mọi người đều có thể sử dụng, với giao diện trực quan và các công cụ AI tự động.</p>
+              <p>Không, bạn không cần bất kỳ kỹ năng chỉnh sửa ảnh nào. Công cụ của chúng tôi được thiết kế để mọi người
+                đều có thể sử dụng, với giao diện trực quan và các công cụ AI tự động.</p>
             </div>
           </div>
           <div class="faq-item">
@@ -298,7 +288,8 @@
               <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer">
-              <p>Có, chúng tôi coi trọng quyền riêng tư của bạn. Tất cả các ảnh tải lên đều được mã hóa và không bao giờ được sử dụng cho bất kỳ mục đích nào khác. Bạn có thể xóa ảnh của mình bất cứ lúc nào.</p>
+              <p>Có, chúng tôi coi trọng quyền riêng tư của bạn. Tất cả các ảnh tải lên đều được mã hóa và không bao giờ
+                được sử dụng cho bất kỳ mục đích nào khác. Bạn có thể xóa ảnh của mình bất cứ lúc nào.</p>
             </div>
           </div>
           <div class="faq-item">
@@ -307,7 +298,9 @@
               <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer">
-              <p>Có, tất cả các ảnh bạn chỉnh sửa đều thuộc về bạn và có thể được sử dụng cho mục đích cá nhân hoặc thương mại. Tuy nhiên, nếu bạn sử dụng AI để tạo ảnh mới, vui lòng kiểm tra các điều khoản sử dụng cụ thể.</p>
+              <p>Có, tất cả các ảnh bạn chỉnh sửa đều thuộc về bạn và có thể được sử dụng cho mục đích cá nhân hoặc
+                thương mại. Tuy nhiên, nếu bạn sử dụng AI để tạo ảnh mới, vui lòng kiểm tra các điều khoản sử dụng cụ
+                thể.</p>
             </div>
           </div>
           <div class="faq-item">
@@ -316,7 +309,8 @@
               <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer">
-              <p>Có, bạn có thể hủy đăng ký bất kỳ lúc nào. Không có hợp đồng ràng buộc và không có phí hủy. Bạn sẽ tiếp tục có quyền truy cập vào các tính năng gói cho đến khi kết thúc chu kỳ thanh toán hiện tại.</p>
+              <p>Có, bạn có thể hủy đăng ký bất kỳ lúc nào. Không có hợp đồng ràng buộc và không có phí hủy. Bạn sẽ tiếp
+                tục có quyền truy cập vào các tính năng gói cho đến khi kết thúc chu kỳ thanh toán hiện tại.</p>
             </div>
           </div>
           <div class="faq-item">
@@ -325,7 +319,8 @@
               <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer">
-              <p>Chúng tôi hỗ trợ tất cả các định dạng ảnh phổ biến như JPG, PNG, WEBP, HEIC, và nhiều định dạng khác. Bạn có thể xuất ảnh sang nhiều định dạng khác nhau tùy thuộc vào nhu cầu của mình.</p>
+              <p>Chúng tôi hỗ trợ tất cả các định dạng ảnh phổ biến như JPG, PNG, WEBP, HEIC, và nhiều định dạng khác.
+                Bạn có thể xuất ảnh sang nhiều định dạng khác nhau tùy thuộc vào nhu cầu của mình.</p>
             </div>
           </div>
         </div>
@@ -349,6 +344,10 @@
 import { RouterLink } from 'vue-router';
 
 
+// im
+import car_befor from '../assets/images/home/car_befor.webp'
+import car_after from '../assets/images/home/car_after.webp'
+
 // Home page logic here if needed
 
 // Fake logic for FAQ toggles (in a real app, would need to be implemented)
@@ -356,7 +355,7 @@ const toggleFaq = (event) => {
   const question = event.currentTarget;
   const answer = question.nextElementSibling;
   const toggle = question.querySelector('.faq-toggle');
-  
+
   if (answer.style.display === 'block') {
     answer.style.display = 'none';
     toggle.textContent = '+';
@@ -368,7 +367,8 @@ const toggleFaq = (event) => {
 
 // In a real app, would need to add event listeners for the FAQ questions
 </script>
-<!-- ----------------- --><style scoped>
+<!-- ----------------- -->
+<style scoped>
 /* Import font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
@@ -530,10 +530,12 @@ const toggleFaq = (event) => {
     opacity: 0.3;
     transform: scale(0.95);
   }
+
   50% {
     opacity: 0.6;
     transform: scale(1.05);
   }
+
   100% {
     opacity: 0.3;
     transform: scale(0.95);
@@ -662,7 +664,7 @@ const toggleFaq = (event) => {
   width: 100%;
   height: 100%;
   background-image: linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
   background-size: 20px 20px;
   background-position: center center;
   z-index: 0;
@@ -776,7 +778,8 @@ const toggleFaq = (event) => {
   margin-bottom: 0;
 }
 
-.feature-check, .feature-cross {
+.feature-check,
+.feature-cross {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -917,10 +920,12 @@ const toggleFaq = (event) => {
     transform: scale(1);
     opacity: 0.7;
   }
+
   50% {
     transform: scale(1.1);
     opacity: 1;
   }
+
   100% {
     transform: scale(1);
     opacity: 0.7;
@@ -1314,6 +1319,7 @@ const toggleFaq = (event) => {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1388,45 +1394,79 @@ const toggleFaq = (event) => {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.features-grid .feature-card:nth-child(1) { animation: fadeIn 0.5s 0.1s ease both; }
-.features-grid .feature-card:nth-child(2) { animation: fadeIn 0.5s 0.2s ease both; }
-.features-grid .feature-card:nth-child(3) { animation: fadeIn 0.5s 0.3s ease both; }
-.features-grid .feature-card:nth-child(4) { animation: fadeIn 0.5s 0.4s ease both; }
-.features-grid .feature-card:nth-child(5) { animation: fadeIn 0.5s 0.5s ease both; }
-.features-grid .feature-card:nth-child(6) { animation: fadeIn 0.5s 0.6s ease both; }
+.features-grid .feature-card:nth-child(1) {
+  animation: fadeIn 0.5s 0.1s ease both;
+}
 
-.pricing-grid .pricing-card:nth-child(1) { animation: fadeIn 0.5s 0.1s ease both; }
-.pricing-grid .pricing-card:nth-child(2) { animation: fadeIn 0.5s 0.2s ease both; }
+.features-grid .feature-card:nth-child(2) {
+  animation: fadeIn 0.5s 0.2s ease both;
+}
 
-.stats-grid .stat-item:nth-child(1) { animation: fadeIn 0.5s 0.1s ease both; }
-.stats-grid .stat-item:nth-child(2) { animation: fadeIn 0.5s 0.2s ease both; }
-.stats-grid .stat-item:nth-child(3) { animation: fadeIn 0.5s 0.3s ease both; }
-.stats-grid .stat-item:nth-child(4) { animation: fadeIn 0.5s 0.4s ease both; }
+.features-grid .feature-card:nth-child(3) {
+  animation: fadeIn 0.5s 0.3s ease both;
+}
+
+.features-grid .feature-card:nth-child(4) {
+  animation: fadeIn 0.5s 0.4s ease both;
+}
+
+.features-grid .feature-card:nth-child(5) {
+  animation: fadeIn 0.5s 0.5s ease both;
+}
+
+.features-grid .feature-card:nth-child(6) {
+  animation: fadeIn 0.5s 0.6s ease both;
+}
+
+.pricing-grid .pricing-card:nth-child(1) {
+  animation: fadeIn 0.5s 0.1s ease both;
+}
+
+.pricing-grid .pricing-card:nth-child(2) {
+  animation: fadeIn 0.5s 0.2s ease both;
+}
+
+.stats-grid .stat-item:nth-child(1) {
+  animation: fadeIn 0.5s 0.1s ease both;
+}
+
+.stats-grid .stat-item:nth-child(2) {
+  animation: fadeIn 0.5s 0.2s ease both;
+}
+
+.stats-grid .stat-item:nth-child(3) {
+  animation: fadeIn 0.5s 0.3s ease both;
+}
+
+.stats-grid .stat-item:nth-child(4) {
+  animation: fadeIn 0.5s 0.4s ease both;
+}
 
 /* Media queries for responsiveness */
 @media (max-width: 1200px) {
   .hero-content h1 {
     font-size: 3rem;
   }
-  
+
   .hero-content p {
     font-size: 1.2rem;
   }
-  
+
   .feature-card {
     padding: 30px 25px;
   }
-  
+
   .step-item {
     padding: 0 10px;
   }
-  
+
   .cta-content h2 {
     font-size: 2.5rem;
   }
@@ -1436,56 +1476,56 @@ const toggleFaq = (event) => {
   .section {
     padding: 80px 0;
   }
-  
+
   .hero-section {
     padding: 100px 0 80px;
   }
-  
+
   .hero-section .container {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .hero-content {
     margin-bottom: 50px;
   }
-  
+
   .hero-buttons {
     justify-content: center;
   }
-  
+
   .features-grid.three-columns {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .pricing-grid.two-columns {
     grid-template-columns: 1fr;
     max-width: 500px;
   }
-  
+
   .steps-container {
     flex-direction: column;
     align-items: center;
     gap: 50px;
   }
-  
+
   .step-connector {
     width: 2px;
     height: 30px;
     margin-top: 0;
   }
-  
+
   .step-connector::before {
     top: auto;
     bottom: 0;
     right: auto;
     left: -4px;
   }
-  
+
   .pricing-card.popular {
     transform: scale(1);
   }
-  
+
   .pricing-card.popular:hover {
     transform: translateY(-10px);
   }
@@ -1495,74 +1535,74 @@ const toggleFaq = (event) => {
   .section-title {
     font-size: 2.2rem;
   }
-  
+
   .hero-content h1 {
     font-size: 2.5rem;
   }
-  
+
   .hero-content p {
     font-size: 1.1rem;
   }
-  
+
   .hero-buttons {
     flex-direction: column;
     gap: 15px;
   }
-  
+
   .features-grid.three-columns {
     grid-template-columns: 1fr;
   }
-  
+
   .example-item {
     flex-direction: column;
     gap: 30px;
   }
-  
+
   .example-title {
     position: relative;
     top: 0;
     margin-bottom: 20px;
   }
-  
+
   .example-arrow {
     transform: rotate(90deg);
   }
-  
+
   .testimonials-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .stat-number {
     font-size: 2.5rem;
   }
-  
+
   .cta-content h2 {
     font-size: 2rem;
   }
-  
+
   .cta-content p {
     font-size: 1.1rem;
   }
-  
+
   .btn {
     padding: 12px 24px;
     font-size: 0.95rem;
   }
-  
+
   .cta-content .btn {
     font-size: 1rem;
     padding: 14px 30px;
   }
-  
+
   .faq-question {
     padding: 20px;
   }
-  
+
   .faq-question h3 {
     font-size: 1.05rem;
     line-height: 1.4;
   }
-  
+
   .faq-answer {
     padding: 0 20px 20px;
   }
@@ -1572,67 +1612,67 @@ const toggleFaq = (event) => {
   .container {
     padding: 0 20px;
   }
-  
+
   .section {
     padding: 60px 0;
   }
-  
+
   .section-title {
     font-size: 1.8rem;
   }
-  
+
   .section-subtitle {
     font-size: 1.05rem;
   }
-  
+
   .hero-content h1 {
     font-size: 2rem;
   }
-  
+
   .hero-content p {
     font-size: 1rem;
   }
-  
+
   .feature-icon {
     font-size: 2.5rem;
     width: 70px;
     height: 70px;
   }
-  
+
   .feature-card h3 {
     font-size: 1.2rem;
   }
-  
+
   .feature-card p {
     font-size: 0.95rem;
   }
-  
+
   .step-icon {
     width: 80px;
     height: 80px;
     font-size: 2.5rem;
   }
-  
+
   .step-item h3 {
     font-size: 1.2rem;
   }
-  
+
   .step-item p {
     font-size: 0.95rem;
   }
-  
+
   .cta-content h2 {
     font-size: 1.8rem;
   }
-  
+
   .cta-content p {
     font-size: 1rem;
   }
-  
+
   .testimonial-card {
     padding: 25px;
   }
-  
+
   .slider-prev,
   .slider-next {
     width: 40px;
@@ -1675,6 +1715,7 @@ html {
     transform: scale(0, 0);
     opacity: 0.5;
   }
+
   100% {
     transform: scale(100, 100);
     opacity: 0;
@@ -1682,7 +1723,15 @@ html {
 }
 
 /* Custom cursor for clickable elements */
-.btn, .feature-card, .testimonial-card, .faq-question, .example-before, .example-after, .dot, .slider-prev, .slider-next {
+.btn,
+.feature-card,
+.testimonial-card,
+.faq-question,
+.example-before,
+.example-after,
+.dot,
+.slider-prev,
+.slider-next {
   cursor: pointer;
 }
 

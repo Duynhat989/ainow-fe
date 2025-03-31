@@ -69,10 +69,26 @@
 
                         <div class="editor-tools">
                             <div class="tools-header">
-                                <h3>Editing tools</h3>
+                                <h3>Editing AI Tools</h3>
                                 <button class="btn-reset" @click="resetImage">Reset</button>
                             </div>
 
+                            <div class="layout-data">
+                                <div class="model">
+                                    <label for="model_ai">Model:</label>
+                                    <div class="model-select-wrapper">
+                                        <select name="model_ai" id="model_ai">
+                                            <option value="mini">AINow 2 mini</option>
+                                            <option value="pro">AINow 2 Pro</option>
+                                        </select>
+                                    </div>
+                                    <!-- <span class="model-badge">Fast</span> -->
+                                </div>
+                                <!-- Add Effects Gallery button/component here -->
+                                <div class="effects-gallery-container">
+                                    <EffectsPopup @apply-effect="handleEffectApply" />
+                                </div>
+                            </div>
                             <div class="tools-tabs">
                                 <button v-for="tab in toolTabs" :key="tab.id" @click="activeTab = tab.id"
                                     :class="{ active: activeTab === tab.id }" class="tab-button">
@@ -82,28 +98,104 @@
 
                             <div class="tools-content">
                                 <!-- Tab: AI -->
+                                <!-- Enhanced AI Tools Section with Modern Design -->
                                 <div v-if="activeTab === 'ai'" class="tool-group">
                                     <div class="ai-tools-grid">
-                                        <button class="tool-button" @click="applyAIEffect('enhance')">
-                                            <span class="tool-icon">✨</span>
-                                            <span>Enhance image</span>
-                                        </button>
-                                        <button class="tool-button" @click="applyAIEffect('restore')">
-                                            <span class="tool-icon">🔄</span>
-                                            <span>Restore old photo</span>
-                                        </button>
-                                        <button class="tool-button" @click="applyAIEffect('remove-bg')">
-                                            <span class="tool-icon">🖼️</span>
-                                            <span>Remove background</span>
-                                        </button>
-                                        <button class="tool-button" @click="applyAIEffect('portrait')">
-                                            <span class="tool-icon">👤</span>
-                                            <span>Enhance face</span>
-                                        </button>
-                                        <button class="tool-button" @click="applyAIEffect('upscale')">
-                                            <span class="tool-icon">🔍</span>
-                                            <span>Increase resolution</span>
-                                        </button>
+                                        <!-- Enhance Image Tool -->
+                                        <div class="tool-card">
+                                            <div class="tool-card-content">
+                                                <div class="tool-icon-wrapper enhance-icon">
+                                                    <span class="tool-icon">✨</span>
+                                                </div>
+                                                <div class="tool-details">
+                                                    <h4>Enhance Image</h4>
+                                                    <p>Improve quality, fix lighting & clarity</p>
+                                                </div>
+                                            </div>
+                                            <button class="tool-action-button" @click="applyAIEffect('enhance')">
+                                                Apply <span class="arrow-icon">→</span>
+                                            </button>
+                                        </div>
+
+                                        <!-- Restore Old Photo Tool -->
+                                        <div class="tool-card">
+                                            <div class="tool-card-content">
+                                                <div class="tool-icon-wrapper restore-icon">
+                                                    <span class="tool-icon">🔄</span>
+                                                </div>
+                                                <div class="tool-details">
+                                                    <h4>Restore Old Photo</h4>
+                                                    <p>Fix damage, enhance faded details</p>
+                                                </div>
+                                            </div>
+                                            <button class="tool-action-button" @click="applyAIEffect('restore')">
+                                                Apply <span class="arrow-icon">→</span>
+                                            </button>
+                                        </div>
+
+                                        <!-- Remove Background Tool -->
+                                        <div class="tool-card">
+                                            <div class="tool-card-content">
+                                                <div class="tool-icon-wrapper remove-bg-icon">
+                                                    <span class="tool-icon">🖼️</span>
+                                                </div>
+                                                <div class="tool-details">
+                                                    <h4>Remove Background</h4>
+                                                    <p>Precise background removal with AI</p>
+                                                </div>
+                                            </div>
+                                            <button class="tool-action-button" @click="applyAIEffect('remove-bg')">
+                                                Apply <span class="arrow-icon">→</span>
+                                            </button>
+                                        </div>
+
+                                        <!-- Enhance Face Tool -->
+                                        <div class="tool-card">
+                                            <div class="tool-card-content">
+                                                <div class="tool-icon-wrapper portrait-icon">
+                                                    <span class="tool-icon">👤</span>
+                                                </div>
+                                                <div class="tool-details">
+                                                    <h4>Enhance Face</h4>
+                                                    <p>Improve facial details & expressions</p>
+                                                </div>
+                                            </div>
+                                            <button class="tool-action-button" @click="applyAIEffect('portrait')">
+                                                Apply <span class="arrow-icon">→</span>
+                                            </button>
+                                        </div>
+
+                                        <!-- Increase Resolution Tool -->
+                                        <div class="tool-card">
+                                            <div class="tool-card-content">
+                                                <div class="tool-icon-wrapper upscale-icon">
+                                                    <span class="tool-icon">🔍</span>
+                                                </div>
+                                                <div class="tool-details">
+                                                    <h4>Increase Resolution</h4>
+                                                    <p>Upscale without losing quality</p>
+                                                </div>
+                                            </div>
+                                            <button class="tool-action-button" @click="applyAIEffect('upscale')">
+                                                Apply <span class="arrow-icon">→</span>
+                                            </button>
+                                        </div>
+
+                                        <!-- Colorize Photo Tool -->
+                                        <div class="tool-card">
+                                            <div class="tool-card-content">
+                                                <div class="tool-icon-wrapper colorize-icon">
+                                                    <span class="tool-icon">🎨</span>
+                                                </div>
+                                                <div class="tool-details">
+                                                    <h4>Colorize Photo</h4>
+                                                    <p>Add natural colors to B&W images</p>
+                                                </div>
+                                            </div>
+                                            <button class="tool-action-button" @click="applyAIEffect('colorize')">
+                                                Apply <span class="arrow-icon">→</span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -242,8 +334,8 @@ const examplePrompt = [
 
 // Removed basic tab from toolTabs
 const toolTabs = [
-    { id: 'chat', name: 'Chat with AI' },
-    { id: 'ai', name: 'AI Tools' }
+    // { id: 'chat', name: 'Chat with AI' },
+    // { id: 'ai', name: 'AI Tools' }
 ];
 
 // Reactive state
@@ -251,7 +343,15 @@ const imageSize = reactive({
     width: 0,
     height: 0
 });
+import EffectsPopup from '../components/EffectsPopup.vue';
 
+// Your existing code...
+
+// Handle effect application from the popup
+const handleEffectApply = (effectId) => {
+    console.log(`Applying effect: ${effectId}`);
+    applyAIEffect(effectId);
+};
 // Watch for chat messages changes to scroll to bottom
 watch(chatMessages, () => {
     nextTick(() => {
@@ -607,6 +707,15 @@ const saveImage = () => {
 };
 </script>
 <style scoped>
+.effects-gallery-container {
+    margin-left: auto;
+}
+
+.layout-data {
+    display: flex;
+    align-items: center;
+}
+
 /* Modern CSS Improvements for AI Image Editor */
 .editor-page {
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -618,9 +727,9 @@ const saveImage = () => {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .page-title {
@@ -654,8 +763,10 @@ const saveImage = () => {
     overflow: hidden;
     transition: all 0.3s ease;
     border: 1px solid rgba(229, 231, 235, 0.8);
+    width: 100%;
 }
 
+/* Upload Section */
 .upload-section {
     padding: 40px;
 }
@@ -779,6 +890,7 @@ const saveImage = () => {
     z-index: 1;
 }
 
+/* Image Generation Area */
 .prompt-input {
     margin-top: 24px;
     display: flex;
@@ -916,18 +1028,19 @@ const saveImage = () => {
     color: #6366f1;
 }
 
+/* Editor Workspace */
 .editor-workspace {
     min-height: 650px;
 }
 
 .editor-main {
     display: grid;
-    grid-template-columns: 1fr 380px;
+    grid-template-columns: 60% 40%;
     min-height: 650px;
 }
 
 .image-preview {
-    padding: 30px;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -935,11 +1048,12 @@ const saveImage = () => {
     border-right: 1px solid #e2e8f0;
     position: relative;
     overflow: hidden;
+    max-width: 100%;
 }
 
 .image-preview img {
     max-width: 100%;
-    max-height: 590px;
+    max-height: 560px;
     object-fit: contain;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -994,8 +1108,8 @@ const saveImage = () => {
 
 .tools-tabs {
     display: flex;
-    border-bottom: 1px solid #e2e8f0;
-    margin-bottom: 25px;
+    /* border-bottom: 1px solid #e2e8f0; */
+    /* margin-bottom: 25px; */
     position: relative;
 }
 
@@ -1053,19 +1167,150 @@ const saveImage = () => {
     gap: 18px;
 }
 
+/* Enhanced AI Tools Section */
+.tools-section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, #4338ca, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tools-section-description {
+    color: #64748b;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
 .ai-tools-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: 16px;
 }
 
+.tool-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+}
+
+.tool-card-content {
+    display: flex;
+    gap: 12px;
+    padding: 15px;
+    align-items: center;
+}
+
+.tool-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+/* Tool Icon Background Colors */
+.enhance-icon {
+    background: linear-gradient(135deg, #c084fc, #8b5cf6);
+    color: white;
+}
+
+.restore-icon {
+    background: linear-gradient(135deg, #34d399, #10b981);
+    color: white;
+}
+
+.remove-bg-icon {
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    color: white;
+}
+
+.portrait-icon {
+    background: linear-gradient(135deg, #f472b6, #ec4899);
+    color: white;
+}
+
+.upscale-icon {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: white;
+}
+
+.colorize-icon {
+    background: linear-gradient(135deg, #fb7185, #e11d48);
+    color: white;
+}
+
+.tool-details {
+    flex: 1;
+}
+
+.tool-details h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 3px 0;
+    color: #1e293b;
+}
+
+.tool-details p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.tool-action-button {
+    margin-top: auto;
+    background: #f8fafc;
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    padding: 12px;
+    font-weight: 600;
+    color: #6366f1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+}
+
+.tool-action-button:hover {
+    background: #f1f5f9;
+    color: #4f46e5;
+}
+
+.tool-action-button .arrow-icon {
+    margin-left: 5px;
+    transition: transform 0.2s ease;
+}
+
+.tool-action-button:hover .arrow-icon {
+    transform: translateX(3px);
+}
+
+/* Legacy button style - kept for compatibility */
 .tool-button {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 20px 16px;
+    gap: 8px;
+    padding: 15px 12px;
     background-color: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 14px;
@@ -1086,17 +1331,18 @@ const saveImage = () => {
 }
 
 .tool-icon {
-    font-size: 2.2rem;
-    margin-bottom: 6px;
+    font-size: 2rem;
+    margin-bottom: 4px;
     background-color: rgba(237, 241, 253, 0.6);
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
 }
 
+/* Chat Container */
 .chat-container {
     display: flex;
     flex-direction: column;
@@ -1160,18 +1406,6 @@ const saveImage = () => {
 
 .chat-message .message-attachments img:hover {
     transform: scale(1.05);
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .user-message {
@@ -1342,6 +1576,7 @@ const saveImage = () => {
     color: #475569;
 }
 
+/* Common Buttons */
 .editor-actions {
     display: flex;
     gap: 12px;
@@ -1394,6 +1629,7 @@ const saveImage = () => {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
+/* Overlay and Modals */
 .processing-overlay {
     position: fixed;
     top: 0;
@@ -1418,6 +1654,29 @@ const saveImage = () => {
     animation: slideUp 0.4s ease;
 }
 
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f1f5f9;
+    border-top: 4px solid #6366f1;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    animation: spin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes slideUp {
     from {
         opacity: 0;
@@ -1430,16 +1689,6 @@ const saveImage = () => {
     }
 }
 
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid #f1f5f9;
-    border-top: 4px solid #6366f1;
-    border-radius: 50%;
-    margin: 0 auto 25px;
-    animation: spin 1s linear infinite;
-}
-
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -1450,7 +1699,13 @@ const saveImage = () => {
     }
 }
 
-/* Responsive styles */
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .ai-tools-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 @media (max-width: 1024px) {
     .upload-options {
         grid-template-columns: 1fr;
@@ -1468,10 +1723,6 @@ const saveImage = () => {
         height: 1px;
     }
 
-    .editor-main {
-        grid-template-columns: 1fr;
-    }
-
     .editor-tools {
         border-left: none;
         border-top: 1px solid #e2e8f0;
@@ -1479,6 +1730,10 @@ const saveImage = () => {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+
     .upload-section {
         padding: 25px;
     }
@@ -1500,6 +1755,10 @@ const saveImage = () => {
         grid-template-columns: 1fr;
     }
 
+    .editor-main {
+        grid-template-columns: 1fr;
+    }
+
     .page-title {
         font-size: 2rem;
     }
@@ -1511,5 +1770,109 @@ const saveImage = () => {
     .processing-content {
         padding: 30px;
     }
+}
+
+/*  */
+
+.model {
+  display: flex;
+  align-items: center;
+  background-color: #f8fafc;
+  padding: 10px 16px;
+  border-radius: 12px;
+  /* margin-bottom: 16px; */
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.model:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.model label {
+  font-weight: 600;
+  color: #475569;
+  font-size: 0.95rem;
+  margin-right: 15px;
+  white-space: nowrap;
+}
+
+.model-select-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.model select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 10px 14px;
+  padding-right: 36px; /* Space for the custom arrow */
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.model select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Custom dropdown arrow */
+.model-select-wrapper::after {
+  content: "▼";
+  font-size: 0.7rem;
+  color: #64748b;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.model-select-wrapper:hover::after {
+  color: #475569;
+}
+
+/* Model badge indicating quality */
+.model-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 8px;
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.model-badge.high {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.model-badge.medium {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+/* Updated model layout in the layout-data container */
+.layout-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 </style>
