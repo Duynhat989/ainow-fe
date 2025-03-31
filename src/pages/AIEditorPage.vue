@@ -98,108 +98,6 @@
 
                             <div class="tools-content">
                                 <!-- Tab: AI -->
-                                <!-- Enhanced AI Tools Section with Modern Design -->
-                                <div v-if="activeTab === 'ai'" class="tool-group">
-                                    <div class="ai-tools-grid">
-                                        <!-- Enhance Image Tool -->
-                                        <div class="tool-card">
-                                            <div class="tool-card-content">
-                                                <div class="tool-icon-wrapper enhance-icon">
-                                                    <span class="tool-icon">✨</span>
-                                                </div>
-                                                <div class="tool-details">
-                                                    <h4>Enhance Image</h4>
-                                                    <p>Improve quality, fix lighting & clarity</p>
-                                                </div>
-                                            </div>
-                                            <button class="tool-action-button" @click="applyAIEffect('enhance')">
-                                                Apply <span class="arrow-icon">→</span>
-                                            </button>
-                                        </div>
-
-                                        <!-- Restore Old Photo Tool -->
-                                        <div class="tool-card">
-                                            <div class="tool-card-content">
-                                                <div class="tool-icon-wrapper restore-icon">
-                                                    <span class="tool-icon">🔄</span>
-                                                </div>
-                                                <div class="tool-details">
-                                                    <h4>Restore Old Photo</h4>
-                                                    <p>Fix damage, enhance faded details</p>
-                                                </div>
-                                            </div>
-                                            <button class="tool-action-button" @click="applyAIEffect('restore')">
-                                                Apply <span class="arrow-icon">→</span>
-                                            </button>
-                                        </div>
-
-                                        <!-- Remove Background Tool -->
-                                        <div class="tool-card">
-                                            <div class="tool-card-content">
-                                                <div class="tool-icon-wrapper remove-bg-icon">
-                                                    <span class="tool-icon">🖼️</span>
-                                                </div>
-                                                <div class="tool-details">
-                                                    <h4>Remove Background</h4>
-                                                    <p>Precise background removal with AI</p>
-                                                </div>
-                                            </div>
-                                            <button class="tool-action-button" @click="applyAIEffect('remove-bg')">
-                                                Apply <span class="arrow-icon">→</span>
-                                            </button>
-                                        </div>
-
-                                        <!-- Enhance Face Tool -->
-                                        <div class="tool-card">
-                                            <div class="tool-card-content">
-                                                <div class="tool-icon-wrapper portrait-icon">
-                                                    <span class="tool-icon">👤</span>
-                                                </div>
-                                                <div class="tool-details">
-                                                    <h4>Enhance Face</h4>
-                                                    <p>Improve facial details & expressions</p>
-                                                </div>
-                                            </div>
-                                            <button class="tool-action-button" @click="applyAIEffect('portrait')">
-                                                Apply <span class="arrow-icon">→</span>
-                                            </button>
-                                        </div>
-
-                                        <!-- Increase Resolution Tool -->
-                                        <div class="tool-card">
-                                            <div class="tool-card-content">
-                                                <div class="tool-icon-wrapper upscale-icon">
-                                                    <span class="tool-icon">🔍</span>
-                                                </div>
-                                                <div class="tool-details">
-                                                    <h4>Increase Resolution</h4>
-                                                    <p>Upscale without losing quality</p>
-                                                </div>
-                                            </div>
-                                            <button class="tool-action-button" @click="applyAIEffect('upscale')">
-                                                Apply <span class="arrow-icon">→</span>
-                                            </button>
-                                        </div>
-
-                                        <!-- Colorize Photo Tool -->
-                                        <div class="tool-card">
-                                            <div class="tool-card-content">
-                                                <div class="tool-icon-wrapper colorize-icon">
-                                                    <span class="tool-icon">🎨</span>
-                                                </div>
-                                                <div class="tool-details">
-                                                    <h4>Colorize Photo</h4>
-                                                    <p>Add natural colors to B&W images</p>
-                                                </div>
-                                            </div>
-                                            <button class="tool-action-button" @click="applyAIEffect('colorize')">
-                                                Apply <span class="arrow-icon">→</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-
                                 <!-- Tab: Chat AI -->
                                 <div v-if="activeTab === 'chat'" class="tool-group">
                                     <div class="chat-container">
@@ -903,7 +801,7 @@ const saveImage = () => {
     padding: 14px 20px;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: all 0.2s;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
 }
@@ -1011,7 +909,7 @@ const saveImage = () => {
     padding: 8px 16px;
     background-color: #f8fafc;
     border-radius: 30px;
-    font-size: 0.95rem;
+    font-size: 0.75rem;
     color: #475569;
     cursor: pointer;
     transition: all 0.2s;

@@ -14,7 +14,7 @@
         <div class="effects-modal-overlay" @click="closePopup"></div>
         <div class="effects-modal-content">
           <div class="effects-modal-header">
-            <h2>Image AI Tools</h2>
+            <h2>🎨 AI Tools</h2>
             <button class="close-button" @click="closePopup">×</button>
           </div>
   
