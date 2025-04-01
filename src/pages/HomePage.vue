@@ -13,7 +13,7 @@
         </div>
         <div class="hero-image">
           <img
-            src="https://www.simplexitypd.com/wp-content/uploads/2024/05/AI-Tools-to-Boost-Engineering-Productivity-BNR.jpg"
+            src="/src/assets/images/banner.jpg"
             alt="AI Image Editor Demo" />
         </div>
       </div>
@@ -26,7 +26,7 @@
         <div class="features-grid three-columns">
           <div class="feature-card">
             <div class="feature-image">
-              <img src="https://images.unsplash.com/photo-1633409361618-c73427e4e206?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Xóa Phông Tự Động" />
+              <img src="../assets/gifs/removebg.gif" alt="Xóa Phông Tự Động" />
               <div class="feature-overlay">
                 <span>Trước & Sau</span>
               </div>
@@ -177,7 +177,7 @@
           <div class="step-item">
             <div class="step-number">1</div>
             <div class="step-image">
-              <img src="https://images.unsplash.com/photo-1607434472257-d9f8e57a643d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Tải Ảnh Lên" />
+              <img src="../assets/setup/upload.png" alt="Tải Ảnh Lên" />
             </div>
             <h3>Tải Ảnh Lên</h3>
             <p>Tải lên ảnh của bạn hoặc chọn từ thư viện có sẵn</p>
@@ -214,7 +214,7 @@
     </section>
 
     <!-- Demo Gallery Section -->
-    <section class="section gallery-section">
+    <!-- <section class="section gallery-section">
       <div class="container">
         <h2 class="section-title">Thư Viện Ảnh Mẫu</h2>
         <p class="section-subtitle">Khám phá những gì AI của chúng tôi có thể làm</p>
@@ -232,7 +232,7 @@
           <RouterLink to="/gallery" class="btn btn-outline">Xem thêm ảnh mẫu</RouterLink>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Stats Section -->
     <section class="section stats-section">

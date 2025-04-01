@@ -6,62 +6,31 @@
 
             <div class="editor-container">
                 <!-- Upload/Generate Section -->
-                <UploadSection 
-                    v-if="!selectedImage" 
-                    :selected-ratio="selectedRatio"
-                    :image-prompt="imagePrompt"
-                    :is-generating="isGenerating"
-                    :example-prompts="examplePrompt"
-                    @file-selected="processFile"
-                    @drop-file="handleDrop"
-                    @ratio-changed="handleRatioChange"
-                    @update:image-prompt="imagePrompt = $event"
-                    @generate-image="generateImage"
-                    @set-example="setExamplePrompt"
-                />
+                <UploadSection v-if="!selectedImage" :selected-ratio="selectedRatio" :image-prompt="imagePrompt"
+                    :is-generating="isGenerating" :example-prompts="examplePrompt" @file-selected="processFile"
+                    @drop-file="handleDrop" @ratio-changed="handleRatioChange"
+                    @update:image-prompt="imagePrompt = $event" @generate-image="generateImage"
+                    @set-example="setExamplePrompt" />
 
                 <!-- Editor Workspace -->
-                <EditorWorkspace 
-                    v-else
-                    :image-preview="imagePreview"
-                    :chat-messages="chatMessages"
-                    :chat-attachments="chatAttachments"
-                    :chat-input="chatInput"
-                    @reset-image="resetImage"
-                    @apply-effect="handleEffectApply"
-                    @save-image="saveImage"
-                    @chat-attachment="handleChatAttachment"
-                    @remove-attachment="removeAttachment"
-                    @send-chat-message="sendChatMessage"
-                    @set-chat-suggestion="setChatSuggestion"
-                    @view-full-image="viewFullImage"
-                    @update-image="updateImage"
-                    @update:chat-input="chatInput = $event"
-                    @set-chat-messages-ref="chatMessagesRef = $event"
-                />
+                <EditorWorkspace v-else :image-preview="imagePreview" :chat-messages="chatMessages"
+                    :chat-attachments="chatAttachments" :chat-input="chatInput" @reset-image="resetImage"
+                    @apply-effect="handleEffectApply" @save-image="saveImage" @chat-attachment="handleChatAttachment"
+                    @remove-attachment="removeAttachment" @send-chat-message="sendChatMessage"
+                    @set-chat-suggestion="setChatSuggestion" @view-full-image="viewFullImage"
+                    @update-image="updateImage" @update:chat-input="chatInput = $event"
+                    @set-chat-messages-ref="chatMessagesRef = $event" />
             </div>
 
             <!-- AI Processing Overlay -->
-            <ProcessingOverlay 
-                :is-visible="isProcessing || isGenerating"
-                :is-generating="isGenerating"
-            />
+            <ProcessingOverlay :is-visible="isProcessing || isGenerating" :is-generating="isGenerating" />
 
             <!-- Lightbox Modal -->
-            <LightboxModal 
-                :image="lightboxImage"
-                @close="closeLightbox"
-            />
+            <LightboxModal :image="lightboxImage" @close="closeLightbox" />
         </div>
     </div>
-    <SubscriptionLimitPopup 
-        :is-visible="showLimitPopup" 
-        :type="popupType" 
-        :is-persistent="isPersistentPopup"
-        :usage-info="userUsageInfo" 
-        @close="closeLimitPopup" 
-        @upgrade="handleUpgrade" 
-    />
+    <SubscriptionLimitPopup :is-visible="showLimitPopup" :type="popupType" :is-persistent="isPersistentPopup"
+        :usage-info="userUsageInfo" @close="closeLimitPopup" @upgrade="handleUpgrade" />
 </template>
 
 <script setup>
@@ -81,6 +50,7 @@ import EditorWorkspace from '@/components/AIEdit/EditorWorkspace.vue';
 import ProcessingOverlay from '@/components/AIEdit/ProcessingOverlay.vue';
 import LightboxModal from '@/components/AIEdit/LightboxModal.vue';
 import SubscriptionLimitPopup from '@/components/SubscriptionLimitPopup.vue';
+import { enhance_photo, remove_bg, restore_photo, retouch_skin } from '@/utils/effect';
 
 // State management
 const selectedImage = ref(null);
@@ -202,7 +172,7 @@ const viewFullImage = (src) => {
 };
 const updateImage = (src) => {
     console.log("update")
-    if(imagePreview.value !== src){
+    if (imagePreview.value !== src) {
         imagePreview.value = src
     }
 };
@@ -290,7 +260,7 @@ const generateImage = async () => {
                     const res = await request.post('/api/ainow/get_task', {
                         "processId": processId
                     });
-                    
+
                     if (res.success) {
                         let origin = res.data[0].origin;
                         let rss = await request.post('/api/ainow/url_basestr', {
@@ -298,9 +268,9 @@ const generateImage = async () => {
                         });
                         isGenerating.value = false;
                         selectedImage.value = 'generated';
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             imagePreview.value = rss.base64;
-                        },1500)
+                        }, 1500)
                         break;
                     }
                 } catch (error) {
@@ -329,51 +299,16 @@ const handleEffectApply = (effect) => {
 const applyAIEffect = async (effect) => {
     isProcessing.value = true;
     console.log(`Applying effect: ${effect}`);
-    
+
     if (effect === 'remove-bg') {
         try {
-            const response = await request.post('/api/ainow/remove_bg', {
-                "images": [
-                    imagePreview.value.replace('data:', '')
-                ]
-            });
-
-            if (response.success) {
-                let processId = response.sessionId;
-                for (let index = 0; index < 50; index++) {
-                    await sleep(3 * 1000);
-                    try {
-                        const res = await request.post('/api/ainow/get_task', {
-                            "processId": processId
-                        });
-
-                        if (res.success) {
-                            let origin = res.data[0].origin;
-                            let rss = await request.post('/api/ainow/url_basestr', {
-                                "imageUrl": origin
-                            });
-                            imagePreview.value = rss.base64;
-                            isProcessing.value = false;
-                            
-                            if (effect === 'restore' || effect === 'enhance' || effect === 'remove-bg') {
-                                chatMessages.value.push({
-                                    sender: 'ai',
-                                    text: `I have ${effect} your image. Would you like any additional adjustments?`
-                                });
-                            }
-                            break;
-                        }
-                    } catch (error) {
-                        console.log(error);
-                        if (!error.success && error.msg == "error") {
-                            alert("An error occurred while generating the image. Please try again.");
-                            break;
-                        }
-                    }
-                }
-            } else {
-                alert('An error occurred while generating the image. Please try again.');
+            let result = await remove_bg(imagePreview.value)
+            if (result == '') {
+                alert("An error occurred while generating the image. Please try again.");
+                return
             }
+            imagePreview.value = result;
+            isProcessing.value = false;
         } catch (error) {
             console.error("Error in applyAIEffect:", error);
             alert('An error occurred. Please try again.');
@@ -381,6 +316,63 @@ const applyAIEffect = async (effect) => {
             isGenerating.value = false;
             isProcessing.value = false;
         }
+    }
+    if (effect === 'restore-photo') {
+        try {
+            let result = await restore_photo(imagePreview.value)
+            if (result == '') {
+                alert("An error occurred while generating the image. Please try again.");
+                return
+            }
+            imagePreview.value = result;
+            isProcessing.value = false;
+        } catch (error) {
+            console.error("Error in applyAIEffect:", error);
+            alert('An error occurred. Please try again.');
+        } finally {
+            isGenerating.value = false;
+            isProcessing.value = false;
+        }
+    }
+    if (effect === 'retouch-skin') {
+        try {
+            let result = await retouch_skin(imagePreview.value)
+            if (result == '') {
+                alert("An error occurred while generating the image. Please try again.");
+                return
+            }
+            imagePreview.value = result;
+            isProcessing.value = false;
+        } catch (error) {
+            console.error("Error in applyAIEffect:", error);
+            alert('An error occurred. Please try again.');
+        } finally {
+            isGenerating.value = false;
+            isProcessing.value = false;
+        }
+    }
+    if (effect === 'enhance-photo') {
+        try {
+            let result = await enhance_photo(imagePreview.value)
+            if (result == '') {
+                alert("An error occurred while generating the image. Please try again.");
+                return
+            }
+            imagePreview.value = result;
+            isProcessing.value = false;
+        } catch (error) {
+            console.error("Error in applyAIEffect:", error);
+            alert('An error occurred. Please try again.');
+        } finally {
+            isGenerating.value = false;
+            isProcessing.value = false;
+        }
+    }
+    if (effect === 'restore-photo' || effect === 'enhance-photo' || effect === 'retouch-skin'|| effect === 'remove-bg') {
+        chatMessages.value.push({
+            sender: 'ai',
+            text: `I have ${effect} your image. Would you like any additional adjustments?`
+        });
     }
 };
 
@@ -406,18 +398,18 @@ const sendChatMessage = async () => {
     attachments.push({
         attachment: imagePreview.value.split(',')[1]
     });
-    
+
     for (let index = 0; index < message.attachments.length; index++) {
         attachments.push({
             attachment: message.attachments[index].preview.split(',')[1]
         });
     }
-    
+
     const response = await request.post('/api/ainow/generate-image-edit', {
         prompt: `${message.text}. `,
         imageArrays: attachments
     });
-    
+
     const sendText = () => {
         let responseText = userRequest
             ? `I will "${userRequest.toLowerCase()}".`
@@ -447,7 +439,7 @@ const sendChatMessage = async () => {
             });
         }, 2000);
     };
-    
+
     if (response.success) {
         try {
             const inlineData = response.result[0]?.candidates[0]?.content.parts[0]?.inlineData;
@@ -492,13 +484,13 @@ const saveImage = () => {
 
             const ctx = canvas.getContext('2d');
             ctx.drawImage(tempImg, 0, 0);
-            
+
             // Add checkerboard pattern for transparent areas
             if (tempImg.width > 0 && tempImg.height > 0) {
                 const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 const data = imgData.data;
                 const squareSize = 10; // Size of the checkerboard squares
-                
+
                 for (let y = 0; y < canvas.height; y++) {
                     for (let x = 0; x < canvas.width; x++) {
                         const index = (y * canvas.width + x) * 4;
@@ -508,10 +500,10 @@ const saveImage = () => {
                             const isEvenSquareX = Math.floor(x / squareSize) % 2 === 0;
                             const isEvenSquareY = Math.floor(y / squareSize) % 2 === 0;
                             const isLightSquare = (isEvenSquareX && isEvenSquareY) || (!isEvenSquareX && !isEvenSquareY);
-                            
+
                             // Set color based on square type (light/dark gray)
                             const color = isLightSquare ? 235 : 215;
-                            
+
                             // Apply checkerboard color if pixel is transparent enough
                             if (data[index + 3] < 128) {
                                 data[index] = color; // R
