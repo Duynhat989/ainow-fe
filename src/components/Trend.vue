@@ -1,526 +1,943 @@
 <template>
-    <div class="trend-list-page">
-      <div class="container">
-        <h1 class="page-title">AI Trends</h1>
-        <p class="page-subtitle">Explore the latest generated images</p>
-    
-        <div class="filters">
-          <div class="filter-group">
-            <select 
-              id="style-filter"
-              v-model="selectedStyle" 
-              class="style-filter"
-            >
-              <option value="">All Styles</option>
-              <option value="1">Style 1</option>
-              <option value="17">Style 17</option>
-              <option value="2">Style 2</option>
-              <!-- Add more style options as needed -->
-            </select>
-          </div>
-  
-          <div class="filter-group">
-            <select 
-              id="size-filter"
-              v-model="selectedSize" 
-              class="size-filter"
-            >
-              <option value="">All Sizes</option>
-              <option value="1-1">1:1</option>
-              <option value="3-4">3:4</option>
-              <option value="9-16">9:16</option>
-            </select>
-          </div>
-    
-          <div class="filter-group search-group">
-            <input 
-              v-model="searchKeyword" 
-              placeholder="Search prompts..." 
-              class="search-input"
-            />
-            <span class="search-icon">🔍</span>
-          </div>
-        </div>
-    
-        <div class="trend-grid">
-          <div 
-            v-for="item in trendItems" 
-            :key="item.id" 
-            class="trend-card"
-            @click="openModal(item)"
-          >
-            <div class="trend-images">
-              <img 
-                :src="parseImageData(item.imgData)[0].url" 
-                :alt="item.promptText"
-                class="trend-image"
-              />
-            </div>
-            <div class="trend-details">
-              <p class="trend-prompt">{{ item.promptText }}</p>
-              <div class="trend-meta">
-                <span class="trend-style">Style: {{ item.style_id }}</span>
-                <span class="trend-size">Size: {{ item.sizeText }}</span>
-              </div>
-              <div class="trend-dates">
-                <span class="created-at">
-                  Created: {{ formatDate(item.createdAt) }}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-    
-        <div class="pagination">
-          <button 
-            @click="prevPage" 
-            :disabled="currentPage === 1"
-          >
-            Previous
-          </button>
-          <span>Page {{ currentPage }} of {{ totalPages }}</span>
-          <button 
-            @click="nextPage" 
-            :disabled="currentPage === totalPages"
-          >
-            Next
-          </button>
-        </div>
-  
-        <!-- Modal -->
-        <div 
-          v-if="selectedItem" 
-          class="image-modal"
-          @click.self="closeModal"
-        >
-          <div class="modal-content">
-            <button class="close-button" @click="closeModal">×</button>
-            <div class="modal-content-wrapper">
-              <div class="modal-images">
-                <img 
-                  v-for="(img, index) in parseImageData(selectedItem.imgData)" 
-                  :key="index"
-                  :src="img.url"
-                  :alt="`Image ${index + 1}`"
-                  class="modal-image"
-                />
-              </div>
-              <div class="modal-details">
-                <h2 class="modal-title">Prompt Details</h2>
-                <p class="modal-prompt">{{ selectedItem.promptText }}</p>
-                <div class="modal-meta">
-                  <span><strong>Style:</strong> {{ selectedItem.style_id }}</span>
-                  <span><strong>Size:</strong> {{ selectedItem.sizeText }}</span>
-                  <span><strong>Created:</strong> {{ formatDate(selectedItem.createdAt) }}</span>
+    <div class="image-gallery">
+        <div class="header-section">
+            <h1 class="page-title">Get inspired by the community</h1>
+
+            <div class="search-container">
+                <div class="search-bar">
+                    <span class="search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input type="text" placeholder="Search" v-model="searchKeyword" @input="handleSearch" />
                 </div>
-              </div>
+
+                <div class="filter-tabs">
+                    <button v-for="style in styles" :key="style.id"
+                        :class="['filter-tab', { active: selectedStyle === style.id }]"
+                        @click="setActiveStyle(style.id)">
+                        {{ style.name }}
+                    </button>
+                </div>
+
+                <div class="size-selector">
+                    <button v-for="size in sizes" :key="size.value"
+                        :class="['size-btn', { active: selectedSize === size.value }]"
+                        @click="setSelectedSize(size.value)">
+                        {{ size.label }}
+                    </button>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+
+        <div class="masonry-grid">
+            <div v-for="item in trendItems" :key="item.id" class="masonry-item" :class="[getSpanClass(item.sizeText)]"
+                @click="openModal(item)">
+                <div class="item-image">
+                    <img :src="getImageUrl(item)" :alt="item.promptText.substring(0, 50)" loading="lazy" />
+                    <div class="item-overlay">
+                        <div class="item-actions">
+                            <button class="action-btn save-btn">Save</button>
+                            <button class="action-btn share-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                    <polyline points="16 6 12 2 8 6"></polyline>
+                                    <line x1="12" y1="2" x2="12" y2="15"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="item-prompt">{{ shortenPrompt(item.promptText) }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="loading-indicator" v-if="isLoading">
+            <div class="spinner"></div>
+            <span>Loading images...</span>
+        </div>
+
+        <div class="load-more" v-if="!isLoading && currentPage < totalPages">
+            <button @click="loadMore" class="load-more-btn">Load more</button>
+        </div>
+
+        <!-- Detail Modal -->
+        <div v-if="selectedItem" class="modal-overlay" @click="closeModal">
+            <div class="modal-container" @click.stop>
+                <button class="modal-close" @click="closeModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+
+                <div class="modal-content">
+                    <div class="modal-image">
+                        <img :src="getImageUrl(selectedItem)" :alt="selectedItem.promptText" />
+                    </div>
+
+                    <div class="modal-info">
+                        <h2 class="modal-title">AI Generated Image</h2>
+                        <p class="modal-prompt">{{ selectedItem.promptText }}</p>
+
+                        <div class="modal-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">Style:</span>
+                                <span class="meta-value">{{ getStyleName(selectedItem.style_id) }}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Size:</span>
+                                <span class="meta-value">{{ selectedItem.sizeText }}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Created:</span>
+                                <span class="meta-value">{{ formatDate(selectedItem.createdAt) }}</span>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button class="modal-btn save-btn">Save</button>
+                            <button class="modal-btn share-btn">Share</button>
+                            <button class="modal-btn download-btn">Download</button>
+                        </div>
+
+                        <div class="related-items" v-if="relatedItems.length > 0">
+                            <h3>Similar inspiration</h3>
+                            <div class="related-grid">
+                                <div v-for="item in relatedItems" :key="item.id" class="related-item"
+                                    @click="openModal(item)">
+                                    <img :src="getImageUrl(item)" :alt="shortenPrompt(item.promptText)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { ref, onMounted, watch } from 'vue'
-  import request from '@/utils/request';
-  
-  // Reactive state
-  const trendItems = ref([])
-  const currentPage = ref(1)
-  const totalPages = ref(1)
-  const selectedStyle = ref('')
-  const selectedSize = ref('')
-  const searchKeyword = ref('')
-  const selectedItem = ref(null)
-  
-  // Fetch trend list
-  const fetchTrendList = async () => {
-    try {
-      const response = await request.post('/api/ainow/trend', {
-        style_id: selectedStyle.value,
-        keyword: searchKeyword.value,
-        size: selectedSize.value,
-        limit: 10,
-        page: currentPage.value,
-      });
-      trendItems.value = response.data
-      totalPages.value = response.pagination.totalPages
-    } catch (error) {
-      console.error('Error fetching trend list:', error)
-    }
-  }
-  
-  // Utility functions
-  const parseImageData = (imgDataString) => {
-    try {
-      return JSON.parse(imgDataString)
-    } catch (error) {
-      console.error('Error parsing image data:', error)
-      return []
-    }
-  }
-  
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString()
-  }
-  
-  // Modal methods
-  const openModal = (item) => {
-    selectedItem.value = item
-  }
-  
-  const closeModal = () => {
-    selectedItem.value = null
-  }
-  
-  // Pagination methods
-  const prevPage = () => {
-    if (currentPage.value > 1) {
-      currentPage.value--
-      fetchTrendList()
-    }
-  }
-  
-  const nextPage = () => {
+</template>
+
+<script setup>
+import request from '@/utils/request';
+import { ref, computed, onMounted, watch } from 'vue';
+
+// Reactive state
+const searchKeyword = ref('');
+const selectedStyle = ref('');
+const selectedSize = ref('');
+const currentPage = ref(1);
+const trendItems = ref([]);
+const selectedItem = ref(null);
+const isLoading = ref(false);
+const totalPages = ref(1);
+
+// Available styles
+const styles = [
+    { id: '', name: 'All' },
+    { id: '1', name: 'Anime' },
+    { id: '2', name: 'Realistic' },
+    { id: '7', name: 'Ghibli' },
+    { id: '14', name: 'Manga' },
+    { id: '17', name: 'Cartoon' }
+];
+
+// Available sizes
+const sizes = [
+    { value: '', label: 'Tất cả' },
+    { value: '1-1', label: '1:1' },
+    { value: '3-4', label: '3:4' },
+    { value: '4-3', label: '4:3' },
+    { value: '9-16', label: '9:16' },
+    { value: '16-9', label: '16:9' }
+];
+
+// Related items for the modal
+const relatedItems = computed(() => {
+    if (!selectedItem.value) return [];
+
+    return trendItems.value
+        .filter(item =>
+            item.id !== selectedItem.value.id &&
+            item.style_id === selectedItem.value.style_id
+        )
+        .slice(0, 4);
+});
+
+// Get style name by id
+const getStyleName = (styleId) => {
+    const style = styles.find(s => s.id === styleId);
+    return style ? style.name : 'Custom';
+};
+
+// Set active style
+const setActiveStyle = (styleId) => {
+    selectedStyle.value = styleId;
+    currentPage.value = 1;
+    fetchTrendList();
+};
+
+// Set selected size
+const setSelectedSize = (size) => {
+    selectedSize.value = size;
+    currentPage.value = 1;
+    fetchTrendList();
+};
+
+// Handle search input with debounce
+let searchTimeout;
+const handleSearch = () => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+        currentPage.value = 1;
+        fetchTrendList();
+    }, 500);
+};
+
+// Load more items
+const loadMore = () => {
     if (currentPage.value < totalPages.value) {
-      currentPage.value++
-      fetchTrendList()
+        currentPage.value++;
+        fetchTrendList(true);
     }
-  }
-  
-  // Watch for changes in filters
-  const watchFilters = () => {
-    currentPage.value = 1
-    fetchTrendList()
-  }
-  
-  // Watchers
-  watch(selectedStyle, watchFilters)
-  watch(selectedSize, watchFilters)
-  watch(searchKeyword, watchFilters)
-  
-  // Initial fetch
-  onMounted(fetchTrendList)
-  </script>
-  
-  <style scoped>
-  .trend-list-page {
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 40px 0;
-    background-color: #f5f7fa;
-    min-height: 100vh;
-    color: #334155;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  .page-title {
-    text-align: center;
-    margin-bottom: 10px;
-    color: #1e293b;
-    font-size: 2.75rem;
-    font-weight: 800;
-    background: linear-gradient(90deg, #4338ca, #6366f1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .page-subtitle {
-    text-align: center;
-    color: #64748b;
-    margin-bottom: 40px;
-    font-size: 1.2rem;
-  }
-  
-  .filters {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-  }
-  
-  .filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .filter-group label {
-    font-size: 0.8rem;
-    color: #475569;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 4px;
-  }
-  
-  .style-filter,
-  .size-filter,
-  .search-input {
-    padding: 10px 15px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-  
-  .search-group {
-    position: relative;
-    width: 300px;
-  }
-  
-  .search-input {
-    width: 100%;
-    padding-right: 40px;
-  }
-  
-  .search-icon {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #94a3b8;
-    pointer-events: none;
-  }
-  
-  .style-filter:focus,
-  .size-filter:focus,
-  .search-input:focus {
-    outline: none;
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-  }
-  
-  .trend-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-  }
-  
-  .trend-card {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .trend-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .trend-images {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 5px;
-  }
-  
-  .trend-image {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-  }
-  
-  .trend-details {
-    padding: 15px;
-  }
-  
-  .trend-prompt {
-    margin: 0 0 10px;
-    font-weight: 600;
-    color: #1e293b;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  .trend-meta {
-    display: flex;
-    justify-content: space-between;
-    color: #64748b;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
-  
-  .trend-dates {
-    font-size: 0.8rem;
-    color: #94a3b8;
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-top: 30px;
-  }
-  
-  .pagination button {
-    padding: 10px 20px;
-    background-color: #6366f1;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .pagination button:disabled {
-    background-color: #cbd5e1;
-    cursor: not-allowed;
-  }
-  
-  /* Modal Styles */
-  .image-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 20px;
-  }
-  
+};
+
+// Get image URL from item data
+const getImageUrl = (item) => {
+    if (!item || !item.imgData) return '';
+
+    try {
+        const imgData = JSON.parse(item.imgData);
+        if (imgData && imgData.length > 0) {
+            // Return the first image URL
+            return imgData[0].url.split('?')[0]; // Remove any query parameters
+        }
+    } catch (error) {
+        console.error('Error parsing image data:', error);
+    }
+
+    return '';
+};
+
+// Format date for display
+const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    });
+};
+
+// Shorten prompt text for display
+const shortenPrompt = (prompt) => {
+    if (!prompt) return '';
+    return prompt.length > 65 ? prompt.substring(0, 65) + '...' : prompt;
+};
+
+// Get span class based on size text
+const getSpanClass = (sizeText) => {
+    switch (sizeText) {
+        case '3-4':
+            return 'span-portrait';
+        case '4-3':
+            return 'span-landscape';
+        case '9-16':
+            return 'span-tall';
+        case '16-9':
+            return 'span-wide';
+        default:
+            return 'span-square';
+    }
+};
+
+// Fetch trend list from API
+const fetchTrendList = async (append = false) => {
+    isLoading.value = true;
+
+    try {
+        // Using the API you provided
+        const response = await request.post('/api/ainow/trend', {
+            style_id: selectedStyle.value,
+            keyword: searchKeyword.value,
+            size: selectedSize.value,
+            limit: 100,
+            page: currentPage.value,
+        });
+
+        if (response && response.data) {
+            if (append) {
+                trendItems.value = [...trendItems.value, ...response.data];
+            } else {
+                trendItems.value = response.data;
+            }
+
+            totalPages.value = response.pagination.totalPages;
+        } else {
+            console.error('Invalid response format:', response);
+        }
+    } catch (error) {
+        console.error('Error fetching trend list:', error);
+        isLoading.value = false;
+    }
+};
+
+// Open modal with selected item
+const openModal = (item) => {
+    selectedItem.value = item;
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+};
+
+// Close modal
+const closeModal = () => {
+    selectedItem.value = null;
+    document.body.style.overflow = ''; // Restore scrolling
+};
+
+// Watch for changes in filters
+watch([selectedStyle, selectedSize], () => {
+    currentPage.value = 1;
+    fetchTrendList();
+});
+
+// Initialize with API data
+onMounted(() => {
+    // Fetch initial data
+    fetchTrendList();
+});
+</script>
+
+
+<style scoped>
+/* Variables */
+:root {
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --secondary-color: #f9fafb;
+  --text-color: #1f2937;
+  --text-light: #6b7280;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --transition: all 0.2s ease;
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: var(--text-color);
+  background-color: #fff;
+  line-height: 1.5;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.image-gallery {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Header Section */
+.header-section {
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-bar {
+  position: relative;
+  margin-bottom: 0.75rem;
+  max-width: 250px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  font-size: 0.875rem;
+  outline: none;
+  transition: var(--transition);
+  background-color: #f0f0f0;
+}
+
+.search-bar input:focus {
+  border-color: var(--primary-color);
+  background-color: white;
+}
+
+.search-bar input::placeholder {
+  color: var(--text-light);
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: nowrap;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  padding-bottom: 0.25rem;
+}
+
+.filter-tabs::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.filter-tab {
+  padding: 0.4rem 0.875rem;
+  border: 1px solid var(--border-color);
+  background-color: white;
+  border-radius: 24px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text-color);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.filter-tab:hover {
+  background-color: #f5f5f5;
+}
+
+.filter-tab.active {
+  background-color: #111;
+  border-color: #111;
+  color: white;
+  font-weight: 500;
+}
+
+/* Pinterest-Style Masonry Grid */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-gap: 16px;
+  grid-auto-flow: dense;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.masonry-item:hover {
+  transform: translateY(-4px);
+}
+
+.item-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.item-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  transition: filter 0.3s ease;
+}
+
+.masonry-item:hover .item-image img {
+  filter: brightness(0.95);
+}
+
+.item-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.masonry-item:hover .item-overlay {
+  opacity: 1;
+}
+
+.item-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.action-btn {
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn:hover {
+  background-color: #f5f5f5;
+  transform: scale(1.05);
+}
+
+.action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.item-prompt {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Loading and Load More */
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #111;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.load-more-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.load-more-btn:hover {
+  background-color: #f5f5f5;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-container {
+  background-color: white;
+  border-radius: 16px;
+  max-width: 1000px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.modal-close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
   .modal-content {
-    background-color: white;
-    border-radius: 16px;
-    max-width: 900px;
-    width: 100%;
-    height: 80vh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    flex-direction: row;
   }
-  
-  .close-button {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: #f1f5f9;
-    color: #475569;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    z-index: 10;
+}
+
+.modal-image {
+  flex: 1;
+  min-height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.modal-image img {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.modal-info {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background-color: white;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.modal-prompt {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-color);
+  margin-top: 0.5rem;
+}
+
+.modal-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+}
+
+.meta-label {
+  font-weight: 600;
+  font-size: 0.875rem;
+  width: 80px;
+}
+
+.meta-value {
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 0.625rem 1rem;
+  border-radius: 24px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.save-btn {
+  background-color: #e60023;
+  color: white;
+  border: none;
+}
+
+.save-btn:hover {
+  background-color: #d50c22;
+}
+
+.share-btn {
+  background-color: #f0f0f0;
+  color: var(--text-color);
+  border: none;
+}
+
+.share-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.download-btn {
+  background-color: #f0f0f0;
+  color: var(--text-color);
+  border: none;
+}
+
+.download-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.related-items {
+  margin-top: 1rem;
+}
+
+.related-items h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.related-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.related-item:hover {
+  transform: scale(1.03);
+}
+
+.related-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Responsive adjustments for Pinterest-like layout */
+@media (min-width: 640px) {
+  .masonry-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
-  
-  .close-button:hover {
-    background-color: #e2e8f0;
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
-  
-  .modal-content-wrapper {
-    display: flex;
-    height: 100%;
-    overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
-  
-  .modal-images {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
-    padding: 20px;
-    overflow-y: auto;
-    background-color: #f8fafc;
+}
+
+@media (min-width: 1280px) {
+  .masonry-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
+}
+
+/* Remove standard grid layout and implement JavaScript-based masonry */
+/* Add this to your JavaScript to enable true masonry layout */
+/*
+document.addEventListener('DOMContentLoaded', function() {
+  // This is optional JavaScript that can be used if CSS grid isn't giving the exact Pinterest look
+  const masonryGrid = document.querySelector('.masonry-grid');
+  const items = document.querySelectorAll('.masonry-item');
   
-  .modal-image {
-    width: 100%;
-    max-height: 500px;
-    object-fit: contain;
-    border-radius: 8px;
+  // Initialize masonry layout library like Masonry.js here
+  // or use a custom implementation
+});
+*/
+
+/* Modified styles to better match the provided image */
+.search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-bar {
+  margin-bottom: 0;
+}
+
+.filter-tabs {
+  margin-bottom: 0;
+  flex-grow: 1;
+}
+
+/* CSS for perfect Pinterest-style masonry layout */
+.masonry-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+.masonry-item {
+  padding: 0 4px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+@media (min-width:
+ 600px) {
+  .masonry-item {
+    width: 50%;
   }
-  
-  .modal-details {
-    flex: 1;
-    padding: 20px;
-    background-color: white;
-    overflow-y: auto;
-    max-width: 40%;
-    border-left: 1px solid #e2e8f0;
+}
+
+@media (min-width: 960px) {
+  .masonry-item {
+    width: 33.33%;
   }
-  
-  .modal-title {
-    margin: 0 0 15px;
-    color: #1e293b;
-    font-size: 1.5rem;
-    font-weight: 700;
+}
+
+@media (min-width: 1280px) {
+  .masonry-item {
+    width: 25%;
   }
-  
-  .modal-prompt {
-    margin: 0 0 20px;
-    color: #475569;
-    line-height: 1.6;
-    font-size: 1rem;
+}
+
+@media (min-width: 1600px) {
+  .masonry-item {
+    width: 20%;
   }
-  
-  .modal-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    color: #64748b;
-    font-size: 0.9rem;
+}
+
+.item-image {
+  display: block;
+  width: 100%;
+}
+
+/* Styling for tab buttons to match the image */
+.filter-tab {
+  padding: 0.5rem 1rem;
+  border-radius: 24px;
+  font-size: 0.875rem;
+  color: #111;
+  background: #efefef;
+  border: none;
+  font-weight: 400;
+}
+
+.filter-tab.active {
+  background: #111;
+  color: white;
+  font-weight: 500;
+}
+
+/* Fix for Flexbox-based masonry */
+.masonry-grid {
+  width: 100%;
+  display: block;
+  column-count: 2;
+  column-gap: 8px;
+}
+
+@media (min-width: 640px) {
+  .masonry-grid {
+    column-count: 3;
   }
-  
-  .modal-meta span {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    column-count: 4;
   }
-  
-  .modal-meta strong {
-    color: #1e293b;
-    font-weight: 600;
+}
+
+/* Cố định 4 cột cho mọi kích thước màn hình lớn */
+@media (min-width: 1280px) {
+  .masonry-grid {
+    column-count: 4;
   }
-  
-  @media (max-width: 768px) {
-    .filters {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .search-group {
-      width: 100%;
-    }
-  
-    .trend-grid {
-      grid-template-columns: 1fr;
-    }
-  
-    .modal-content {
-      margin: 0;
-      height: 100%;
-      border-radius: 0;
-    }
-  
-    .modal-images {
-      grid-template-columns: 1fr;
-    }
-  
-    .modal-image {
-      height: auto;
-    }
-  }
-  </style>
+}
+
+.masonry-item {
+  display: inline-block;
+  width: 100%;
+  break-inside: avoid;
+}
+</style>

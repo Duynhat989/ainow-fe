@@ -13,7 +13,7 @@
         </div>
         <div class="hero-image">
           <img
-            src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+            src="https://www.simplexitypd.com/wp-content/uploads/2024/05/AI-Tools-to-Boost-Engineering-Productivity-BNR.jpg"
             alt="AI Image Editor Demo" />
         </div>
       </div>
@@ -25,78 +25,143 @@
         <h2 class="section-title">Tính Năng Nổi Bật</h2>
         <div class="features-grid three-columns">
           <div class="feature-card">
-            <div class="feature-icon">🖼️</div>
+            <div class="feature-image">
+              <img src="https://images.unsplash.com/photo-1633409361618-c73427e4e206?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Xóa Phông Tự Động" />
+              <div class="feature-overlay">
+                <span>Trước & Sau</span>
+              </div>
+            </div>
             <h3>Xóa Phông Tự Động</h3>
             <p>Xóa hoặc thay đổi phông nền chỉ với một cú nhấp chuột</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">✨</div>
+            <div class="feature-image">
+              <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Làm Đẹp Khuôn Mặt" />
+              <div class="feature-overlay">
+                <span>Trước & Sau</span>
+              </div>
+            </div>
             <h3>Làm Đẹp Khuôn Mặt</h3>
             <p>Tự động làm mịn da, xóa khuyết điểm và tăng cường đường nét</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🔄</div>
+            <div class="feature-image">
+              <img src="https://images.unsplash.com/photo-1596003906949-67221c37965c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Phục Hồi Ảnh Cũ" />
+              <div class="feature-overlay">
+                <span>Trước & Sau</span>
+              </div>
+            </div>
             <h3>Phục Hồi Ảnh Cũ</h3>
             <p>Khôi phục ảnh cũ, hư hỏng với công nghệ AI tiên tiến</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">💬</div>
+            <div class="feature-image">
+              <img src="https://images.unsplash.com/photo-1607968565043-36af90dde238?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Chỉnh Sửa Bằng Văn Bản" />
+              <div class="feature-overlay">
+                <span>Trước & Sau</span>
+              </div>
+            </div>
             <h3>Chỉnh Sửa Bằng Văn Bản</h3>
             <p>Chỉ cần mô tả những gì bạn muốn, AI sẽ thực hiện</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🎨</div>
+            <div class="feature-image">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Tạo Ảnh AI" />
+              <div class="feature-overlay">
+                <span>Trước & Sau</span>
+              </div>
+            </div>
             <h3>Tạo Ảnh AI</h3>
             <p>Tạo ra hình ảnh hoàn toàn mới từ mô tả văn bản của bạn</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🔍</div>
+            <div class="feature-image">
+              <img src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Tăng Độ Phân Giải" />
+              <div class="feature-overlay">
+                <span>Trước & Sau</span>
+              </div>
+            </div>
             <h3>Tăng Độ Phân Giải</h3>
             <p>Biến ảnh độ phân giải thấp thành hình ảnh sắc nét chi tiết</p>
           </div>
         </div>
       </div>
     </section>
+    
     <!-- Before/After Examples -->
     <section class="section examples-section">
       <div class="container">
         <h2 class="section-title">Trước & Sau Khi Chỉnh Sửa</h2>
-        <div class="examples-grid">
-          <div class="example-item">
-            <div class="example-title">Xóa phông nền tự động</div>
-            <div class="example-before">
-              <img :src="car_befor" alt="Before editing" />
-              <span>Trước</span>
+        <p class="section-subtitle">Xem sự khác biệt rõ rệt mà công nghệ AI của chúng tôi mang lại</p>
+        
+        <div class="examples-slider">
+          <div class="examples-grid">
+            <div class="example-item">
+              <div class="example-title">Xóa phông nền chuyên nghiệp</div>
+              <div class="example-comparison">
+                <div class="example-before">
+                  <img src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80" alt="Before editing" />
+                  <span>Trước</span>
+                </div>
+                <div class="example-divider">
+                  <div class="divider-line"></div>
+                  <div class="divider-arrow">→</div>
+                  <div class="divider-line"></div>
+                </div>
+                <div class="example-after">
+                  <img src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80&blend=FFFFFF&blend-alpha=90&blend-mode=normal&blend-w=1000&blend-h=1000" alt="After editing" />
+                  <span>Sau</span>
+                </div>
+              </div>
             </div>
-            <div class="example-arrow">→</div>
-            <div class="example-after">
-              <img :src="car_after" alt="After editing" />
-              <span>Sau</span>
+            
+            <div class="example-item">
+              <div class="example-title">Nâng cao chất lượng ảnh cũ</div>
+              <div class="example-comparison">
+                <div class="example-before">
+                  <img src="https://images.unsplash.com/photo-1577643816920-65b43ba99fba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=30&sat=-100&blur=8" alt="Before editing" />
+                  <span>Trước</span>
+                </div>
+                <div class="example-divider">
+                  <div class="divider-line"></div>
+                  <div class="divider-arrow">→</div>
+                  <div class="divider-line"></div>
+                </div>
+                <div class="example-after">
+                  <img src="https://images.unsplash.com/photo-1577643816920-65b43ba99fba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80" alt="After editing" />
+                  <span>Sau</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="example-item">
+              <div class="example-title">Tối ưu hóa màu sắc và ánh sáng</div>
+              <div class="example-comparison">
+                <div class="example-before">
+                  <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80&sat=-50&brightness=-20" alt="Before editing" />
+                  <span>Trước</span>
+                </div>
+                <div class="example-divider">
+                  <div class="divider-line"></div>
+                  <div class="divider-arrow">→</div>
+                  <div class="divider-line"></div>
+                </div>
+                <div class="example-after">
+                  <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80&sat=30&con=20" alt="After editing" />
+                  <span>Sau</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="example-item">
-            <div class="example-title">Phục hồi ảnh cũ hư hỏng</div>
-            <div class="example-before">
-              <img :src="car_after" alt="Before editing" />
-              <span>Trước</span>
+          
+          <div class="slider-controls">
+            <button class="slider-arrow slider-prev" @click="prevSlide">❮</button>
+            <div class="slider-dots">
+              <span class="dot" :class="{ active: currentSlide === 0 }" @click="setSlide(0)"></span>
+              <span class="dot" :class="{ active: currentSlide === 1 }" @click="setSlide(1)"></span>
+              <span class="dot" :class="{ active: currentSlide === 2 }" @click="setSlide(2)"></span>
             </div>
-            <div class="example-arrow">→</div>
-            <div class="example-after">
-              <img :src="car_after" alt="After editing" />
-              <span>Sau</span>
-            </div>
-          </div>
-          <div class="example-item">
-            <div class="example-title">Làm đẹp khuôn mặt tự động</div>
-            <div class="example-before">
-              <img :src="car_after" alt="Before editing" />
-              <span>Trước</span>
-            </div>
-            <div class="example-arrow">→</div>
-            <div class="example-after">
-              <img :src="car_after" alt="After editing" />
-              <span>Sau</span>
-            </div>
+            <button class="slider-arrow slider-next" @click="nextSlide">❯</button>
           </div>
         </div>
       </div>
@@ -106,34 +171,65 @@
     <section class="section how-it-works-section">
       <div class="container">
         <h2 class="section-title">Cách Hoạt Động</h2>
+        <p class="section-subtitle">Quy trình đơn giản, kết quả chuyên nghiệp</p>
+        
         <div class="steps-container">
           <div class="step-item">
             <div class="step-number">1</div>
-            <div class="step-icon">📤</div>
+            <div class="step-image">
+              <img src="https://images.unsplash.com/photo-1607434472257-d9f8e57a643d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Tải Ảnh Lên" />
+            </div>
             <h3>Tải Ảnh Lên</h3>
             <p>Tải lên ảnh của bạn hoặc chọn từ thư viện có sẵn</p>
           </div>
           <div class="step-connector"></div>
           <div class="step-item">
             <div class="step-number">2</div>
-            <div class="step-icon">🤖</div>
+            <div class="step-image">
+              <img src="https://images.unsplash.com/photo-1579403124614-197f69d8187b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Chọn Công Cụ AI" />
+            </div>
             <h3>Chọn Công Cụ AI</h3>
             <p>Lựa chọn từ nhiều công cụ chỉnh sửa thông minh</p>
           </div>
           <div class="step-connector"></div>
           <div class="step-item">
             <div class="step-number">3</div>
-            <div class="step-icon">✏️</div>
+            <div class="step-image">
+              <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Tùy Chỉnh" />
+            </div>
             <h3>Tùy Chỉnh</h3>
             <p>Điều chỉnh các tham số hoặc mô tả bằng văn bản</p>
           </div>
           <div class="step-connector"></div>
           <div class="step-item">
             <div class="step-number">4</div>
-            <div class="step-icon">💾</div>
+            <div class="step-image">
+              <img src="https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Lưu & Chia Sẻ" />
+            </div>
             <h3>Lưu & Chia Sẻ</h3>
             <p>Tải xuống, lưu trữ hoặc chia sẻ ảnh đã chỉnh sửa</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo Gallery Section -->
+    <section class="section gallery-section">
+      <div class="container">
+        <h2 class="section-title">Thư Viện Ảnh Mẫu</h2>
+        <p class="section-subtitle">Khám phá những gì AI của chúng tôi có thể làm</p>
+        
+        <div class="gallery-grid">
+          <div class="gallery-item" v-for="(image, index) in galleryImages" :key="index">
+            <img :src="image" :alt="`Gallery image ${index + 1}`" />
+            <div class="gallery-overlay">
+              <div class="gallery-caption">Chỉnh sửa bằng AI</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="gallery-cta">
+          <RouterLink to="/gallery" class="btn btn-outline">Xem thêm ảnh mẫu</RouterLink>
         </div>
       </div>
     </section>
@@ -162,60 +258,44 @@
       </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section class="section testimonials-section">
+      <div class="container">
+        <h2 class="section-title">Khách Hàng Nói Gì</h2>
+        <p class="section-subtitle">Trải nghiệm từ người dùng thực tế</p>
+        
+        <div class="testimonials-slider">
+          <div class="testimonials-grid">
+            <div class="testimonial-card" v-for="(testimonial, index) in testimonials" :key="index">
+              <div class="testimonial-rating">★★★★★</div>
+              <div class="testimonial-content">
+                <p>{{ testimonial.content }}</p>
+              </div>
+              <div class="testimonial-author">
+                <img :src="testimonial.avatar" :alt="testimonial.name" />
+                <div>
+                  <h4>{{ testimonial.name }}</h4>
+                  <p>{{ testimonial.title }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- FAQ Section -->
     <section class="section faq-section">
       <div class="container">
         <h2 class="section-title">Câu Hỏi Thường Gặp</h2>
         <div class="faq-list">
-          <div class="faq-item">
-            <div class="faq-question">
-              <h3>Tôi có cần kỹ năng chỉnh sửa ảnh không?</h3>
-              <span class="faq-toggle">+</span>
+          <div class="faq-item" :class="{ active: activeIndex === index }" v-for="(faq, index) in faqs" :key="index">
+            <div class="faq-question" @click="toggleFaq(index)">
+              <h3>{{ faq.question }}</h3>
+              <span class="faq-toggle">{{ activeIndex === index ? '-' : '+' }}</span>
             </div>
-            <div class="faq-answer">
-              <p>Không, bạn không cần bất kỳ kỹ năng chỉnh sửa ảnh nào. Công cụ của chúng tôi được thiết kế để mọi người
-                đều có thể sử dụng, với giao diện trực quan và các công cụ AI tự động.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">
-              <h3>Ảnh của tôi có an toàn không?</h3>
-              <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer">
-              <p>Có, chúng tôi coi trọng quyền riêng tư của bạn. Tất cả các ảnh tải lên đều được mã hóa và không bao giờ
-                được sử dụng cho bất kỳ mục đích nào khác. Bạn có thể xóa ảnh của mình bất cứ lúc nào.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">
-              <h3>Tôi có thể sử dụng ảnh cho mục đích thương mại không?</h3>
-              <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer">
-              <p>Có, tất cả các ảnh bạn chỉnh sửa đều thuộc về bạn và có thể được sử dụng cho mục đích cá nhân hoặc
-                thương mại. Tuy nhiên, nếu bạn sử dụng AI để tạo ảnh mới, vui lòng kiểm tra các điều khoản sử dụng cụ
-                thể.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">
-              <h3>Tôi có thể hủy đăng ký bất cứ lúc nào không?</h3>
-              <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer">
-              <p>Có, bạn có thể hủy đăng ký bất kỳ lúc nào. Không có hợp đồng ràng buộc và không có phí hủy. Bạn sẽ tiếp
-                tục có quyền truy cập vào các tính năng gói cho đến khi kết thúc chu kỳ thanh toán hiện tại.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">
-              <h3>Các định dạng ảnh nào được hỗ trợ?</h3>
-              <span class="faq-toggle">+</span>
-            </div>
-            <div class="faq-answer">
-              <p>Chúng tôi hỗ trợ tất cả các định dạng ảnh phổ biến như JPG, PNG, WEBP, HEIC, và nhiều định dạng khác.
-                Bạn có thể xuất ảnh sang nhiều định dạng khác nhau tùy thuộc vào nhu cầu của mình.</p>
+            <div class="faq-answer" :style="{ display: activeIndex === index ? 'block' : 'none' }">
+              <p>{{ faq.answer }}</p>
             </div>
           </div>
         </div>
@@ -237,32 +317,85 @@
 
 <script setup>
 import { RouterLink } from 'vue-router';
+import { ref } from 'vue';
 
+// Active FAQ item tracking
+const activeIndex = ref(null);
 
-// im
-import car_befor from '../assets/images/home/car_befor.webp'
-import car_after from '../assets/images/home/car_after.webp'
-
-// Home page logic here if needed
-
-// Fake logic for FAQ toggles (in a real app, would need to be implemented)
-const toggleFaq = (event) => {
-  const question = event.currentTarget;
-  const answer = question.nextElementSibling;
-  const toggle = question.querySelector('.faq-toggle');
-
-  if (answer.style.display === 'block') {
-    answer.style.display = 'none';
-    toggle.textContent = '+';
-  } else {
-    answer.style.display = 'block';
-    toggle.textContent = '-';
-  }
+// Toggle FAQ function
+const toggleFaq = (index) => {
+  activeIndex.value = activeIndex.value === index ? null : index;
 };
 
-// In a real app, would need to add event listeners for the FAQ questions
+// Slider functionality
+const currentSlide = ref(0);
+const nextSlide = () => {
+  currentSlide.value = (currentSlide.value + 1) % 3;
+};
+const prevSlide = () => {
+  currentSlide.value = (currentSlide.value - 1 + 3) % 3;
+};
+const setSlide = (index) => {
+  currentSlide.value = index;
+};
+
+// Gallery images
+const galleryImages = [
+  'https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80',
+  'https://images.unsplash.com/photo-1600428577438-a776b8d9b594?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80',
+  'https://images.unsplash.com/photo-1600428577161-e1b53a4c96ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80',
+  'https://images.unsplash.com/photo-1600428577305-e7ff81c18078?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80',
+  'https://images.unsplash.com/photo-1600428577022-a39f3a6a4d1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80',
+  'https://images.unsplash.com/photo-1600428577346-44e9f0805cd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80',
+];
+
+// Testimonials data
+const testimonials = [
+  {
+    content: "Công cụ này đã giúp tôi tiết kiệm rất nhiều thời gian. Tôi không cần phải thuê nhà thiết kế đồ họa nữa, AI làm mọi thứ cho tôi!",
+    name: "Nguyễn Văn A",
+    title: "Chủ cửa hàng trực tuyến",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80"
+  },
+  {
+    content: "Tôi đã thử nhiều công cụ chỉnh sửa ảnh khác nhau, nhưng đây là công cụ tốt nhất. Giao diện dễ sử dụng và kết quả thật đáng kinh ngạc.",
+    name: "Trần Thị B",
+    title: "Nhiếp ảnh gia",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80"
+  },
+  {
+    content: "Tính năng xóa phông nền tự động hoạt động hoàn hảo. Tôi đã sử dụng nó cho tất cả sản phẩm trong cửa hàng trực tuyến của mình.",
+    name: "Lê Văn C",
+    title: "Marketer",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80"
+  }
+];
+
+// FAQ data
+const faqs = [
+  {
+    question: "Tôi có cần kỹ năng chỉnh sửa ảnh không?",
+    answer: "Không, bạn không cần bất kỳ kỹ năng chỉnh sửa ảnh nào. Công cụ của chúng tôi được thiết kế để mọi người đều có thể sử dụng, với giao diện trực quan và các công cụ AI tự động."
+  },
+  {
+    question: "Ảnh của tôi có an toàn không?",
+    answer: "Có, chúng tôi coi trọng quyền riêng tư của bạn. Tất cả các ảnh tải lên đều được mã hóa và không bao giờ được sử dụng cho bất kỳ mục đích nào khác. Bạn có thể xóa ảnh của mình bất cứ lúc nào."
+  },
+  {
+    question: "Tôi có thể sử dụng ảnh cho mục đích thương mại không?",
+    answer: "Có, tất cả các ảnh bạn chỉnh sửa đều thuộc về bạn và có thể được sử dụng cho mục đích cá nhân hoặc thương mại. Tuy nhiên, nếu bạn sử dụng AI để tạo ảnh mới, vui lòng kiểm tra các điều khoản sử dụng cụ thể."
+  },
+  {
+    question: "Tôi có thể hủy đăng ký bất cứ lúc nào không?",
+    answer: "Có, bạn có thể hủy đăng ký bất kỳ lúc nào. Không có hợp đồng ràng buộc và không có phí hủy. Bạn sẽ tiếp tục có quyền truy cập vào các tính năng gói cho đến khi kết thúc chu kỳ thanh toán hiện tại."
+  },
+  {
+    question: "Các định dạng ảnh nào được hỗ trợ?",
+    answer: "Chúng tôi hỗ trợ tất cả các định dạng ảnh phổ biến như JPG, PNG, WEBP, HEIC, và nhiều định dạng khác. Bạn có thể xuất ảnh sang nhiều định dạng khác nhau tùy thuộc vào nhu cầu của mình."
+  }
+];
 </script>
-<!-- ----------------- -->
+
 <style scoped>
 /* Import font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -324,6 +457,7 @@ const toggleFaq = (event) => {
   background-color: transparent;
   color: #4f46e5;
   border: 2px solid #4f46e5;
+  padding: 12px 26px;
 }
 
 .btn-outline:hover {
@@ -480,7 +614,7 @@ const toggleFaq = (event) => {
 .feature-card {
   background-color: white;
   border-radius: 16px;
-  padding: 40px 30px;
+  padding: 30px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
   text-align: center;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -513,21 +647,42 @@ const toggleFaq = (event) => {
   opacity: 1;
 }
 
-.feature-icon {
-  font-size: 3.5rem;
+.feature-image {
   margin-bottom: 24px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
-  color: #4f46e5;
-  transition: transform 0.3s ease;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
-.feature-card:hover .feature-icon {
+.feature-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.feature-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(79, 70, 229, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-card:hover .feature-image img {
   transform: scale(1.1);
 }
 
@@ -544,228 +699,44 @@ const toggleFaq = (event) => {
   line-height: 1.6;
 }
 
-/* Pricing Section */
-.pricing-section {
-  background-color: #f9fafb;
-  position: relative;
-  overflow: hidden;
-}
-
-.pricing-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
-  background-size: 20px 20px;
-  background-position: center center;
-  z-index: 0;
-}
-
-.pricing-grid {
-  display: grid;
-  gap: 30px;
-  margin-bottom: 50px;
-  position: relative;
-  z-index: 1;
-}
-
-.pricing-grid.two-columns {
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.pricing-card {
-  background-color: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  position: relative;
-  border: 1px solid rgba(229, 231, 235, 0.8);
-}
-
-.pricing-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: rgba(124, 58, 237, 0.3);
-}
-
-.pricing-card.popular {
-  border: 2px solid #6d28d9;
-  transform: scale(1.03);
-  z-index: 2;
-  box-shadow: 0 20px 40px rgba(109, 40, 217, 0.15);
-}
-
-.pricing-card.popular:hover {
-  transform: scale(1.05) translateY(-10px);
-}
-
-.popular-badge {
-  position: absolute;
-  top: 0;
-  right: 30px;
-  background: linear-gradient(135deg, #4f46e5 0%, #6d28d9 100%);
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 5px 15px rgba(109, 40, 217, 0.25);
-}
-
-.pricing-header {
-  padding: 40px 30px 30px;
-  text-align: center;
-  border-bottom: 1px solid #f3f4f6;
-}
-
-.pricing-header h3 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: #111827;
-}
-
-.pricing-price {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.price {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #1f2937;
-}
-
-.period {
-  font-size: 1rem;
-  color: #6b7280;
-  margin-top: 5px;
-}
-
-.pricing-features {
-  padding: 30px;
-}
-
-.pricing-features ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.pricing-features li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 18px;
-  color: #4b5563;
-  font-size: 1.05rem;
-}
-
-.pricing-features li:last-child {
-  margin-bottom: 0;
-}
-
-.feature-check,
-.feature-cross {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  margin-right: 12px;
-  flex-shrink: 0;
-}
-
-.feature-check {
-  background-color: rgba(79, 70, 229, 0.1);
-  color: #4f46e5;
-  font-weight: bold;
-}
-
-.feature-cross {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
-  font-weight: bold;
-}
-
-.feature-disabled {
-  opacity: 0.6;
-}
-
-.pricing-action {
-  padding: 0 30px 40px;
-  text-align: center;
-}
-
-.pricing-action .btn {
-  width: 100%;
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-
-.pricing-note {
-  text-align: center;
-  color: #6b7280;
-  font-size: 1rem;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.pricing-note a {
-  color: #4f46e5;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.pricing-note a:hover {
-  color: #6d28d9;
-  text-decoration: underline;
-}
-
 /* Examples Section */
 .examples-section {
   background-color: white;
   position: relative;
 }
 
-.examples-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
+.examples-slider {
+  position: relative;
   margin-top: 50px;
 }
 
-.example-item {
+.examples-grid {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.example-item {
   position: relative;
 }
 
 .example-title {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  right: 0;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
+  margin-bottom: 30px;
   color: #4f46e5;
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.example-comparison {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
 }
 
 .example-before,
@@ -775,6 +746,8 @@ const toggleFaq = (event) => {
   overflow: hidden;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  flex: 1;
+  max-width: 500px;
 }
 
 .example-before:hover,
@@ -785,7 +758,7 @@ const toggleFaq = (event) => {
 .example-before img,
 .example-after img {
   display: block;
-  max-width: 100%;
+  width: 100%;
   height: auto;
   transition: filter 0.3s ease;
 }
@@ -804,8 +777,21 @@ const toggleFaq = (event) => {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.example-arrow {
-  font-size: 3rem;
+.example-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.divider-line {
+  width: 2px;
+  height: 50px;
+  background-color: #e5e7eb;
+}
+
+.divider-arrow {
+  font-size: 2rem;
   color: #6d28d9;
   animation: pulse-arrow 2s infinite ease-in-out;
 }
@@ -825,6 +811,61 @@ const toggleFaq = (event) => {
     transform: scale(1);
     opacity: 0.7;
   }
+}
+
+.slider-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 20px;
+}
+
+.slider-arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.slider-arrow:hover {
+  background-color: #4f46e5;
+  color: white;
+  border-color: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(79, 70, 229, 0.2);
+}
+
+.slider-dots {
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dot.active {
+  background-color: #4f46e5;
+  transform: scale(1.2);
+}
+
+.dot:hover {
+  background-color: #6d28d9;
 }
 
 /* How It Works Section */
@@ -867,26 +908,31 @@ const toggleFaq = (event) => {
   font-size: 1.1rem;
   margin-bottom: 20px;
   box-shadow: 0 10px 15px rgba(124, 58, 237, 0.2);
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
 }
 
-.step-icon {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: white;
+.step-image {
+  margin-bottom: 24px;
+  overflow: hidden;
+  border-radius: 12px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
   position: relative;
-  z-index: 1;
-  transition: transform 0.3s ease;
+  width: 100%;
 }
 
-.step-item:hover .step-icon {
-  transform: scale(1.1) translateY(-10px);
+.step-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.step-item:hover .step-image img {
+  transform: scale(1.1);
 }
 
 .step-item h3 {
@@ -918,6 +964,71 @@ const toggleFaq = (event) => {
   height: 10px;
   border-radius: 50%;
   background-color: #6d28d9;
+}
+
+/* Gallery Section */
+.gallery-section {
+  background-color: white;
+  position: relative;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 20px;
+  color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-caption {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.gallery-cta {
+  text-align: center;
+  margin-top: 50px;
 }
 
 /* Stats Section */
@@ -1064,63 +1175,6 @@ const toggleFaq = (event) => {
   font-size: 0.95rem;
 }
 
-.slider-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 40px;
-  gap: 20px;
-}
-
-.slider-prev,
-.slider-next {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: white;
-  border: 1px solid #e5e7eb;
-  color: #4b5563;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-.slider-prev:hover,
-.slider-next:hover {
-  background-color: #4f46e5;
-  color: white;
-  border-color: #4f46e5;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(79, 70, 229, 0.2);
-}
-
-.slider-dots {
-  display: flex;
-  gap: 10px;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #e5e7eb;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.dot.active {
-  background-color: #4f46e5;
-  transform: scale(1.2);
-}
-
-.dot:hover {
-  background-color: #6d28d9;
-}
-
 /* FAQ Section */
 .faq-section {
   background-color: #f9fafb;
@@ -1143,7 +1197,6 @@ const toggleFaq = (event) => {
   transition: all 0.3s ease;
   border: 1px solid #f3f4f6;
 }
-
 
 .faq-item:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -1195,11 +1248,9 @@ const toggleFaq = (event) => {
   color: #6b7280;
   font-size: 1.05rem;
   line-height: 1.7;
-  display: none;
 }
 
 .faq-item.active .faq-answer {
-  display: block;
   animation: fadeDown 0.3s ease forwards;
 }
 
@@ -1270,78 +1321,17 @@ const toggleFaq = (event) => {
 
 .cta-content .btn {
   background-color: white;
+  color: #4f46e5;
   font-size: 1.15rem;
   padding: 16px 36px;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
   border: none;
-  color: white;
 }
 
 .cta-content .btn:hover {
   background-color: #f9fafb;
   transform: translateY(-5px);
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.features-grid .feature-card:nth-child(1) {
-  animation: fadeIn 0.5s 0.1s ease both;
-}
-
-.features-grid .feature-card:nth-child(2) {
-  animation: fadeIn 0.5s 0.2s ease both;
-}
-
-.features-grid .feature-card:nth-child(3) {
-  animation: fadeIn 0.5s 0.3s ease both;
-}
-
-.features-grid .feature-card:nth-child(4) {
-  animation: fadeIn 0.5s 0.4s ease both;
-}
-
-.features-grid .feature-card:nth-child(5) {
-  animation: fadeIn 0.5s 0.5s ease both;
-}
-
-.features-grid .feature-card:nth-child(6) {
-  animation: fadeIn 0.5s 0.6s ease both;
-}
-
-.pricing-grid .pricing-card:nth-child(1) {
-  animation: fadeIn 0.5s 0.1s ease both;
-}
-
-.pricing-grid .pricing-card:nth-child(2) {
-  animation: fadeIn 0.5s 0.2s ease both;
-}
-
-.stats-grid .stat-item:nth-child(1) {
-  animation: fadeIn 0.5s 0.1s ease both;
-}
-
-.stats-grid .stat-item:nth-child(2) {
-  animation: fadeIn 0.5s 0.2s ease both;
-}
-
-.stats-grid .stat-item:nth-child(3) {
-  animation: fadeIn 0.5s 0.3s ease both;
-}
-
-.stats-grid .stat-item:nth-child(4) {
-  animation: fadeIn 0.5s 0.4s ease both;
 }
 
 /* Media queries for responsiveness */
@@ -1393,9 +1383,8 @@ const toggleFaq = (event) => {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .pricing-grid.two-columns {
-    grid-template-columns: 1fr;
-    max-width: 500px;
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .steps-container {
@@ -1417,12 +1406,22 @@ const toggleFaq = (event) => {
     left: -4px;
   }
 
-  .pricing-card.popular {
-    transform: scale(1);
+  .example-comparison {
+    flex-direction: column;
   }
 
-  .pricing-card.popular:hover {
-    transform: translateY(-10px);
+  .example-divider {
+    flex-direction: row;
+    margin: 20px 0;
+  }
+
+  .divider-line {
+    width: 50px;
+    height: 2px;
+  }
+
+  .divider-arrow {
+    transform: rotate(90deg);
   }
 }
 
@@ -1448,58 +1447,12 @@ const toggleFaq = (event) => {
     grid-template-columns: 1fr;
   }
 
-  .example-item {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .example-title {
-    position: relative;
-    top: 0;
-    margin-bottom: 20px;
-  }
-
-  .example-arrow {
-    transform: rotate(90deg);
+  .gallery-grid {
+    grid-template-columns: 1fr;
   }
 
   .testimonials-grid {
     grid-template-columns: 1fr;
-  }
-
-  .stat-number {
-    font-size: 2.5rem;
-  }
-
-  .cta-content h2 {
-    font-size: 2rem;
-  }
-
-  .cta-content p {
-    font-size: 1.1rem;
-  }
-
-  .btn {
-    padding: 12px 24px;
-    font-size: 0.95rem;
-  }
-
-  .cta-content .btn {
-    font-size: 1rem;
-    padding: 14px 30px;
-  }
-
-  .faq-question {
-    padding: 20px;
-  }
-
-  .faq-question h3 {
-    font-size: 1.05rem;
-    line-height: 1.4;
-  }
-
-  .faq-answer {
-    padding: 0 20px 20px;
   }
 }
 
@@ -1517,62 +1470,51 @@ const toggleFaq = (event) => {
   }
 
   .section-subtitle {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
   }
 
   .hero-content h1 {
     font-size: 2rem;
   }
 
-  .hero-content p {
-    font-size: 1rem;
+  .feature-image img {
+    height: 160px;
   }
 
-  .feature-icon {
-    font-size: 2.5rem;
-    width: 70px;
-    height: 70px;
+  .step-image img {
+    height: 150px;
   }
 
-  .feature-card h3 {
-    font-size: 1.2rem;
+  .faq-question {
+    padding: 20px;
   }
 
-  .feature-card p {
-    font-size: 0.95rem;
+  .faq-question h3 {
+    font-size: 1.05rem;
+    line-height: 1.4;
   }
 
-  .step-icon {
-    width: 80px;
-    height: 80px;
-    font-size: 2.5rem;
+  .faq-answer {
+    padding: 0 20px 20px;
   }
 
-  .step-item h3 {
-    font-size: 1.2rem;
-  }
-
-  .step-item p {
-    font-size: 0.95rem;
+  .slider-arrow {
+    width: 40px;
+    height: 40px;
   }
 
   .cta-content h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .cta-content p {
+    font-size: 1.1rem;
+  }
+
+  .cta-content .btn {
+    padding: 14px 28px;
     font-size: 1rem;
-  }
-
-  .testimonial-card {
-    padding: 25px;
-  }
-
-  .slider-prev,
-  .slider-next {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
   }
 }
 
@@ -1615,24 +1557,5 @@ html {
     transform: scale(100, 100);
     opacity: 0;
   }
-}
-
-/* Custom cursor for clickable elements */
-.btn,
-.feature-card,
-.testimonial-card,
-.faq-question,
-.example-before,
-.example-after,
-.dot,
-.slider-prev,
-.slider-next {
-  cursor: pointer;
-}
-
-/* Glass morphism effect for pricing cards */
-.pricing-card {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 </style>
