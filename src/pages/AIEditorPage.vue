@@ -182,6 +182,7 @@
                     <p>{{ isGenerating ?
                         'AI is generating an image from your description...'
                         : 'AI is processing your image...' }}</p>
+                    <p></p>
                 </div>
             </div>
 
@@ -498,7 +499,7 @@ const generateImage = async () => {
                     }
                 } catch (error) {
                     console.log(error)
-                    if(!error.success && error.msg == "error"){
+                    if (!error.success && error.msg == "error") {
                         alert("An error occurred while generating the image. Please try again.")
                         break
                     }
@@ -536,30 +537,21 @@ const applyAIEffect = async (effect) => {
             if (response.success) {
                 // Xử lý hàm
                 let processId = response.sessionId;
-
-                // Set up polling with timeout
-                const startTime = Date.now();
-                const timeoutMs = 100 * 1000; // 100 seconds
-                let completed = false;
-                await new Promise(resolve => setTimeout(resolve, 3000));
-                while (Date.now() - startTime < timeoutMs && !completed) {
+                for (let index = 0; index < 50; index++) {
+                    await sleep(3 * 1000)
                     try {
                         const res = await request.post('/api/ainow/get_task', {
                             "processId": processId
                         });
 
                         if (res.success) {
-                            completed = true;
                             // Usage
                             let origin = res.data[0].origin
                             let rss = await request.post('/api/ainow/url_basestr', {
                                 "imageUrl": origin
                             })
                             imagePreview.value = rss.base64
-                            //     console.log(`Applying AI effect: ${effect}`);
-                            //     // In a real app, this would call an API to process the image
                             isProcessing.value = false;
-
                             // Add a message to chat if it's a restoration or enhancement
                             if (effect === 'restore' || effect === 'enhance' || effect === 'remove-bg') {
                                 chatMessages.value.push({
@@ -567,28 +559,17 @@ const applyAIEffect = async (effect) => {
                                     text: `I have ${effect} your image. Would you like any additional adjustments?`
                                 });
                             }
-                            // Handle successful response here
                             break;
                         }
                     } catch (error) {
-                        // Handle network errors or other exceptions
-                        console.error("Error checking task status:", error);
-                        // else if (res.msg === 'pending') {
-                        //     // Task is still pending, continue polling
-                        //     console.log("Task is pending, continuing to poll...");
-                        // } else {
-                        //     // Some other error occurred
-                        //     throw new Error(`Task failed: ${res.msg}`);
-                        // }
+                        console.log(error)
+                        if (!error.success && error.msg == "error") {
+                            alert("An error occurred while generating the image. Please try again.")
+                            break
+                        }
                     }
-                    // Wait 3 seconds before trying again
-                    await new Promise(resolve => setTimeout(resolve, 3000));
-                }
 
-                if (!completed) {
-                    alert('Operation timed out after 100 seconds. Please try again.');
                 }
-
             } else {
                 alert('An error occurred while generating the image. Please try again.');
             }
@@ -673,14 +654,18 @@ const sendChatMessage = async () => {
     }
     // console.log('Image generation response:', response);
     if (response.success) {
-        const inlineData = response.result[0]?.candidates[0]?.content.parts[0]?.inlineData
-        // console.log(inlineData.data)
-        const baseStr = inlineData?.data;
-        const mimeType = inlineData?.mimeType;
-        imagePreview.value = `data:${mimeType};base64,${baseStr}`;
-        selectedImage.value = 'generated';
-        isGenerating.value = false;
-        sendText()
+        try {
+            const inlineData = response.result[0]?.candidates[0]?.content.parts[0]?.inlineData
+            // console.log(inlineData.data)
+            const baseStr = inlineData?.data;
+            const mimeType = inlineData?.mimeType;
+            imagePreview.value = `data:${mimeType};base64,${baseStr}`;
+            selectedImage.value = 'generated';
+            isGenerating.value = false;
+            sendText()
+        } catch (error) {
+            alert("Chính sửa đang dính lỗi")
+        }
 
         // Stop the polling loop
     } else {

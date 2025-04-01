@@ -3,7 +3,7 @@
     <header class="header">
         <div class="container header-container">
             <div class="logo">
-                <RouterLink to="/">AINow</RouterLink>
+                <RouterLink to="/" style="display: flex;align-items: center;"> AINow</RouterLink>
             </div>
 
             <nav class="nav-desktop">
