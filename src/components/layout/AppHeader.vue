@@ -52,18 +52,8 @@
             <ul class="mobile-nav-links">
                 <li><RouterLink to="/" @click="closeMobileMenu">Home</RouterLink></li>
                 <li><RouterLink to="/editor" @click="closeMobileMenu">AI Editor</RouterLink></li>
-                <li><RouterLink to="/templates" @click="closeMobileMenu">Explore</RouterLink></li>
-                <li>
-                    <div class="mobile-dropdown" @click="toggleMobileSubmenu('tools')">
-                        <span>Tutorials</span>
-                        <span class="mobile-dropdown-icon" :class="{ 'active': mobileSubmenu === 'tools' }">▼</span>
-                    </div>
-                    <ul class="mobile-submenu" :class="{ 'active': mobileSubmenu === 'tools' }">
-                        <!-- <li><RouterLink to="/utilities" @click="closeMobileMenu">Tools</RouterLink></li> -->
-                        <li><RouterLink to="/tutorials" @click="closeMobileMenu">Tutorials</RouterLink></li>
-                    </ul>
-                </li>
-                <li><RouterLink to="/my-gallery" @click="closeMobileMenu">Contact Us</RouterLink></li>
+                <li><RouterLink to="/explore" @click="closeMobileMenu">AI Trends</RouterLink></li>
+                <li><RouterLink to="/pricing" @click="closeMobileMenu">Pricing</RouterLink></li>
                 <li>
                     <div class="mobile-dropdown" @click="toggleMobileSubmenu('about')">
                         <span>About Us</span>
@@ -72,10 +62,10 @@
                     <ul class="mobile-submenu" :class="{ 'active': mobileSubmenu === 'about' }">
                         <li><RouterLink to="/about" @click="closeMobileMenu">About Us</RouterLink></li>
                         <li><RouterLink to="/support" @click="closeMobileMenu">Support</RouterLink></li>
-                        <li><RouterLink to="/community" @click="closeMobileMenu">Community</RouterLink></li>
+                        <li><RouterLink to="/tutorials" @click="closeMobileMenu">Tutorials</RouterLink></li>
                     </ul>
                 </li>
-                <li><RouterLink to="/pricing" @click="closeMobileMenu">Pricing</RouterLink></li>
+                <li><RouterLink to="/community" @click="closeMobileMenu">Community</RouterLink></li>
                 <li>
                     <div v-if="user" :class="`user-profile`">
                         <div class="user-avatar" v-if="user.avatar">

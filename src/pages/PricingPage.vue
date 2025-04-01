@@ -43,7 +43,7 @@
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span><strong>100 lượt chỉnh sửa</strong> mỗi tháng</span>
+                  <span><strong>25 lượt chỉnh sửa</strong> mỗi ngày</span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
@@ -170,7 +170,7 @@
               </tr>
               <tr>
                 <td>Lượt chỉnh sửa ảnh</td>
-                <td>5 lần/ngày</td>
+                <td>25 yêu cầu/ngày</td>
                 <td>Không giới hạn</td>
               </tr>
               <tr>

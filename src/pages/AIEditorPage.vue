@@ -186,12 +186,15 @@
             </div>
         </div>
     </div>
+    <SubscriptionLimitPopup :isVisible="showLimitPopup" :type="popupType" :isPersistent="isPersistentPopup"
+        :usageInfo="userUsageInfo" @close="closeLimitPopup" @upgrade="handleUpgrade" />
 </template>
 
 
 <script setup>
 import request from '@/utils/request';
-import { ref, reactive, watch, nextTick } from 'vue';
+import { ref, reactive, watch, nextTick,onMounted } from 'vue';
+import SubscriptionLimitPopup from '@/components/SubscriptionLimitPopup.vue';
 
 // Refs
 const fileInput = ref(null);
@@ -212,6 +215,106 @@ const selectedRatio = ref('square');
 
 
 const lightboxImage = ref(null);
+
+import { 
+  checkIfSubscriptionExpired, 
+  getDaysExpired,
+  checkUserDailyLimit,
+  incrementRequestCount,
+  getRemainingRequests,
+  initializeSubscriptionData
+} from '@/utils/SubscriptionService';
+
+// Your existing code...
+
+// Add these variables for the popup
+const showLimitPopup = ref(false);
+const popupType = ref('limit'); // 'limit' or 'expired'
+const isPersistentPopup = ref(false);
+const userUsageInfo = reactive({
+  imagesLeft: 0,
+  totalImages: 25, // Default limit
+  daysLeft: 0
+});
+
+// Function to show the "limit reached" popup
+const showDailyLimitReached = () => {
+  // Get the current limits from localStorage
+  try {
+    const subData = JSON.parse(localStorage.getItem('SubDaily'));
+    if (subData && subData.limit) {
+      userUsageInfo.totalImages = parseInt(subData.limit.limit);
+    }
+  } catch (error) {
+    console.error('Error reading limit data:', error);
+  }
+  
+  popupType.value = 'limit';
+  isPersistentPopup.value = false;
+  showLimitPopup.value = true;
+};
+
+// Function to show the "subscription expired" popup
+const showSubscriptionExpired = (daysExpired = 0) => {
+  popupType.value = 'expired';
+  isPersistentPopup.value = true; // Make it persistent so user must take action
+  userUsageInfo.daysLeft = daysExpired;
+  showLimitPopup.value = true;
+};
+
+// Close the popup
+const closeLimitPopup = () => {
+  showLimitPopup.value = false;
+};
+
+// Handle upgrade button click
+const handleUpgrade = (plan) => {
+  console.log('User upgrading with plan:', plan);
+  // Navigate to your pricing/upgrade page
+  window.location.href = '/pricing'; // Or use your router
+  
+  closeLimitPopup();
+};
+
+// Example: Check limits before processing an image
+const processImage = () => {
+  // Check if user has reached daily limit
+  if (checkUserDailyLimit()) {
+    showDailyLimitReached();
+    return false; // Stop processing
+  }
+  
+  // Increment the request counter
+  incrementRequestCount();
+  
+  // Continue with image processing
+  return true;
+};
+
+// Check subscription status
+const checkSubscriptionStatus = () => {
+  // First initialize if needed
+  initializeSubscriptionData();
+  
+  // Check if subscription is expired
+  if (checkIfSubscriptionExpired()) {
+    const daysExpired = getDaysExpired();
+    showSubscriptionExpired(daysExpired);
+    return false;
+  }
+  
+  // Then check daily limits
+  if (checkUserDailyLimit()) {
+    showDailyLimitReached();
+    return false;
+  }
+  
+  return true;
+};
+
+onMounted(() => {
+  checkSubscriptionStatus();
+});
 
 // Suggestion keywords list for images
 const examplePrompt = [
@@ -350,6 +453,7 @@ const sleep = (ms) => {
 };
 
 const generateImage = async () => {
+    if(!processImage()) return;
     if (!imagePrompt.value) return;
 
     isGenerating.value = true;
@@ -385,44 +489,6 @@ const generateImage = async () => {
 
 const setExamplePrompt = (prompt) => {
     imagePrompt.value = prompt;
-};
-const convertUrlToBase64 = async (url) => {
-    try {
-        // Fetch the image
-        const response = await fetch(url, {
-            // Include any necessary CORS headers if needed
-            mode: 'cors',
-        });
-
-        if (!response.ok) {
-            throw new Error(`Failed to fetch image: ${response.status}`);
-        }
-
-        // Convert to blob
-        const blob = await response.blob();
-
-        // Convert blob to base64
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => {
-                // This will give you the full data URL (e.g., "data:image/webp;base64,...")
-                const fullBase64 = reader.result;
-
-                // If you need just the base64 part without the prefix:
-                const base64Data = fullBase64.split(',')[1];
-
-                resolve({
-                    fullBase64, // Full data URL
-                    base64Data  // Just the base64 part
-                });
-            };
-            reader.onerror = reject;
-            reader.readAsDataURL(blob);
-        });
-    } catch (error) {
-        console.error("Error converting image to base64:", error);
-        return null;
-    }
 };
 
 const applyAIEffect = async (effect) => {
@@ -507,7 +573,7 @@ const applyAIEffect = async (effect) => {
     }
 };
 const sendChatMessage = async () => {
-
+    if(!processImage()) return;
     if (!chatInput.value && (!chatAttachments.value || chatAttachments.value.length === 0)) return;
 
     // Create user message with both text and attachments
