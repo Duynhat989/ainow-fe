@@ -902,7 +902,7 @@ document.addEventListener('DOMContentLoaded', function() {
   width: 100%;
   display: block;
   column-count: 2;
-  column-gap: 8px;
+  column-gap: 4px;
 }
 
 @media (min-width: 640px) {
@@ -913,14 +913,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 @media (min-width: 1024px) {
   .masonry-grid {
-    column-count: 4;
+    column-count: 3;
   }
 }
 
 /* Cố định 4 cột cho mọi kích thước màn hình lớn */
 @media (min-width: 1280px) {
   .masonry-grid {
-    column-count: 4;
+    column-count: 3;
   }
 }
 
