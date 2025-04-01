@@ -193,7 +193,7 @@
 
 <script setup>
 import request from '@/utils/request';
-import { ref, reactive, watch, nextTick,onMounted } from 'vue';
+import { ref, reactive, watch, nextTick, onMounted } from 'vue';
 import SubscriptionLimitPopup from '@/components/SubscriptionLimitPopup.vue';
 
 // Refs
@@ -216,13 +216,13 @@ const selectedRatio = ref('square');
 
 const lightboxImage = ref(null);
 
-import { 
-  checkIfSubscriptionExpired, 
-  getDaysExpired,
-  checkUserDailyLimit,
-  incrementRequestCount,
-  getRemainingRequests,
-  initializeSubscriptionData
+import {
+    checkIfSubscriptionExpired,
+    getDaysExpired,
+    checkUserDailyLimit,
+    incrementRequestCount,
+    getRemainingRequests,
+    initializeSubscriptionData
 } from '@/utils/SubscriptionService';
 
 // Your existing code...
@@ -232,88 +232,88 @@ const showLimitPopup = ref(false);
 const popupType = ref('limit'); // 'limit' or 'expired'
 const isPersistentPopup = ref(false);
 const userUsageInfo = reactive({
-  imagesLeft: 0,
-  totalImages: 25, // Default limit
-  daysLeft: 0
+    imagesLeft: 0,
+    totalImages: 25, // Default limit
+    daysLeft: 0
 });
 
 // Function to show the "limit reached" popup
 const showDailyLimitReached = () => {
-  // Get the current limits from localStorage
-  try {
-    const subData = JSON.parse(localStorage.getItem('SubDaily'));
-    if (subData && subData.limit) {
-      userUsageInfo.totalImages = parseInt(subData.limit.limit);
+    // Get the current limits from localStorage
+    try {
+        const subData = JSON.parse(localStorage.getItem('SubDaily'));
+        if (subData && subData.limit) {
+            userUsageInfo.totalImages = parseInt(subData.limit.limit);
+        }
+    } catch (error) {
+        console.error('Error reading limit data:', error);
     }
-  } catch (error) {
-    console.error('Error reading limit data:', error);
-  }
-  
-  popupType.value = 'limit';
-  isPersistentPopup.value = false;
-  showLimitPopup.value = true;
+
+    popupType.value = 'limit';
+    isPersistentPopup.value = false;
+    showLimitPopup.value = true;
 };
 
 // Function to show the "subscription expired" popup
 const showSubscriptionExpired = (daysExpired = 0) => {
-  popupType.value = 'expired';
-  isPersistentPopup.value = true; // Make it persistent so user must take action
-  userUsageInfo.daysLeft = daysExpired;
-  showLimitPopup.value = true;
+    popupType.value = 'expired';
+    isPersistentPopup.value = true; // Make it persistent so user must take action
+    userUsageInfo.daysLeft = daysExpired;
+    showLimitPopup.value = true;
 };
 
 // Close the popup
 const closeLimitPopup = () => {
-  showLimitPopup.value = false;
+    showLimitPopup.value = false;
 };
 
 // Handle upgrade button click
 const handleUpgrade = (plan) => {
-  console.log('User upgrading with plan:', plan);
-  // Navigate to your pricing/upgrade page
-  window.location.href = '/pricing'; // Or use your router
-  
-  closeLimitPopup();
+    console.log('User upgrading with plan:', plan);
+    // Navigate to your pricing/upgrade page
+    window.location.href = '/pricing'; // Or use your router
+
+    closeLimitPopup();
 };
 
 // Example: Check limits before processing an image
 const processImage = () => {
-  // Check if user has reached daily limit
-  if (checkUserDailyLimit()) {
-    showDailyLimitReached();
-    return false; // Stop processing
-  }
-  
-  // Increment the request counter
-  incrementRequestCount();
-  
-  // Continue with image processing
-  return true;
+    // Check if user has reached daily limit
+    if (checkUserDailyLimit()) {
+        showDailyLimitReached();
+        return false; // Stop processing
+    }
+
+    // Increment the request counter
+    incrementRequestCount();
+
+    // Continue with image processing
+    return true;
 };
 
 // Check subscription status
 const checkSubscriptionStatus = () => {
-  // First initialize if needed
-  initializeSubscriptionData();
-  
-  // Check if subscription is expired
-  if (checkIfSubscriptionExpired()) {
-    const daysExpired = getDaysExpired();
-    showSubscriptionExpired(daysExpired);
-    return false;
-  }
-  
-  // Then check daily limits
-  if (checkUserDailyLimit()) {
-    showDailyLimitReached();
-    return false;
-  }
-  
-  return true;
+    // First initialize if needed
+    initializeSubscriptionData();
+
+    // Check if subscription is expired
+    if (checkIfSubscriptionExpired()) {
+        const daysExpired = getDaysExpired();
+        showSubscriptionExpired(daysExpired);
+        return false;
+    }
+
+    // Then check daily limits
+    if (checkUserDailyLimit()) {
+        showDailyLimitReached();
+        return false;
+    }
+
+    return true;
 };
 
 onMounted(() => {
-  checkSubscriptionStatus();
+    checkSubscriptionStatus();
 });
 
 // Suggestion keywords list for images
@@ -453,7 +453,7 @@ const sleep = (ms) => {
 };
 
 const generateImage = async () => {
-    if(!processImage()) return;
+    if (!processImage()) return;
     if (!imagePrompt.value) return;
 
     isGenerating.value = true;
@@ -466,15 +466,36 @@ const generateImage = async () => {
 
         console.log('Image generation response:', response);
         if (response.success) {
-            const inlineData = response.result[0]?.candidates[0]?.content.parts[0]?.inlineData
-            console.log(inlineData)
-            const baseStr = inlineData?.data;
-            const mimeType = inlineData?.mimeType;
-
-            imagePreview.value = `data:${mimeType};base64,${baseStr}`;
-            selectedImage.value = 'generated';
-            isGenerating.value = false;
-
+            // -------  ---------------------------------
+            const processId = response.sessionId
+            for (let index = 0; index < 50; index++) {
+                await sleep(3 * 1000)
+                try {
+                    const res = await request.post('/api/ainow/get_task', {
+                        "processId": processId
+                    });
+                    if (res.success) {
+                        // Usage
+                        let origin = res.data[0].origin
+                        let rss = await request.post('/api/ainow/url_basestr', {
+                            "imageUrl": origin
+                        })
+                        imagePreview.value = rss.base64
+                        //     console.log(`Applying AI effect: ${effect}`);
+                        //     // In a real app, this would call an API to process the image
+                        isGenerating.value = false;
+                        selectedImage.value = 'generated';
+                        // Handle successful response here
+                        break;
+                    }
+                } catch (error) {
+                    console.log(error)
+                    if(!error.success && error.msg == "error"){
+                        alert("An error occurred while generating the image. Please try again.")
+                        break
+                    }
+                }
+            }
             // Stop the polling loop
         } else {
             alert('An error occurred while generating the image. Please try again.');
@@ -573,7 +594,7 @@ const applyAIEffect = async (effect) => {
     }
 };
 const sendChatMessage = async () => {
-    if(!processImage()) return;
+    if (!processImage()) return;
     if (!chatInput.value && (!chatAttachments.value || chatAttachments.value.length === 0)) return;
 
     // Create user message with both text and attachments
