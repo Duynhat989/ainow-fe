@@ -371,7 +371,7 @@ const openUrl = () => {
 
 const processUrlImage = async () => {
     if (!isValidUrl.value) {
-        alert('Please enter a valid image URL.');
+        alert('Please enter a valid image URL.')
         return;
     }
     
