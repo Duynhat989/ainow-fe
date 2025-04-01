@@ -19,6 +19,7 @@ import CommunityPage from '@/components/Community.vue'
 import ProfilePage from '@/components/Profile.vue'
 import PaymentPage from '@/components/Payment.vue'
 import TrendPage from '@/components/Trend.vue'
+import AIImageEditorPage from '@/pages/AIImageEditor.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -93,6 +94,12 @@ const router = createRouter({
       path: '/explore',
       name: 'Explore',
       component: TrendPage,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/aiedior',
+      name: 'Aiedior',
+      component: AIImageEditorPage,
       meta: { requiresAuth: true }
     },
     {

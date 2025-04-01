@@ -28,7 +28,7 @@
                             <p>Describe the image you want to create</p>
 
                             <!-- Image ratio selection section -->
-                            <div class="image-ratio-selector">
+                            <!-- <div class="image-ratio-selector">
                                 <p>Image ratio:</p>
                                 <div class="ratio-options">
                                     <button class="ratio-option" :class="{ active: selectedRatio === '1-1' }"
@@ -46,8 +46,10 @@
                                     <button class="ratio-option" :class="{ active: selectedRatio === '16-9' }"
                                         @click="selectedRatio = '16-9'">16-9</button>
                                 </div>
-                            </div>
+                            </div> -->
 
+                            <!-- ----------------------- -->
+                            <ImageRatioView :initial-ratio="selectedRatio" @ratio-changed="handleRatioChange" />
                             <div class="prompt-input">
                                 <input type="text" v-model="imagePrompt"
                                     placeholder="Example: A tropical beach with clear blue water and palm trees"
@@ -204,6 +206,16 @@
 import request from '@/utils/request';
 import { ref, reactive, watch, nextTick, onMounted } from 'vue';
 import SubscriptionLimitPopup from '@/components/SubscriptionLimitPopup.vue';
+import {
+    checkIfSubscriptionExpired,
+    getDaysExpired,
+    checkUserDailyLimit,
+    incrementRequestCount,
+    getRemainingRequests,
+    initializeSubscriptionData
+} from '@/utils/SubscriptionService';
+
+import ImageRatioView from '@/components/AIEdit/ImageRatio.vue';
 
 // Refs
 const fileInput = ref(null);
@@ -225,17 +237,13 @@ const selectedRatio = ref('1-1');
 
 const lightboxImage = ref(null);
 
-import {
-    checkIfSubscriptionExpired,
-    getDaysExpired,
-    checkUserDailyLimit,
-    incrementRequestCount,
-    getRemainingRequests,
-    initializeSubscriptionData
-} from '@/utils/SubscriptionService';
 
 // Your existing code...
-
+const handleRatioChange = (ratio) => {
+    selectedRatio.value = ratio;
+    console.log('Selected ratio:', ratio);
+    // Add your logic to apply the ratio to the image
+};
 // Add these variables for the popup
 const showLimitPopup = ref(false);
 const popupType = ref('limit'); // 'limit' or 'expired'

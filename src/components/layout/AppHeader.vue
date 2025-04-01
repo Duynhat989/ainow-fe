@@ -9,7 +9,7 @@
             <nav class="nav-desktop">
                 <ul class="nav-links">
                     <li><RouterLink to="/">Home</RouterLink></li>
-                    <li><RouterLink to="/editor">AI Editor</RouterLink></li>
+                    <li><RouterLink to="/aiedior">AI Editor</RouterLink></li>
                     <li><RouterLink to="/explore">AI Trends</RouterLink></li>
                     <li><RouterLink to="/pricing">Pricing</RouterLink></li>
                     <li class="dropdown">
@@ -51,7 +51,7 @@
         <div class="mobile-menu" :class="{ 'active': mobileMenuOpen }">
             <ul class="mobile-nav-links">
                 <li><RouterLink to="/" @click="closeMobileMenu">Home</RouterLink></li>
-                <li><RouterLink to="/editor" @click="closeMobileMenu">AI Editor</RouterLink></li>
+                <li><RouterLink to="/aiedior" @click="closeMobileMenu">AI Editor</RouterLink></li>
                 <li><RouterLink to="/explore" @click="closeMobileMenu">AI Trends</RouterLink></li>
                 <li><RouterLink to="/pricing" @click="closeMobileMenu">Pricing</RouterLink></li>
                 <li>
