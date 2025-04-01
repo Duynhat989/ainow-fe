@@ -109,10 +109,20 @@ const router = createRouter({
     }
   ],
 })
+function notifyDataChange(data) {
+  const event = new CustomEvent('dataChanged', {
+    detail: data,
+    bubbles: true  // Let the event bubble up the DOM
+  });
+  document.dispatchEvent(event);
+}
 router.beforeEach((to, from, next) => {
   const isLogin = store.getters.isLogin;
   if (to.meta.requiresAuth && !isLogin) {
     localStorage.setItem('intendedRoute', to.fullPath);
+    notifyDataChange({
+      isLogin:false
+    });
     next('/');
   } else {
     next();

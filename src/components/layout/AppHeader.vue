@@ -35,7 +35,7 @@
                 <button class="btn btn-outline btn-sm" @click="handleSignOut">Sign Out</button>
             </div>
             <div v-else class="gmail-login">
-                <button class="btn btn-gmail" @click="handleCustomSignIn">
+                <button class="btn btn-gmail" @click="handleCustomSignIn" id="btn-gmail">
                     <img src="/src/assets/images/gmail-icon.jpg" alt="Gmail" class="gmail-icon" />
                     <span>Sign In with Gmail</span>
                 </button>

@@ -373,8 +373,7 @@ const processUrlImage = async () => {
     if (!isValidUrl.value) {
         alert('Please enter a valid image URL.')
         return;
-    }
-    
+    } 
     try {
         // Fetch the image from the URL
         const response = await fetch(imageUrl.value);

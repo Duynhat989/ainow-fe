@@ -5,12 +5,22 @@
       <router-view></router-view>
     </main>
     <AppFooter />
+    <RequireLoginView @gmail-login="clickLogin" />
   </div>
 </template>
 
 <script setup>
 import AppHeader from './components/layout/AppHeader.vue'
 import AppFooter from './components/layout/AppFooter.vue'
+
+
+import RequireLoginView from './components/RequireLogin.vue';
+
+const clickLogin = () => {
+  document.querySelector('#btn-gmail').click()
+}
+
+
 </script>
 
 <style>
