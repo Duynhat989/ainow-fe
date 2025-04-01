@@ -265,7 +265,7 @@
           <p>Dùng thử miễn phí 7 ngày với gói Pro - không cần thông tin thẻ tín dụng</p>
           <div class="cta-buttons">
             <RouterLink to="/pricing" class="btn btn-primary">Dùng Thử Pro</RouterLink>
-            <RouterLink to="/editer" class="btn btn-secondary">Đăng Ký Miễn Phí</RouterLink>
+            <RouterLink to="/editor" class="btn btn-secondary">Đăng Ký Miễn Phí</RouterLink>
           </div>
           <div class="cta-note">
             <p>Không yêu cầu cam kết dài hạn. Hủy bất cứ lúc nào.</p>

@@ -1,7 +1,7 @@
 <template>
     <div class="trend-list-page">
       <div class="container">
-        <h1 class="page-title">Image Trends</h1>
+        <h1 class="page-title">AI Trends</h1>
         <p class="page-subtitle">Explore the latest generated images</p>
     
         <div class="filters">

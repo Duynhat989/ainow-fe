@@ -10,7 +10,7 @@
                 <ul class="nav-links">
                     <li><RouterLink to="/">Home</RouterLink></li>
                     <li><RouterLink to="/editor">AI Editor</RouterLink></li>
-                    <li><RouterLink to="/explore">Trends Photos</RouterLink></li>
+                    <li><RouterLink to="/explore">AI Trends</RouterLink></li>
                     <li><RouterLink to="/pricing">Pricing</RouterLink></li>
                     <li class="dropdown">
                         <a href="#" @click.prevent="toggleDropdown('about')">
