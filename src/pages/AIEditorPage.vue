@@ -31,12 +31,20 @@
                             <div class="image-ratio-selector">
                                 <p>Image ratio:</p>
                                 <div class="ratio-options">
-                                    <button class="ratio-option" :class="{ active: selectedRatio === 'square' }"
-                                        @click="selectedRatio = 'square'">1-1</button>
-                                    <button class="ratio-option" :class="{ active: selectedRatio === 'vertical' }"
-                                        @click="selectedRatio = 'vertical'">9-16</button>
-                                    <button class="ratio-option" :class="{ active: selectedRatio === 'horizontal' }"
-                                        @click="selectedRatio = 'horizontal'">16-9</button>
+                                    <button class="ratio-option" :class="{ active: selectedRatio === '1-1' }"
+                                        @click="selectedRatio = '1-1'">1-1</button>
+                                    <button class="ratio-option" :class="{ active: selectedRatio === '2-3' }"
+                                        @click="selectedRatio = '2-3'">2-3</button>
+                                    <button class="ratio-option" :class="{ active: selectedRatio === '3-2' }"
+                                        @click="selectedRatio = '3-2'">3-2</button>
+                                    <button class="ratio-option" :class="{ active: selectedRatio === '3-4' }"
+                                        @click="selectedRatio = '3-4'">3-4</button>
+                                    <button class="ratio-option" :class="{ active: selectedRatio === '4-3' }"
+                                        @click="selectedRatio = '4-3'">4-3</button>
+                                    <button class="ratio-option" :class="{ active: selectedRatio === '9-16' }"
+                                        @click="selectedRatio = '9-16'">9-16</button>
+                                    <button class="ratio-option" :class="{ active: selectedRatio === '16-9' }"
+                                        @click="selectedRatio = '16-9'">16-9</button>
                                 </div>
                             </div>
 
@@ -211,7 +219,7 @@ const chatMessages = ref([
     { sender: 'ai', text: 'Hello! I am an AI assistant. How would you like to edit your image?' }
 ]);
 const chatAttachments = ref([]);
-const selectedRatio = ref('square');
+const selectedRatio = ref('1-1');
 
 
 const lightboxImage = ref(null);
@@ -461,7 +469,7 @@ const generateImage = async () => {
         // Get dimensions based on selected ratio
         const response = await request.post('/api/ainow/generate-image', {
             prompt: imagePrompt.value,
-            sizeText: selectedRatio.value
+            size: selectedRatio.value
         });
 
         console.log('Image generation response:', response);
