@@ -10,7 +10,7 @@ body{
   font-weight: normal;
 }
 *{
-  color: #00365d;
+  /* color: #00365d; */
 }
 .flex{
   display: flex;

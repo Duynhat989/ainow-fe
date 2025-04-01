@@ -2,9 +2,10 @@
     <div class="editor-workspace">
         <div class="editor-main">
             <div class="image-preview">
-                <img :src="imagePreview" alt="Preview" />
+                <!-- <img :src="imagePreview" alt="Preview" /> -->
+                <!-- <CanvasEditorView /> -->
+                <CanvasEditorView :imagePreview="imagePreview" @update:imagePreview="$emit('update-image', $event)" />
             </div>
-
             <div class="editor-tools">
                 <div class="tools-header">
                     <h3>Editing AI Tools</h3>
@@ -21,20 +22,15 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="effects-gallery-container">
                         <EffectsPopup @apply-effect="$emit('apply-effect', $event)" />
                     </div>
                 </div>
 
                 <div class="tools-tabs">
-                    <button 
-                        v-for="tab in toolTabs" 
-                        :key="tab.id" 
-                        @click="activeTab = tab.id"
-                        :class="{ active: activeTab === tab.id }" 
-                        class="tab-button"
-                    >
+                    <button v-for="tab in toolTabs" :key="tab.id" @click="activeTab = tab.id"
+                        :class="{ active: activeTab === tab.id }" class="tab-button">
                         {{ tab.name }}
                     </button>
                 </div>
@@ -42,18 +38,13 @@
                 <div class="tools-content">
                     <!-- Chat AI Tab -->
                     <div class="tool-group">
-                        <ChatInterface 
-                            :messages="chatMessages"
-                            :input="chatInput"
-                            :attachments="chatAttachments"
+                        <ChatInterface :messages="chatMessages" :input="chatInput" :attachments="chatAttachments"
                             @update:input="$emit('update:chat-input', $event)"
-                            @send-message="$emit('send-chat-message')"
-                            @attachment="$emit('chat-attachment', $event)"
+                            @send-message="$emit('send-chat-message')" @attachment="$emit('chat-attachment', $event)"
                             @remove-attachment="$emit('remove-attachment', $event)"
                             @view-image="$emit('view-full-image', $event)"
                             @set-suggestion="$emit('set-chat-suggestion', $event)"
-                            @set-ref="$emit('set-chat-messages-ref', $event)"
-                        />
+                            @set-ref="$emit('set-chat-messages-ref', $event)" />
                     </div>
                 </div>
 
@@ -70,7 +61,7 @@
 import { ref } from 'vue';
 import EffectsPopup from '@/components/EffectsPopup.vue';
 import ChatInterface from '@/components/AIEdit/ChatInterface.vue';
-
+import CanvasEditorView from './CanvasEditor.vue';
 // Props
 const props = defineProps({
     imagePreview: {
@@ -90,12 +81,12 @@ const props = defineProps({
         default: ''
     }
 });
-
 // Emits
 const emit = defineEmits([
     'reset-image',
     'apply-effect',
     'save-image',
+    'update-image',
     'chat-attachment',
     'remove-attachment',
     'send-chat-message',

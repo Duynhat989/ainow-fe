@@ -35,6 +35,7 @@
                     @send-chat-message="sendChatMessage"
                     @set-chat-suggestion="setChatSuggestion"
                     @view-full-image="viewFullImage"
+                    @update-image="updateImage"
                     @update:chat-input="chatInput = $event"
                     @set-chat-messages-ref="chatMessagesRef = $event"
                 />
@@ -199,7 +200,12 @@ const removeAttachment = (index) => {
 const viewFullImage = (src) => {
     lightboxImage.value = src;
 };
-
+const updateImage = (src) => {
+    console.log("update")
+    if(imagePreview.value !== src){
+        imagePreview.value = src
+    }
+};
 const closeLightbox = () => {
     lightboxImage.value = null;
 };
@@ -290,9 +296,11 @@ const generateImage = async () => {
                         let rss = await request.post('/api/ainow/url_basestr', {
                             "imageUrl": origin
                         });
-                        imagePreview.value = rss.base64;
                         isGenerating.value = false;
                         selectedImage.value = 'generated';
+                        setTimeout(()=>{
+                            imagePreview.value = rss.base64;
+                        },1500)
                         break;
                     }
                 } catch (error) {
