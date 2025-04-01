@@ -678,7 +678,7 @@ button {
 
 .modal-meta {
   display: grid;
-  grid-template-columns: 80px 1fr;
+  grid-template-columns: 110px 1fr;
   row-gap: 12px;
   margin-bottom: 24px;
   font-size: 0.875rem;
