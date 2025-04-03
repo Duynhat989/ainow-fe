@@ -50,7 +50,7 @@ import EditorWorkspace from '@/components/AIEdit/EditorWorkspace.vue';
 import ProcessingOverlay from '@/components/AIEdit/ProcessingOverlay.vue';
 import LightboxModal from '@/components/AIEdit/LightboxModal.vue';
 import SubscriptionLimitPopup from '@/components/SubscriptionLimitPopup.vue';
-import { enhance_photo, remove_bg, restore_photo, retouch_skin } from '@/utils/effect';
+import { enhance_photo, remove_bg, remove_watermark, restore_photo, retouch_skin } from '@/utils/effect';
 
 // State management
 const selectedImage = ref(null);
@@ -354,6 +354,23 @@ const applyAIEffect = async (effect) => {
     if (effect === 'enhance-photo') {
         try {
             let result = await enhance_photo(imagePreview.value)
+            if (result == '') {
+                alert("An error occurred while generating the image. Please try again.");
+                return
+            }
+            imagePreview.value = result;
+            isProcessing.value = false;
+        } catch (error) {
+            console.error("Error in applyAIEffect:", error);
+            alert('An error occurred. Please try again.');
+        } finally {
+            isGenerating.value = false;
+            isProcessing.value = false;
+        }
+    }
+    if (effect === 'remove-watermark') {
+        try {
+            let result = await remove_watermark(imagePreview.value)
             if (result == '') {
                 alert("An error occurred while generating the image. Please try again.");
                 return

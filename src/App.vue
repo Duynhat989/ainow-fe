@@ -6,6 +6,7 @@
     </main>
     <AppFooter />
     <RequireLoginView @gmail-login="clickLogin" />
+    <AlertView />
   </div>
 </template>
 
@@ -15,6 +16,8 @@ import AppFooter from './components/layout/AppFooter.vue'
 
 
 import RequireLoginView from './components/RequireLogin.vue';
+import AlertView from './components/AlertPopup/AlertView.vue';
+import { reactive } from 'vue';
 
 const clickLogin = () => {
   document.querySelector('#btn-gmail').click()
@@ -45,7 +48,8 @@ body {
 
 .main-content {
   flex: 1;
-  padding-top: 70px; /* Để tránh bị header cố định che mất nội dung */
+  padding-top: 70px;
+  /* Để tránh bị header cố định che mất nội dung */
 }
 
 a {
@@ -115,4 +119,3 @@ img {
   overflow: hidden;
 }
 </style>
-

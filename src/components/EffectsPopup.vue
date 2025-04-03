@@ -35,8 +35,10 @@
           <!-- Effects Grid -->
           <div class="effects-grid">
             <div v-for="effect in filteredEffects" :key="effect.id" class="effect-card" @click="applyEffect(effect.id)">
-              <div class="effect-video-wrapper" :class="effect.colorClass">
-                <video class="effect-video" autoplay loop muted playsinline :src="effect.video"></video>
+              <div class="effect-video-wrapper">
+                <!-- :class="effect.colorClass" -->
+                <img class="effect-video" :src="effect.video" alt="">
+                <!-- <video class="effect-video" autoplay loop muted playsinline :src="effect.video"></video> -->
               </div>
               <div class="effect-info">
                 <h3>{{ effect.name }}</h3>
@@ -59,7 +61,10 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-
+import remove_bg_gif from '../assets/gifs/removebg.gif'
+import remove_wtm_gif from '../assets/gifs/watermark.gif'
+import echance_gif from '../assets/gifs/echance.gif'
+import retouch_skin_gif from '../assets/gifs/retouch_skin.gif'
 // Emit events to parent component
 const emit = defineEmits(['apply-effect']);
 
@@ -79,7 +84,6 @@ const categories = [
 
 // Example video - using the provided video for all effects
 // In a real implementation, you would use different videos for each effect
-const defaultVideo = 'https://pub-static.aiease.ai/aieaseExample%2Fweb-home%2Fbg_remover_x264.mp4';
 
 // Effects list with videos
 const effectsList = [
@@ -87,7 +91,7 @@ const effectsList = [
     id: 'restore-photo',
     name: 'Restore Old Photo',
     description: 'Fix damage, enhance faded details',
-    video: defaultVideo,
+    video: echance_gif,
     category: 'correction',
     colorClass: 'restore-icon'
   },
@@ -95,7 +99,7 @@ const effectsList = [
     id: 'remove-bg',
     name: 'Remove Background',
     description: 'Precise background removal with AI',
-    video: defaultVideo,
+    video: remove_bg_gif,
     category: 'correction',
     colorClass: 'remove-bg-icon'
   },
@@ -103,7 +107,7 @@ const effectsList = [
     id: 'retouch-skin',
     name: 'Skin Retouching',
     description: 'Smooth skin while preserving texture',
-    video: defaultVideo,
+    video: retouch_skin_gif,
     category: 'retouch',
     colorClass: 'retouch-icon'
   },
@@ -111,18 +115,18 @@ const effectsList = [
     id: 'enhance-photo',
     name: 'Enhance Face',
     description: 'Improve facial details & expressions',
-    video: defaultVideo,
+    video: echance_gif,
     category: 'enhance',
     colorClass: 'portrait-icon'
   },
-  // {
-  //   id: 'upscale',
-  //   name: 'Increase Resolution',
-  //   description: 'Upscale without losing quality',
-  //   video: defaultVideo,
-  //   category: 'enhance',
-  //   colorClass: 'upscale-icon'
-  // },
+  {
+    id: 'remove-watermark',
+    name: 'Remove Watermark',
+    description: 'Upscale without losing quality',
+    video: remove_wtm_gif,
+    category: 'enhance',
+    colorClass: 'upscale-icon'
+  },
   // {
   //   id: 'colorize',
   //   name: 'Colorize Photo',
@@ -200,14 +204,7 @@ const openPopup = () => {
   // Reset filters when opening
   searchQuery.value = '';
   activeCategory.value = 'all';
-
-  // Play videos after a short delay to ensure they load properly
-  setTimeout(() => {
-    const videos = document.querySelectorAll('.effect-video');
-    videos.forEach(video => {
-      video.play().catch(e => console.log('Auto-play prevented:', e));
-    });
-  }, 300);
+  
 };
 
 const closePopup = () => {

@@ -254,6 +254,9 @@ const userUsageInfo = reactive({
     daysLeft: 0
 });
 
+
+
+
 // Function to show the "limit reached" popup
 const showDailyLimitReached = () => {
     // Get the current limits from localStorage
@@ -674,7 +677,6 @@ const sendChatMessage = async () => {
         } catch (error) {
             alert("Chính sửa đang dính lỗi")
         }
-
         // Stop the polling loop
     } else {
         alert('An error occurred while generating the image. Please try again.');

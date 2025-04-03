@@ -1,28 +1,23 @@
 <template>
-    <div class="login-popup-overlay" v-if="isVisible" @click.self="closeIfNotPersistent">
-        <div class="login-popup-container" :class="{ 'shake-animation': showAnimation }">
-            <div class="popup-header">
-                <div class="popup-icon">
-                    <span>🔐</span>
+    <div class="message-popup-overlay" v-if="isVisible" @click.self="closeIfNotPersistent">
+        <div class="message-popup-container" :class="{ 'shake-animation': showAnimation }">
+            <div class="popup-header" :style="{ backgroundImage: getGradientByType }">
+                <div class="popup-icon" :style="{ backgroundColor: getIconBgByType, color: getIconColorByType }">
+                    <span>{{ getIconByType }}</span>
                 </div>
                 <button class="popup-close" @click="close" v-if="!isPersistent">×</button>
             </div>
 
             <div class="popup-content">
-                <h2 class="popup-title">Đăng Nhập Yêu Cầu</h2>
-                <p class="popup-message">Bạn cần đăng nhập để tiếp tục sử dụng tính năng này.</p>
+                <h2 class="popup-title" :style="{ background: getGradientByType }">{{ title }}</h2>
+                <p class="popup-message">{{ message }}</p>
 
                 <div class="popup-actions">
-                    <button class="btn-gmail" @click="loginWithGmail">
-                        <span class="gmail-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
-                                <path fill="#EA4335" d="M5.266 9.765A7.077 7.077 0 0 1 12 4.909c1.69 0 3.218.6 4.418 1.582L19.91 3C17.782 1.145 15.055 0 12 0 7.27 0 3.198 2.698 1.24 6.65l4.026 3.115Z"/>
-                                <path fill="#34A853" d="M16.04 18.013c-1.09.703-2.474 1.078-4.04 1.078a7.077 7.077 0 0 1-6.723-4.823l-4.04 3.067A11.965 11.965 0 0 0 12 24c2.933 0 5.735-1.043 7.834-3l-3.793-2.987Z"/>
-                                <path fill="#4A90E2" d="M19.834 21c2.195-2.048 3.62-5.096 3.62-9 0-.71-.109-1.473-.272-2.182H12v4.637h6.436c-.317 1.559-1.17 2.766-2.395 3.558L19.834 21Z"/>
-                                <path fill="#FBBC05" d="M5.277 14.268A7.12 7.12 0 0 1 4.909 12c0-.782.125-1.533.357-2.235L1.24 6.65A11.934 11.934 0 0 0 0 12c0 1.92.445 3.73 1.237 5.335l4.04-3.067Z"/>
-                            </svg>
-                        </span>
-                        Đăng nhập với Gmail
+                    <button class="btn-primary" @click="handlePrimaryAction">
+                        {{ primaryButtonText }}
+                    </button>
+                    <button class="btn-secondary" v-if="showSecondaryButton" @click="handleSecondaryAction">
+                        {{ secondaryButtonText }}
                     </button>
                 </div>
             </div>
@@ -31,38 +26,93 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, computed } from 'vue';
 
 const props = defineProps({
+    type: {
+        type: String,
+        default: 'info', // 'info', 'error', 'success', 'warning'
+        validator: (value) => ['info', 'error', 'success', 'warning'].includes(value)
+    },
+    title: {
+        type: String,
+        default: 'Thông báo'
+    },
+    message: {
+        type: String,
+        required: true
+    },
+    primaryButtonText: {
+        type: String,
+        default: 'OK'
+    },
+    secondaryButtonText: {
+        type: String,
+        default: 'Hủy'
+    },
+    showSecondaryButton: {
+        type: Boolean,
+        default: false
+    },
     isPersistent: {
         type: Boolean,
         default: false
     }
 });
 
-const emit = defineEmits(['close', 'gmail-login']);
+const emit = defineEmits(['close', 'primary-action', 'secondary-action']);
 
 const isVisible = ref(false);
 const showAnimation = ref(false);
 
-// Listen for dataChanged event
-onMounted(() => {
-    document.addEventListener('dataChanged', handleDataChanged);
-
-    // Clean up event listener when component is unmounted
-    return () => {
-        document.removeEventListener('dataChanged', handleDataChanged);
+// Type-based styling
+const getGradientByType = computed(() => {
+    const gradients = {
+        info: 'linear-gradient(90deg, #4338ca, #6366f1)',
+        error: 'linear-gradient(90deg, #dc2626, #ef4444)',
+        success: 'linear-gradient(90deg, #059669, #10b981)',
+        warning: 'linear-gradient(90deg, #d97706, #f59e0b)'
     };
+    return gradients[props.type];
 });
 
-function handleDataChanged(event) {
-    // console.log('Data was changed:', event.detail);
+const getIconByType = computed(() => {
+    const icons = {
+        info: 'ℹ️',
+        error: '❌',
+        success: '✅',
+        warning: '⚠️'
+    };
+    return icons[props.type];
+});
 
-    // Check if isLogin is false
-    if (event.detail && event.detail.isLogin === false) {
-        isVisible.value = true;
-    }
-}
+const getIconBgByType = computed(() => {
+    const backgrounds = {
+        info: '#e0e7ff',
+        error: '#fee2e2',
+        success: '#d1fae5',
+        warning: '#fef3c7'
+    };
+    return backgrounds[props.type];
+});
+
+const getIconColorByType = computed(() => {
+    const colors = {
+        info: '#4338ca',
+        error: '#dc2626',
+        success: '#059669',
+        warning: '#d97706'
+    };
+    return colors[props.type];
+});
+
+// Public method to show the popup
+const show = () => {
+    isVisible.value = true;
+};
+
+// Expose the show method
+defineExpose({ show });
 
 // Show animation when popup first appears
 watch(() => isVisible.value, (newValue) => {
@@ -86,14 +136,23 @@ const closeIfNotPersistent = () => {
     }
 };
 
-const loginWithGmail = () => {
-    emit('gmail-login');
-    close(); // Close the popup after emitting the login event
+const handlePrimaryAction = () => {
+    emit('primary-action');
+    if (!props.isPersistent) {
+        close();
+    }
+};
+
+const handleSecondaryAction = () => {
+    emit('secondary-action');
+    if (!props.isPersistent) {
+        close();
+    }
 };
 </script>
 
 <style scoped>
-.login-popup-overlay {
+.message-popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -108,7 +167,7 @@ const loginWithGmail = () => {
     animation: fadeIn 0.3s ease-out;
 }
 
-.login-popup-container {
+.message-popup-container {
     background-color: white;
     border-radius: 24px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -124,7 +183,6 @@ const loginWithGmail = () => {
     padding: 30px;
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(90deg, #4338ca, #6366f1);
 }
 
 .popup-icon {
@@ -135,8 +193,6 @@ const loginWithGmail = () => {
     align-items: center;
     justify-content: center;
     font-size: 32px;
-    background-color: #e0e7ff;
-    color: #4338ca;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     z-index: 1;
     margin-bottom: -35px;
@@ -175,7 +231,6 @@ const loginWithGmail = () => {
     font-weight: 800;
     color: #1e293b;
     margin-bottom: 15px;
-    background: linear-gradient(90deg, #4338ca, #6366f1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -194,41 +249,8 @@ const loginWithGmail = () => {
 .popup-actions {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
-}
-
-.btn-gmail {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 12px;
-    background-color: white;
-    color: #444;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 14px 28px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    min-width: 240px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.btn-gmail:hover {
-    background-color: #f8f8f8;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.btn-gmail:active {
-    transform: translateY(0);
-}
-
-.gmail-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 10px;
 }
 
 .btn-primary {
@@ -246,12 +268,31 @@ const loginWithGmail = () => {
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(79, 70, 229, 0.35);
 }
 
-.btn-primary:active {
+.btn-secondary {
+    background-color: white;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 140px;
+}
+
+.btn-secondary:hover {
+    background-color: #f8fafc;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary:active,
+.btn-secondary:active {
     transform: translateY(0);
 }
 
@@ -283,7 +324,6 @@ const loginWithGmail = () => {
 }
 
 @keyframes shake {
-
     10%,
     90% {
         transform: translateX(-1px);
@@ -308,7 +348,7 @@ const loginWithGmail = () => {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .login-popup-container {
+    .message-popup-container {
         width: 95%;
     }
 
@@ -335,7 +375,13 @@ const loginWithGmail = () => {
         font-size: 1rem;
     }
 
-    .btn-gmail {
+    .popup-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
         width: 100%;
     }
 }

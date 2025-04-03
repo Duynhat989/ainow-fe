@@ -152,3 +152,40 @@ export const enhance_photo = async (imagePreview) => {
         return ''
     }
 }
+export const remove_watermark = async (imagePreview) => {
+    const response = await request.post('/api/ainow/remove_watermark', {
+        "images": [
+            imagePreview.replace('data:', ''),
+        ]
+    });
+
+    if (response.success) {
+        let processId = response.sessionId;
+        for (let index = 0; index < 50; index++) {
+            await sleep(3 * 1000);
+            try {
+                const res = await request.post('/api/ainow/get_task', {
+                    "processId": processId
+                });
+
+                if (res.success) {
+                    let origin = res.data[0].origin;
+                    let rss = await request.post('/api/ainow/url_basestr', {
+                        "imageUrl": origin
+                    });
+                    return rss.base64
+                }else{
+                    return ''
+                }
+            } catch (error) {
+                console.log(error);
+                if (!error.success && error.msg == "error") {
+                    return ''
+                }
+            }
+        }
+        return ''
+    } else {
+        return ''
+    }
+}
