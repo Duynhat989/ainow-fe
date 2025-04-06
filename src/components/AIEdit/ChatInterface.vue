@@ -1,77 +1,77 @@
 <template>
-    <div class="chat-container">
-        <div class="chat-messages" ref="chatMessagesRef">
-            <div v-for="(message, index) in messages" :key="index"
-                :class="['chat-message', message.sender === 'user' ? 'user-message' : 'ai-message']">
-                <div class="message-content">{{ message.text }}</div>
-                <div v-if="message.attachments && message.attachments.length > 0"
-                    class="message-attachments">
-                    <img v-for="(attachment, i) in message.attachments" :key="i"
-                        :src="attachment.preview"
-                        @click="$emit('view-image', attachment.preview)"
-                        alt="Attached image" />
-                </div>
-            </div>
-        </div>
+  <div class="chat-container">
+      <div class="chat-messages" ref="chatMessagesRef">
+          <div v-for="(message, index) in messages" :key="index"
+              :class="['chat-message', message.sender === 'user' ? 'user-message' : 'ai-message']">
+              <div class="message-content">{{ message.text }}</div>
+              <div v-if="message.attachments && message.attachments.length > 0"
+                  class="message-attachments">
+                  <img v-for="(attachment, i) in message.attachments" :key="i"
+                      :src="attachment.preview"
+                      @click="$emit('view-image', attachment.preview)"
+                      alt="Attached image" />
+              </div>
+          </div>
+      </div>
 
-        <div class="chat-input-container">
-            <div class="chat-attachment">
-                <input type="file" id="chat-file-input" @change="$emit('attachment', $event)"
-                    accept="image/*" multiple class="chat-file-input" />
-                <label for="chat-file-input" class="attachment-btn" title="Add images">
-                    <span class="attachment-icon">📎</span>
-                </label>
-                <div class="selected-attachments"
-                    v-if="attachments && attachments.length > 0">
-                    <div v-for="(attachment, index) in attachments" :key="index"
-                        class="attachment-preview">
-                        <img :src="attachment.preview" alt="Attachment preview" />
-                        <button class="remove-attachment"
-                            @click="$emit('remove-attachment', index)">×</button>
-                    </div>
-                </div>
-            </div>
-            <div class="chat-input">
-                <input type="text" :value="input" @input="updateInput"
-                    placeholder="Describe the edits you want to make..."
-                    @keyup.enter="$emit('send-message')" />
-                <button @click="$emit('send-message')"
-                    :disabled="!input && (!attachments || attachments.length === 0)">Send</button>
-            </div>
-        </div>
+      <div class="chat-input-container">
+          <div class="chat-attachment">
+              <input type="file" id="chat-file-input" @change="$emit('attachment', $event)"
+                  accept="image/*" multiple class="chat-file-input" />
+              <label for="chat-file-input" class="attachment-btn" :title="$t('CHAT_ADD_ATTACHMENT')">
+                  <span class="attachment-icon">📎</span>
+              </label>
+              <div class="selected-attachments"
+                  v-if="attachments && attachments.length > 0">
+                  <div v-for="(attachment, index) in attachments" :key="index"
+                      class="attachment-preview">
+                      <img :src="attachment.preview" alt="Attachment preview" />
+                      <button class="remove-attachment"
+                          @click="$emit('remove-attachment', index)">×</button>
+                  </div>
+              </div>
+          </div>
+          <div class="chat-input">
+              <input type="text" :value="input" @input="updateInput"
+                  :placeholder="$t('CHAT_INPUT_PLACEHOLDER')"
+                  @keyup.enter="$emit('send-message')" />
+              <button @click="$emit('send-message')"
+                  :disabled="!input && (!attachments || attachments.length === 0)">{{ $t('CHAT_SEND_BUTTON') }}</button>
+          </div>
+      </div>
 
-        <div class="chat-suggestions-wrapper">
-            <div class="chat-suggestions-header">
-                <p>Suggestions:</p>
-                <button class="suggestions-toggle" @click="toggleSuggestions">
-                    <span v-if="showAllSuggestions">Show Less</span>
-                    <span v-else>Show More</span>
-                </button>
-            </div>
-            <div class="chat-suggestions">
-                <div class="suggestion-tags-container">
-                    <div class="suggestion-tags">
-                        <span v-for="(suggestion, index) in currentSuggestions" :key="index"
-                            @click="$emit('set-suggestion', suggestion.text)">
-                            {{ suggestion.label }}
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="suggestion-categories" v-if="showAllSuggestions">
-                    <div v-for="(category, catIndex) in suggestionCategories" :key="catIndex" class="category">
-                        <div class="category-title">{{ category.title }}</div>
-                        <div class="category-suggestions">
-                            <span v-for="(item, itemIndex) in category.items" :key="itemIndex"
-                                @click="$emit('set-suggestion', item.text)">
-                                {{ item.label }}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div class="chat-suggestions-wrapper">
+          <div class="chat-suggestions-header">
+              <p>{{ $t('CHAT_SUGGESTIONS_TITLE') }}:</p>
+              <button class="suggestions-toggle" @click="toggleSuggestions">
+                  <span v-if="showAllSuggestions">{{ $t('CHAT_SHOW_LESS') }}</span>
+                  <span v-else>{{ $t('CHAT_SHOW_MORE') }}</span>
+              </button>
+          </div>
+          <div class="chat-suggestions">
+              <div class="suggestion-tags-container">
+                  <div class="suggestion-tags">
+                      <span v-for="(suggestion, index) in currentSuggestions" :key="index"
+                          @click="$emit('set-suggestion', suggestion.text)">
+                          {{ suggestion.label }}
+                      </span>
+                  </div>
+              </div>
+              
+              <div class="suggestion-categories" v-if="showAllSuggestions">
+                  <div v-for="(category, catIndex) in suggestionCategories" :key="catIndex" class="category">
+                      <div class="category-title">{{ category.title }}</div>
+                      <div class="category-suggestions">
+                          <span v-for="(item, itemIndex) in category.items" :key="itemIndex"
+                              @click="$emit('set-suggestion', item.text)">
+                              {{ item.label }}
+                          </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </template>
 
 <script setup>

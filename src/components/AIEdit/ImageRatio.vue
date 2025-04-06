@@ -11,7 +11,7 @@
         <line x1="3" y1="9" x2="21" y2="9"></line>
         <line x1="3" y1="15" x2="21" y2="15"></line>
       </svg>
-      <span>Ratio: {{ selectedRatio }}</span>
+      <span>{{ $t('RATIO_SELECTOR_LABEL') }}: {{ selectedRatio }}</span>
     </button>
     
     <!-- Popup/Modal -->
@@ -26,7 +26,7 @@
           @click.stop
         >
           <div class="popup-header">
-            <h3 class="popup-title">Select Image Ratio</h3>
+            <h3 class="popup-title">{{ $t('RATIO_SELECTOR_TITLE') }}</h3>
             <button 
               class="close-button" 
               @click="isPopupOpen = false"
@@ -46,7 +46,7 @@
               <div class="ratio-preview" :class="`preview-${ratio}`">
                 <div class="inner-frame"></div>
               </div>
-              <span class="ratio-label">{{ ratio }}</span>
+              <span class="ratio-label">{{ $t(`RATIO_${ratio.toUpperCase()}`) }}</span>
             </button>
           </div>
         </div>
@@ -54,7 +54,6 @@
     </Teleport>
   </div>
 </template>
-
 <script setup>
 import { ref } from 'vue';
 

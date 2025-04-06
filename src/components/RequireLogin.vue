@@ -9,8 +9,8 @@
             </div>
 
             <div class="popup-content">
-                <h2 class="popup-title">Đăng Nhập Yêu Cầu</h2>
-                <p class="popup-message">Bạn cần đăng nhập để tiếp tục sử dụng tính năng này.</p>
+                <h2 class="popup-title">{{ $t('LOGIN_POPUP_TITLE') }}</h2>
+                <p class="popup-message">{{ $t('LOGIN_POPUP_MESSAGE') }}</p>
 
                 <div class="popup-actions">
                     <button class="btn-gmail" @click="loginWithGmail">
@@ -22,7 +22,7 @@
                                 <path fill="#FBBC05" d="M5.277 14.268A7.12 7.12 0 0 1 4.909 12c0-.782.125-1.533.357-2.235L1.24 6.65A11.934 11.934 0 0 0 0 12c0 1.92.445 3.73 1.237 5.335l4.04-3.067Z"/>
                             </svg>
                         </span>
-                        Đăng nhập với Gmail
+                        {{ $t('LOGIN_POPUP_GMAIL_BUTTON') }}
                     </button>
                 </div>
             </div>

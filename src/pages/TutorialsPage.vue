@@ -1,304 +1,330 @@
 <template>
-    <div class="tutorials-page">
-      <!-- Hero Section -->
-      <section class="tutorials-hero-section">
-        <div class="container">
-          <div class="tutorials-hero-content">
-            <h1>Hướng Dẫn Sử Dụng</h1>
-            <p>Khám phá các hướng dẫn chi tiết giúp bạn tận dụng tối đa sức mạnh AI trong chỉnh sửa ảnh</p>
-          </div>
+  <div class="tutorials-page">
+    <!-- Hero Section -->
+    <section class="tutorials-hero-section">
+      <div class="container">
+        <div class="tutorials-hero-content">
+          <h1>{{ $t('TUTORIALS_HERO_TITLE') }}</h1>
+          <p>{{ $t('TUTORIALS_HERO_SUBTITLE') }}</p>
         </div>
-      </section>
-  
-      <!-- Basic Tutorials Section -->
-      <section id="basics" class="tutorials-section">
-        <div class="container">
-          <h2 class="section-title">Hướng Dẫn Cơ Bản</h2>
-  
-          <div class="tutorials-grid">
-            <div class="tutorial-card">
-              <div class="tutorial-img">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="Getting started" />
-                <div class="tutorial-level beginner">Dễ</div>
-              </div>
-              <div class="tutorial-content">
-                <h3>Làm Quen Với Giao Diện</h3>
-                <p>Tìm hiểu cách điều hướng và sử dụng công cụ chỉnh sửa ảnh AI</p>
-                <div class="tutorial-details">
-                  <span><i class="icon-time"></i> 5 phút</span>
-                  <span><i class="icon-video"></i> Video</span>
-                </div>
-                <router-link to="/tutorial/getting-started" class="btn-tutorial">Xem Hướng Dẫn</router-link>
-              </div>
+      </div>
+    </section>
+
+    <!-- Basic Tutorials Section -->
+    <section id="basics" class="tutorials-section">
+      <div class="container">
+        <h2 class="section-title">{{ $t('TUTORIALS_BASIC_TITLE') }}</h2>
+
+        <div class="tutorials-grid">
+          <div class="tutorial-card">
+            <div class="tutorial-img">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="Getting started" />
+              <div class="tutorial-level beginner">{{ $t('TUTORIALS_LEVEL_BEGINNER') }}</div>
             </div>
-  
-            <div class="tutorial-card">
-              <div class="tutorial-img">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="Upload and organize" />
-                <div class="tutorial-level beginner">Dễ</div>
+            <div class="tutorial-content">
+              <h3>{{ $t('TUTORIALS_BASIC_CARD1_TITLE') }}</h3>
+              <p>{{ $t('TUTORIALS_BASIC_CARD1_DESC') }}</p>
+              <div class="tutorial-details">
+                <span><i class="icon-time"></i> {{ $t('TUTORIALS_BASIC_CARD1_TIME') }}</span>
+                <span><i class="icon-video"></i> {{ $t('TUTORIALS_TYPE_VIDEO') }}</span>
               </div>
-              <div class="tutorial-content">
-                <h3>Tải Lên và Quản Lý Ảnh</h3>
-                <p>Cách tải ảnh lên, sắp xếp và quản lý thư viện ảnh của bạn</p>
-                <div class="tutorial-details">
-                  <span><i class="icon-time"></i> 3 phút</span>
-                  <span><i class="icon-article"></i> Bài viết</span>
-                </div>
-                <router-link to="/tutorial/upload-manage" class="btn-tutorial">Xem Hướng Dẫn</router-link>
-              </div>
-            </div>
-  
-            <div class="tutorial-card">
-              <div class="tutorial-img">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="Basic adjustments" />
-                <div class="tutorial-level beginner">Dễ</div>
-              </div>
-              <div class="tutorial-content">
-                <h3>Điều Chỉnh Cơ Bản</h3>
-                <p>Các điều chỉnh cơ bản như độ sáng, tương phản và màu sắc</p>
-                <div class="tutorial-details">
-                  <span><i class="icon-time"></i> 8 phút</span>
-                  <span><i class="icon-video"></i> Video</span>
-                </div>
-                <router-link to="/tutorial/basic-adjustments" class="btn-tutorial">Xem Hướng Dẫn</router-link>
-              </div>
+              <router-link to="/tutorial/getting-started" class="btn-tutorial">{{ $t('TUTORIALS_VIEW_BUTTON') }}</router-link>
             </div>
           </div>
-        </div>
-      </section>
-  
-      <!-- AI Tools Tutorials Section -->
-      <section id="ai-tools" class="tutorials-section bg-light">
-        <div class="container">
-          <h2 class="section-title">Hướng Dẫn Công Cụ AI</h2>
-  
-          <div class="tutorials-grid">
-            <div class="tutorial-card">
-              <div class="tutorial-img">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="Background removal" />
-                <div class="tutorial-level intermediate">Trung bình</div>
-              </div>
-              <div class="tutorial-content">
-                <h3>Xóa Phông Nền Tự Động</h3>
-                <p>Cách sử dụng AI để xóa và thay đổi phông nền ảnh một cách hoàn hảo</p>
-                <div class="tutorial-details">
-                  <span><i class="icon-time"></i> 6 phút</span>
-                  <span><i class="icon-video"></i> Video</span>
-                </div>
-                <router-link to="/tutorial/background-removal" class="btn-tutorial">Xem Hướng Dẫn</router-link>
-              </div>
+
+          <div class="tutorial-card">
+            <div class="tutorial-img">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="Upload and organize" />
+              <div class="tutorial-level beginner">{{ $t('TUTORIALS_LEVEL_BEGINNER') }}</div>
             </div>
-  
-            <div class="tutorial-card">
-              <div class="tutorial-img">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="Face enhancement" />
-                <div class="tutorial-level intermediate">Trung bình</div>
+            <div class="tutorial-content">
+              <h3>{{ $t('TUTORIALS_BASIC_CARD2_TITLE') }}</h3>
+              <p>{{ $t('TUTORIALS_BASIC_CARD2_DESC') }}</p>
+              <div class="tutorial-details">
+                <span><i class="icon-time"></i> {{ $t('TUTORIALS_BASIC_CARD2_TIME') }}</span>
+                <span><i class="icon-article"></i> {{ $t('TUTORIALS_TYPE_ARTICLE') }}</span>
               </div>
-              <div class="tutorial-content">
-                <h3>Làm Đẹp Khuôn Mặt</h3>
-                <p>Sử dụng AI để làm mịn da, loại bỏ khuyết điểm và làm nổi bật đường nét khuôn mặt</p>
-                <div class="tutorial-details">
-                  <span><i class="icon-time"></i> 10 phút</span>
-                  <span><i class="icon-article"></i> Bài viết</span>
-                </div>
-                <router-link to="/tutorial/face-enhancement" class="btn-tutorial">Xem Hướng Dẫn</router-link>
-              </div>
+              <router-link to="/tutorial/upload-manage" class="btn-tutorial">{{ $t('TUTORIALS_VIEW_BUTTON') }}</router-link>
             </div>
-  
-            <div class="tutorial-card">
-              <div class="tutorial-img">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="Photo restoration" />
-                <div class="tutorial-level advanced">Nâng cao</div>
+          </div>
+
+          <div class="tutorial-card">
+            <div class="tutorial-img">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="Basic adjustments" />
+              <div class="tutorial-level beginner">{{ $t('TUTORIALS_LEVEL_BEGINNER') }}</div>
+            </div>
+            <div class="tutorial-content">
+              <h3>{{ $t('TUTORIALS_BASIC_CARD3_TITLE') }}</h3>
+              <p>{{ $t('TUTORIALS_BASIC_CARD3_DESC') }}</p>
+              <div class="tutorial-details">
+                <span><i class="icon-time"></i> {{ $t('TUTORIALS_BASIC_CARD3_TIME') }}</span>
+                <span><i class="icon-video"></i> {{ $t('TUTORIALS_TYPE_VIDEO') }}</span>
               </div>
-              <div class="tutorial-content">
-                <h3>Phục Hồi Ảnh Cũ</h3>
-                <p>Khôi phục ảnh cũ bị hư hỏng hoặc phai màu bằng công nghệ AI</p>
-                <div class="tutorial-details">
-                  <span><i class="icon-time"></i> 15 phút</span>
-                  <span><i class="icon-video"></i> Video</span>
-                </div>
-                <router-link to="/tutorial/photo-restoration" class="btn-tutorial">Xem Hướng Dẫn</router-link>
-              </div>
+              <router-link to="/tutorial/basic-adjustments" class="btn-tutorial">{{ $t('TUTORIALS_VIEW_BUTTON') }}</router-link>
             </div>
           </div>
         </div>
-      </section>
-  
-      <!-- Text-to-Image Tutorials Section -->
-      <section id="text-to-image" class="tutorials-section">
-        <div class="container">
-          <h2 class="section-title">Hướng Dẫn Tạo Ảnh Bằng AI</h2>
-  
-          <div class="tutorials-grid">
-            <div class="tutorial-card">
-              <div class="tutorial-img">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="Text to image basics" />
-                <div class="tutorial-level beginner">Dễ</div>
+      </div>
+    </section>
+
+    <!-- AI Tools Tutorials Section -->
+    <section id="ai-tools" class="tutorials-section bg-light">
+      <div class="container">
+        <h2 class="section-title">{{ $t('TUTORIALS_AI_TOOLS_TITLE') }}</h2>
+
+        <div class="tutorials-grid">
+          <div class="tutorial-card">
+            <div class="tutorial-img">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="Background removal" />
+              <div class="tutorial-level intermediate">{{ $t('TUTORIALS_LEVEL_INTERMEDIATE') }}</div>
+            </div>
+            <div class="tutorial-content">
+              <h3>{{ $t('TUTORIALS_AI_CARD1_TITLE') }}</h3>
+              <p>{{ $t('TUTORIALS_AI_CARD1_DESC') }}</p>
+              <div class="tutorial-details">
+                <span><i class="icon-time"></i> {{ $t('TUTORIALS_AI_CARD1_TIME') }}</span>
+                <span><i class="icon-video"></i> {{ $t('TUTORIALS_TYPE_VIDEO') }}</span>
               </div>
-              <div class="tutorial-content">
-                <h3>Cơ Bản Về Text-to-Image</h3>
-                <p>Tìm hiểu cách viết prompt hiệu quả để tạo ra hình ảnh như ý muốn</p>
-                <div class="tutorial-details">
-                  <span><i class="icon-time"></i> 7 phút</span>
-                  <span><i class="icon-video"></i> Video</span>
-                </div>
-                <router-link to="/tutorial/text-to-image-basics" class="btn-tutorial">Xem Hướng Dẫn</router-link>
+              <router-link to="/tutorial/background-removal" class="btn-tutorial">{{ $t('TUTORIALS_VIEW_BUTTON') }}</router-link>
+            </div>
+          </div>
+
+          <div class="tutorial-card">
+            <div class="tutorial-img">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="Face enhancement" />
+              <div class="tutorial-level intermediate">{{ $t('TUTORIALS_LEVEL_INTERMEDIATE') }}</div>
+            </div>
+            <div class="tutorial-content">
+              <h3>{{ $t('TUTORIALS_AI_CARD2_TITLE') }}</h3>
+              <p>{{ $t('TUTORIALS_AI_CARD2_DESC') }}</p>
+              <div class="tutorial-details">
+                <span><i class="icon-time"></i> {{ $t('TUTORIALS_AI_CARD2_TIME') }}</span>
+                <span><i class="icon-article"></i> {{ $t('TUTORIALS_TYPE_ARTICLE') }}</span>
+              </div>
+              <router-link to="/tutorial/face-enhancement" class="btn-tutorial">{{ $t('TUTORIALS_VIEW_BUTTON') }}</router-link>
+            </div>
+          </div>
+
+          <div class="tutorial-card">
+            <div class="tutorial-img">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="Photo restoration" />
+              <div class="tutorial-level advanced">{{ $t('TUTORIALS_LEVEL_ADVANCED') }}</div>
+            </div>
+            <div class="tutorial-content">
+              <h3>{{ $t('TUTORIALS_AI_CARD3_TITLE') }}</h3>
+              <p>{{ $t('TUTORIALS_AI_CARD3_DESC') }}</p>
+              <div class="tutorial-details">
+                <span><i class="icon-time"></i> {{ $t('TUTORIALS_AI_CARD3_TIME') }}</span>
+                <span><i class="icon-video"></i> {{ $t('TUTORIALS_TYPE_VIDEO') }}</span>
+              </div>
+              <router-link to="/tutorial/photo-restoration" class="btn-tutorial">{{ $t('TUTORIALS_VIEW_BUTTON') }}</router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Text-to-Image Tutorials Section -->
+    <section id="text-to-image" class="tutorials-section">
+      <div class="container">
+        <h2 class="section-title">{{ $t('TUTORIALS_TEXT_TO_IMAGE_TITLE') }}</h2>
+
+        <div class="tutorials-grid">
+          <div class="tutorial-card">
+            <div class="tutorial-img">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="Text to image basics" />
+              <div class="tutorial-level beginner">{{ $t('TUTORIALS_LEVEL_BEGINNER') }}</div>
+            </div>
+            <div class="tutorial-content">
+              <h3>{{ $t('TUTORIALS_T2I_CARD1_TITLE') }}</h3>
+              <p>{{ $t('TUTORIALS_T2I_CARD1_DESC') }}</p>
+              <div class="tutorial-details">
+                <span><i class="icon-time"></i> {{ $t('TUTORIALS_T2I_CARD1_TIME') }}</span>
+                <span><i class="icon-video"></i> {{ $t('TUTORIALS_TYPE_VIDEO') }}</span>
+              </div>
+              <router-link to="/tutorial/text-to-image-basics" class="btn-tutorial">{{ $t('TUTORIALS_VIEW_BUTTON') }}</router-link>
+            </div>
+          </div>
+
+          <div class="tutorial-card">
+            <div class="tutorial-img">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="Advanced prompting" />
+              <div class="tutorial-level intermediate">{{ $t('TUTORIALS_LEVEL_INTERMEDIATE') }}</div>
+            </div>
+            <div class="tutorial-content">
+              <h3>{{ $t('TUTORIALS_T2I_CARD2_TITLE') }}</h3>
+              <p>{{ $t('TUTORIALS_T2I_CARD2_DESC') }}</p>
+              <div class="tutorial-details">
+                <span><i class="icon-time"></i> {{ $t('TUTORIALS_T2I_CARD2_TIME') }}</span>
+                <span><i class="icon-article"></i> {{ $t('TUTORIALS_TYPE_ARTICLE') }}</span>
+              </div>
+              <router-link to="/tutorial/advanced-prompting" class="btn-tutorial">{{ $t('TUTORIALS_VIEW_BUTTON') }}</router-link>
+            </div>
+          </div>
+
+          <div class="tutorial-card">
+            <div class="tutorial-img">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="Style customization" />
+              <div class="tutorial-level advanced">{{ $t('TUTORIALS_LEVEL_ADVANCED') }}</div>
+            </div>
+            <div class="tutorial-content">
+              <h3>{{ $t('TUTORIALS_T2I_CARD3_TITLE') }}</h3>
+              <p>{{ $t('TUTORIALS_T2I_CARD3_DESC') }}</p>
+              <div class="tutorial-details">
+                <span><i class="icon-time"></i> {{ $t('TUTORIALS_T2I_CARD3_TIME') }}</span>
+                <span><i class="icon-video"></i> {{ $t('TUTORIALS_TYPE_VIDEO') }}</span>
+              </div>
+              <router-link to="/tutorial/style-customization" class="btn-tutorial">{{ $t('TUTORIALS_VIEW_BUTTON') }}</router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advanced Tutorials Section -->
+    <section id="advanced" class="tutorials-section bg-light">
+      <div class="container">
+        <h2 class="section-title">{{ $t('TUTORIALS_ADVANCED_TITLE') }}</h2>
+
+        <div class="tutorials-grid">
+          <div class="tutorial-card">
+            <div class="tutorial-img">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="AI chat editing" />
+              <div class="tutorial-level advanced">{{ $t('TUTORIALS_LEVEL_ADVANCED') }}</div>
+            </div>
+            <div class="tutorial-content">
+              <h3>{{ $t('TUTORIALS_ADV_CARD1_TITLE') }}</h3>
+              <p>{{ $t('TUTORIALS_ADV_CARD1_DESC') }}</p>
+              <div class="tutorial-details">
+                <span><i class="icon-time"></i> {{ $t('TUTORIALS_ADV_CARD1_TIME') }}</span>
+                <span><i class="icon-video"></i> {{ $t('TUTORIALS_TYPE_VIDEO') }}</span>
+              </div>
+              <router-link to="/tutorial/ai-chat-editing" class="btn-tutorial">{{ $t('TUTORIALS_VIEW_BUTTON') }}</router-link>
+            </div>
+          </div>
+
+          <div class="tutorial-card">
+            <div class="tutorial-img">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="Batch processing" />
+              <div class="tutorial-level advanced">{{ $t('TUTORIALS_LEVEL_ADVANCED') }}</div>
+            </div>
+            <div class="tutorial-content">
+              <h3>{{ $t('TUTORIALS_ADV_CARD2_TITLE') }}</h3>
+              <p>{{ $t('TUTORIALS_ADV_CARD2_DESC') }}</p>
+              <div class="tutorial-details">
+                <span><i class="icon-time"></i> {{ $t('TUTORIALS_ADV_CARD2_TIME') }}</span>
+                <span><i class="icon-article"></i> {{ $t('TUTORIALS_TYPE_ARTICLE') }}</span>
+              </div>
+              <router-link to="/tutorial/batch-processing" class="btn-tutorial">{{ $t('TUTORIALS_VIEW_BUTTON') }}</router-link>
+            </div>
+          </div>
+
+          <div class="tutorial-card">
+            <div class="tutorial-img">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="Professional workflow" />
+              <div class="tutorial-level expert">{{ $t('TUTORIALS_LEVEL_EXPERT') }}</div>
+            </div>
+            <div class="tutorial-content">
+              <h3>{{ $t('TUTORIALS_ADV_CARD3_TITLE') }}</h3>
+              <p>{{ $t('TUTORIALS_ADV_CARD3_DESC') }}</p>
+              <div class="tutorial-details">
+                <span><i class="icon-time"></i> {{ $t('TUTORIALS_ADV_CARD3_TIME') }}</span>
+                <span><i class="icon-course"></i> {{ $t('TUTORIALS_TYPE_COURSE') }}</span>
+              </div>
+              <router-link to="/tutorial/pro-workflow" class="btn-tutorial">{{ $t('TUTORIALS_VIEW_BUTTON') }}</router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Tutorial Feature -->
+    <section class="featured-tutorial-section">
+      <div class="container">
+        <div class="featured-tutorial">
+          <div class="featured-content">
+            <h2>{{ $t('TUTORIALS_FEATURED_SUBTITLE') }}</h2>
+            <h3>{{ $t('TUTORIALS_FEATURED_TITLE') }}</h3>
+            <p>{{ $t('TUTORIALS_FEATURED_DESC') }}</p>
+            <div class="featured-stats">
+              <div class="stat">
+                <strong>{{ $t('TUTORIALS_FEATURED_RATING') }}</strong>
+                <span>{{ $t('TUTORIALS_FEATURED_RATING_LABEL') }}</span>
+              </div>
+              <div class="stat">
+                <strong>{{ $t('TUTORIALS_FEATURED_STUDENTS') }}</strong>
+                <span>{{ $t('TUTORIALS_FEATURED_STUDENTS_LABEL') }}</span>
+              </div>
+              <div class="stat">
+                <strong>{{ $t('TUTORIALS_FEATURED_DURATION') }}</strong>
+                <span>{{ $t('TUTORIALS_FEATURED_DURATION_LABEL') }}</span>
               </div>
             </div>
-  
-            <div class="tutorial-card">
-              <div class="tutorial-img">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="Advanced prompting" />
-                <div class="tutorial-level intermediate">Trung bình</div>
-              </div>
-              <div class="tutorial-content">
-                <h3>Kỹ Thuật Prompt Nâng Cao</h3>
-                <p>Các kỹ thuật nâng cao để kiểm soát chi tiết kết quả tạo ảnh</p>
-                <div class="tutorial-details">
-                  <span><i class="icon-time"></i> 12 phút</span>
-                  <span><i class="icon-article"></i> Bài viết</span>
-                </div>
-                <router-link to="/tutorial/advanced-prompting" class="btn-tutorial">Xem Hướng Dẫn</router-link>
-              </div>
-            </div>
-  
-            <div class="tutorial-card">
-              <div class="tutorial-img">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="Style customization" />
-                <div class="tutorial-level advanced">Nâng cao</div>
-              </div>
-              <div class="tutorial-content">
-                <h3>Tùy Chỉnh Phong Cách Hình Ảnh</h3>
-                <p>Cách tạo ảnh theo phong cách nghệ thuật cụ thể như sơn dầu, watercolor, hoặc pixel art</p>
-                <div class="tutorial-details">
-                  <span><i class="icon-time"></i> 10 phút</span>
-                  <span><i class="icon-video"></i> Video</span>
-                </div>
-                <router-link to="/tutorial/style-customization" class="btn-tutorial">Xem Hướng Dẫn</router-link>
+            <router-link to="/courses/master-ai-editing" class="btn btn-primary">{{ $t('TUTORIALS_FEATURED_BUTTON') }}</router-link>
+          </div>
+          <div class="featured-video">
+            <div class="video-wrapper">
+              <img
+                src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600"
+                alt="Course preview" />
+              <div class="play-button">
+                <span>▶</span>
               </div>
             </div>
           </div>
         </div>
-      </section>
-  
-      <!-- Advanced Tutorials Section -->
-      <section id="advanced" class="tutorials-section bg-light">
-        <div class="container">
-          <h2 class="section-title">Hướng Dẫn Nâng Cao</h2>
-  
-          <div class="tutorials-grid">
-            <div class="tutorial-card">
-              <div class="tutorial-img">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="AI chat editing" />
-                <div class="tutorial-level advanced">Nâng cao</div>
-              </div>
-              <div class="tutorial-content">
-                <h3>Chỉnh Sửa Bằng Chat AI</h3>
-                <p>Sử dụng chat AI để mô tả và thực hiện chỉnh sửa ảnh phức tạp</p>
-                <div class="tutorial-details">
-                  <span><i class="icon-time"></i> 15 phút</span>
-                  <span><i class="icon-video"></i> Video</span>
-                </div>
-                <router-link to="/tutorial/ai-chat-editing" class="btn-tutorial">Xem Hướng Dẫn</router-link>
-              </div>
-            </div>
-  
-            <div class="tutorial-card">
-              <div class="tutorial-img">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="Batch processing" />
-                <div class="tutorial-level advanced">Nâng cao</div>
-              </div>
-              <div class="tutorial-content">
-                <h3>Xử Lý Hàng Loạt</h3>
-                <p>Cách áp dụng chỉnh sửa cho nhiều ảnh cùng lúc để tiết kiệm thời gian</p>
-                <div class="tutorial-details">
-                  <span><i class="icon-time"></i> 8 phút</span>
-                  <span><i class="icon-article"></i> Bài viết</span>
-                </div>
-                <router-link to="/tutorial/batch-processing" class="btn-tutorial">Xem Hướng Dẫn</router-link>
-              </div>
-            </div>
-  
-            <div class="tutorial-card">
-              <div class="tutorial-img">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="Professional workflow" />
-                <div class="tutorial-level expert">Chuyên gia</div>
-              </div>
-              <div class="tutorial-content">
-                <h3>Quy Trình Chỉnh Sửa Chuyên Nghiệp</h3>
-                <p>Học quy trình chỉnh sửa ảnh chuyên nghiệp từ A đến Z</p>
-                <div class="tutorial-details">
-                  <span><i class="icon-time"></i> 25 phút</span>
-                  <span><i class="icon-course"></i> Khóa học</span>
-                </div>
-                <router-link to="/tutorial/pro-workflow" class="btn-tutorial">Xem Hướng Dẫn</router-link>
-              </div>
-            </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-content">
+          <h2>{{ $t('TUTORIALS_NEWSLETTER_TITLE') }}</h2>
+          <p>{{ $t('TUTORIALS_NEWSLETTER_DESC') }}</p>
+          <div class="newsletter-form">
+            <input type="email" :placeholder="$t('TUTORIALS_NEWSLETTER_PLACEHOLDER')" />
+            <button class="btn btn-primary">{{ $t('TUTORIALS_NEWSLETTER_BUTTON') }}</button>
           </div>
         </div>
-      </section>
-  
-      <!-- Video Tutorial Feature -->
-      <section class="featured-tutorial-section">
-        <div class="container">
-          <div class="featured-tutorial">
-            <div class="featured-content">
-              <h2>Khóa Học Đặc Biệt</h2>
-              <h3>Làm Chủ Nghệ Thuật Chỉnh Sửa Ảnh Với AI</h3>
-              <p>Khám phá tất cả các kỹ thuật và công cụ chỉnh sửa ảnh AI trong khóa học toàn diện này. Từ cơ bản đến chuyên nghiệp, bạn sẽ học được cách tạo ra những hình ảnh đẹp mắt trong thời gian ngắn nhất.</p>
-              <div class="featured-stats">
-                <div class="stat">
-                  <strong>4.5/5</strong>
-                  <span>Đánh giá</span>
-                </div>
-                <div class="stat">
-                  <strong>10,000+</strong>
-                  <span>Học viên</span>
-                </div>
-                <div class="stat">
-                  <strong>5 giờ</strong>
-                  <span>Thời lượng</span>
-                </div>
-              </div>
-              <router-link to="/courses/master-ai-editing" class="btn btn-primary">Đăng Ký Khóa Học</router-link>
-            </div>
-            <div class="featured-video">
-              <div class="video-wrapper">
-                <img src="https://content-management-files.canva.com/8d6ba94c-bdbc-476f-bb71-7b05ee1920c8/feature_ai-photo-editor_promo-showcase_022x.jpg?height=400&width=600" alt="Course preview" />
-                <div class="play-button">
-                  <span>▶</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-  
-      <!-- Newsletter Section -->
-      <section class="newsletter-section">
-        <div class="container">
-          <div class="newsletter-content">
-            <h2>Nhận Thông Báo Về Hướng Dẫn Mới</h2>
-            <p>Đăng ký để nhận thông báo khi chúng tôi phát hành hướng dẫn và tính năng mới</p>
-            <div class="newsletter-form">
-              <input type="email" placeholder="Địa chỉ email của bạn" />
-              <button class="btn btn-primary">Đăng Ký</button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </template>
-  
-  <script setup>
-  // Method to scroll to a specific section
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-  </script>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script setup>
+// Method to scroll to a specific section
+const scrollToSection = (sectionId) => {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+</script>
 
 <style scoped>
 /* Import font */
@@ -814,19 +840,19 @@ section {
   .categories-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .tutorials-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .featured-tutorial {
     flex-direction: column;
   }
-  
+
   .featured-content {
     padding: 40px;
   }
-  
+
   .video-wrapper {
     width: 100%;
     height: 400px;
@@ -837,24 +863,24 @@ section {
   .tutorials-hero-content h1 {
     font-size: 2.5rem;
   }
-  
+
   .tutorials-hero-content p {
     font-size: 1.1rem;
   }
-  
+
   .tutorials-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .newsletter-form {
     flex-direction: column;
   }
-  
+
   .featured-stats {
     flex-direction: column;
     gap: 20px;
   }
-  
+
   .featured-content h3 {
     font-size: 2rem;
   }
@@ -864,23 +890,23 @@ section {
   .categories-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .tutorials-hero-content h1 {
     font-size: 2rem;
   }
-  
+
   .featured-content {
     padding: 30px;
   }
-  
+
   .featured-content h3 {
     font-size: 1.8rem;
   }
-  
+
   .video-wrapper {
     height: 250px;
   }
-  
+
   .tutorial-content h3 {
     font-size: 1.1rem;
   }
@@ -897,6 +923,7 @@ html {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -908,17 +935,36 @@ html {
   opacity: 0;
 }
 
-.category-card:nth-child(1) { animation-delay: 0.1s; }
-.category-card:nth-child(2) { animation-delay: 0.2s; }
-.category-card:nth-child(3) { animation-delay: 0.3s; }
-.category-card:nth-child(4) { animation-delay: 0.4s; }
+.category-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.category-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.category-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.category-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
 
 .tutorial-card {
   animation: fadeIn 0.5s ease-out forwards;
   opacity: 0;
 }
 
-.tutorials-grid .tutorial-card:nth-child(1) { animation-delay: 0.1s; }
-.tutorials-grid .tutorial-card:nth-child(2) { animation-delay: 0.2s; }
-.tutorials-grid .tutorial-card:nth-child(3) { animation-delay: 0.3s; }
+.tutorials-grid .tutorial-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.tutorials-grid .tutorial-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.tutorials-grid .tutorial-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
 </style>

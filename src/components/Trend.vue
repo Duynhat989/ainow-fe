@@ -1,126 +1,126 @@
 <template>
-    <div class="image-gallery">
-        <div class="header-section">
-            <h1 class="page-title">Get inspired by the community</h1>
+  <div class="image-gallery">
+      <div class="header-section">
+          <h1 class="page-title">{{ $t('GALLERY_COMMUNITY_TITLE') }}</h1>
 
-            <div class="search-container">
-                <div class="search-bar">
-                    <span class="search-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </span>
-                    <input type="text" placeholder="Search" v-model="searchKeyword" @input="handleSearch" />
-                </div>
+          <div class="search-container">
+              <div class="search-bar">
+                  <span class="search-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="11" cy="11" r="8"></circle>
+                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                  </span>
+                  <input type="text" :placeholder="$t('GALLERY_COMMUNITY_SEARCH')" v-model="searchKeyword" @input="handleSearch" />
+              </div>
 
-                <div class="filter-tabs">
-                    <button v-for="style in styles" :key="style.id"
-                        :class="['filter-tab', { active: selectedStyle === style.id }]"
-                        @click="setActiveStyle(style.id)">
-                        {{ style.name }}
-                    </button>
-                </div>
+              <div class="filter-tabs">
+                  <button v-for="style in styles" :key="style.id"
+                      :class="['filter-tab', { active: selectedStyle === style.id }]"
+                      @click="setActiveStyle(style.id)">
+                      {{ style.name }}
+                  </button>
+              </div>
 
-                <div class="size-selector">
-                    <button v-for="size in sizes" :key="size.value"
-                        :class="['size-btn', { active: selectedSize === size.value }]"
-                        @click="setSelectedSize(size.value)">
-                        {{ size.label }}
-                    </button>
-                </div>
-            </div>
-        </div>
+              <div class="size-selector">
+                  <button v-for="size in sizes" :key="size.value"
+                      :class="['size-btn', { active: selectedSize === size.value }]"
+                      @click="setSelectedSize(size.value)">
+                      {{ size.label }}
+                  </button>
+              </div>
+          </div>
+      </div>
 
-        <div class="masonry-grid">
-            <div v-for="item in trendItems" :key="item.id" class="masonry-item" :class="[getSpanClass(item.sizeText)]"
-                @click="openModal(item)">
-                <div class="item-image">
-                    <img :src="getImageUrl(item)" :alt="item.promptText.substring(0, 50)" loading="lazy" />
-                    <div class="item-overlay">
-                        <div class="item-actions">
-                            <button class="action-btn save-btn">Save</button>
-                            <button class="action-btn share-btn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                                    <polyline points="16 6 12 2 8 6"></polyline>
-                                    <line x1="12" y1="2" x2="12" y2="15"></line>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="item-prompt">{{ shortenPrompt(item.promptText) }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="masonry-grid">
+          <div v-for="item in trendItems" :key="item.id" class="masonry-item" :class="[getSpanClass(item.sizeText)]"
+              @click="openModal(item)">
+              <div class="item-image">
+                  <img :src="getImageUrl(item)" :alt="item.promptText.substring(0, 50)" loading="lazy" />
+                  <div class="item-overlay">
+                      <div class="item-actions">
+                          <button class="action-btn save-btn">{{ $t('GALLERY_COMMUNITY_SAVE') }}</button>
+                          <button class="action-btn share-btn">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                  stroke-linejoin="round">
+                                  <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                  <polyline points="16 6 12 2 8 6"></polyline>
+                                  <line x1="12" y1="2" x2="12" y2="15"></line>
+                              </svg>
+                          </button>
+                      </div>
+                      <div class="item-prompt">{{ shortenPrompt(item.promptText) }}</div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
-        <div class="loading-indicator" v-if="isLoading">
-            <div class="spinner"></div>
-            <span>Loading images...</span>
-        </div>
+      <div class="loading-indicator" v-if="isLoading">
+          <div class="spinner"></div>
+          <span>{{ $t('GALLERY_COMMUNITY_LOADING') }}</span>
+      </div>
 
-        <div class="load-more" v-if="!isLoading && currentPage < totalPages">
-            <button @click="loadMore" class="load-more-btn">Load more</button>
-        </div>
+      <div class="load-more" v-if="!isLoading && currentPage < totalPages">
+          <button @click="loadMore" class="load-more-btn">{{ $t('GALLERY_COMMUNITY_LOAD_MORE') }}</button>
+      </div>
 
-        <!-- Detail Modal -->
-        <div v-if="selectedItem" class="modal-overlay" @click="closeModal">
-            <div class="modal-container" @click.stop>
-                <button class="modal-close" @click="closeModal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
+      <!-- Detail Modal -->
+      <div v-if="selectedItem" class="modal-overlay" @click="closeModal">
+          <div class="modal-container" @click.stop>
+              <button class="modal-close" @click="closeModal">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+              </button>
 
-                <div class="modal-content">
-                    <div class="modal-image">
-                        <img :src="getImageUrl(selectedItem)" :alt="selectedItem.promptText" />
-                    </div>
+              <div class="modal-content">
+                  <div class="modal-image">
+                      <img :src="getImageUrl(selectedItem)" :alt="selectedItem.promptText" />
+                  </div>
 
-                    <div class="modal-info">
-                        <h2 class="modal-title">AI Generated Image</h2>
-                        <p class="modal-prompt">{{ selectedItem.promptText }}</p>
+                  <div class="modal-info">
+                      <h2 class="modal-title">{{ $t('GALLERY_COMMUNITY_MODAL_TITLE') }}</h2>
+                      <p class="modal-prompt">{{ selectedItem.promptText }}</p>
 
-                        <div class="modal-meta">
-                            <div class="meta-item">
-                                <span class="meta-label">Style:</span>
-                                <span class="meta-value">{{ getStyleName(selectedItem.style_id) }}</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Size:</span>
-                                <span class="meta-value">{{ selectedItem.sizeText }}</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Created:</span>
-                                <span class="meta-value">{{ formatDate(selectedItem.createdAt) }}</span>
-                            </div>
-                        </div>
+                      <div class="modal-meta">
+                          <div class="meta-item">
+                              <span class="meta-label">{{ $t('GALLERY_COMMUNITY_STYLE') }}:</span>
+                              <span class="meta-value">{{ getStyleName(selectedItem.style_id) }}</span>
+                          </div>
+                          <div class="meta-item">
+                              <span class="meta-label">{{ $t('GALLERY_COMMUNITY_SIZE') }}:</span>
+                              <span class="meta-value">{{ selectedItem.sizeText }}</span>
+                          </div>
+                          <div class="meta-item">
+                              <span class="meta-label">{{ $t('GALLERY_COMMUNITY_CREATED') }}:</span>
+                              <span class="meta-value">{{ formatDate(selectedItem.createdAt) }}</span>
+                          </div>
+                      </div>
 
-                        <div class="modal-actions">
-                            <button class="modal-btn save-btn">Save</button>
-                            <button class="modal-btn share-btn">Share</button>
-                            <button class="modal-btn download-btn">Download</button>
-                        </div>
+                      <div class="modal-actions">
+                          <button class="modal-btn save-btn">{{ $t('GALLERY_COMMUNITY_SAVE') }}</button>
+                          <button class="modal-btn share-btn">{{ $t('GALLERY_COMMUNITY_SHARE') }}</button>
+                          <button class="modal-btn download-btn">{{ $t('GALLERY_COMMUNITY_DOWNLOAD') }}</button>
+                      </div>
 
-                        <div class="related-items" v-if="relatedItems.length > 0">
-                            <h3>Similar inspiration</h3>
-                            <div class="related-grid">
-                                <div v-for="item in relatedItems" :key="item.id" class="related-item"
-                                    @click="openModal(item)">
-                                    <img :src="getImageUrl(item)" :alt="shortenPrompt(item.promptText)" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                      <div class="related-items" v-if="relatedItems.length > 0">
+                          <h3>{{ $t('GALLERY_COMMUNITY_SIMILAR') }}</h3>
+                          <div class="related-grid">
+                              <div v-for="item in relatedItems" :key="item.id" class="related-item"
+                                  @click="openModal(item)">
+                                  <img :src="getImageUrl(item)" :alt="shortenPrompt(item.promptText)" />
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </template>
 
 <script setup>

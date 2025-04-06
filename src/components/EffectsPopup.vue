@@ -1,4 +1,3 @@
-<!-- EffectsPopup.vue with video previews -->
 <template>
   <div class="effects-popup-container">
     <!-- Button to open the effects popup -->
@@ -6,7 +5,7 @@
       <span class="effects-icon">
         ✨
       </span>
-      <span class="effects-text">AI Tools</span>
+      <span class="effects-text">{{ $t('EFFECTS_BUTTON') }}</span>
     </button>
 
     <!-- Effects Popup Modal -->
@@ -14,7 +13,7 @@
       <div class="effects-modal-overlay" @click="closePopup"></div>
       <div class="effects-modal-content">
         <div class="effects-modal-header">
-          <h2>🎨 AI Tools</h2>
+          <h2>🎨 {{ $t('EFFECTS_TITLE') }}</h2>
           <button class="close-button" @click="closePopup">×</button>
         </div>
 
@@ -22,7 +21,7 @@
           <!-- Search and Filter -->
           <div class="effects-search-filter">
             <div class="effects-search">
-              <input type="text" placeholder="Search effects..." v-model="searchQuery" @input="filterEffects" />
+              <input type="text" :placeholder="$t('EFFECTS_SEARCH_PLACEHOLDER')" v-model="searchQuery" @input="filterEffects" />
             </div>
             <div class="effects-categories">
               <button v-for="category in categories" :key="category.id" class="category-button"
@@ -36,7 +35,6 @@
           <div class="effects-grid">
             <div v-for="effect in filteredEffects" :key="effect.id" class="effect-card" @click="applyEffect(effect.id)">
               <div class="effect-video-wrapper">
-                <!-- :class="effect.colorClass" -->
                 <img class="effect-video" :src="effect.video" alt="">
                 <!-- <video class="effect-video" autoplay loop muted playsinline :src="effect.video"></video> -->
               </div>
@@ -45,14 +43,14 @@
                 <p>{{ effect.description }}</p>
               </div>
               <div class="effect-hover-overlay">
-                <button class="apply-effect-button">Apply</button>
+                <button class="apply-effect-button">{{ $t('EFFECTS_APPLY_BUTTON') }}</button>
               </div>
             </div>
           </div>
         </div>
 
         <div class="effects-modal-footer">
-          <button class="secondary-button" @click="closePopup">Cancel</button>
+          <button class="secondary-button" @click="closePopup">{{ $t('EFFECTS_CANCEL_BUTTON') }}</button>
         </div>
       </div>
     </div>

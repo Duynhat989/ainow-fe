@@ -1,205 +1,205 @@
 <template>
-    <div class="upload-section">
-        <div class="upload-options">
-            <!-- Upload Area -->
-            <div class="upload-area" 
-                @dragover.prevent="isDragging = true" 
-                @dragleave.prevent="isDragging = false" 
-                @drop.prevent="handleDrop" 
-                @click="triggerFileInput"
-                :class="{ 'drag-over': isDragging }"
-            >
-                <input 
-                    type="file" 
-                    ref="fileInput" 
-                    @change="handleFileSelect" 
-                    accept="image/*" 
-                    class="file-input" 
-                />
-                
-                <div class="upload-content">
-                    <div class="upload-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="17 8 12 3 7 8"></polyline>
-                            <line x1="12" y1="3" x2="12" y2="15"></line>
-                        </svg>
-                    </div>
-                    <h3>Upload an image</h3>
-                    <p>Drag and drop your image here or click to select</p>
-                    <p class="upload-formats">Supports JPG, PNG, WEBP (Maximum 10MB)</p>
-                    
-                    <div class="upload-sources">
-                        <button @click.stop="openComputer" class="source-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                                <line x1="8" y1="21" x2="16" y2="21"></line>
-                                <line x1="12" y1="17" x2="12" y2="21"></line>
-                            </svg>
-                            <span>Computer</span>
-                        </button>
-                        
-                        <button @click.stop="openCamera" class="source-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                                <circle cx="12" cy="13" r="4"></circle>
-                            </svg>
-                            <span>Camera</span>
-                        </button>
-                        
-                        <button @click.stop="pasteFromClipboard" class="source-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-                            </svg>
-                            <span>Clipboard</span>
-                        </button>
-                        
-                        <button @click.stop="openUrl" class="source-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="2" y1="12" x2="22" y2="12"></line>
-                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                            </svg>
-                            <span>URL</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+  <div class="upload-section">
+      <div class="upload-options">
+          <!-- Upload Area -->
+          <div class="upload-area" 
+              @dragover.prevent="isDragging = true" 
+              @dragleave.prevent="isDragging = false" 
+              @drop.prevent="handleDrop" 
+              @click="triggerFileInput"
+              :class="{ 'drag-over': isDragging }"
+          >
+              <input 
+                  type="file" 
+                  ref="fileInput" 
+                  @change="handleFileSelect" 
+                  accept="image/*" 
+                  class="file-input" 
+              />
+              
+              <div class="upload-content">
+                  <div class="upload-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                          <polyline points="17 8 12 3 7 8"></polyline>
+                          <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                  </div>
+                  <h3>{{ $t('UPLOAD_IMAGE_TITLE') }}</h3>
+                  <p>{{ $t('UPLOAD_IMAGE_DESC') }}</p>
+                  <p class="upload-formats">{{ $t('UPLOAD_FORMATS') }}</p>
+                  
+                  <div class="upload-sources">
+                      <button @click.stop="openComputer" class="source-button">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                              <line x1="8" y1="21" x2="16" y2="21"></line>
+                              <line x1="12" y1="17" x2="12" y2="21"></line>
+                          </svg>
+                          <span>{{ $t('UPLOAD_SOURCE_COMPUTER') }}</span>
+                      </button>
+                      
+                      <button @click.stop="openCamera" class="source-button">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                              <circle cx="12" cy="13" r="4"></circle>
+                          </svg>
+                          <span>{{ $t('UPLOAD_SOURCE_CAMERA') }}</span>
+                      </button>
+                      
+                      <button @click.stop="pasteFromClipboard" class="source-button">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                          </svg>
+                          <span>{{ $t('UPLOAD_SOURCE_CLIPBOARD') }}</span>
+                      </button>
+                      
+                      <button @click.stop="openUrl" class="source-button">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <line x1="2" y1="12" x2="22" y2="12"></line>
+                              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                          </svg>
+                          <span>{{ $t('UPLOAD_SOURCE_URL') }}</span>
+                      </button>
+                  </div>
+              </div>
+          </div>
 
-            <div class="divider">
-                <span>OR</span>
-            </div>
+          <div class="divider">
+              <span>{{ $t('UPLOAD_OR') }}</span>
+          </div>
 
-            <!-- Generate Area -->
-            <div class="generate-area">
-                <div class="generate-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                    </svg>
-                </div>
-                <h3>Generate with AI</h3>
-                <p>Describe the image you want to create</p>
+          <!-- Generate Area -->
+          <div class="generate-area">
+              <div class="generate-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+              </div>
+              <h3>{{ $t('GENERATE_TITLE') }}</h3>
+              <p>{{ $t('GENERATE_DESC') }}</p>
 
-                <div class="ai-options">
-                    <div class="option-row">
-                        <div class="option-group">
-                            <label>Style:</label>
-                            <div class="style-select">
-                                <select v-model="selectedStyle">
-                                    <option value="realistic">Realistic</option>
-                                    <option value="artistic">Artistic</option>
-                                    <option value="cartoon">Cartoon</option>
-                                    <option value="sketch">Sketch</option>
-                                    <option value="fantasy">Fantasy</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="option-group">
-                            <label>Quality:</label>
-                            <div class="quality-select">
-                                <select v-model="selectedQuality">
-                                    <option value="standard">Standard</option>
-                                    <option value="high">High</option>
-                                    <option value="ultra">Ultra</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <div class="ai-options">
+                  <div class="option-row">
+                      <div class="option-group">
+                          <label>{{ $t('GENERATE_STYLE') }}:</label>
+                          <div class="style-select">
+                              <select v-model="selectedStyle">
+                                  <option value="realistic">{{ $t('STYLE_REALISTIC') }}</option>
+                                  <option value="artistic">{{ $t('STYLE_ARTISTIC') }}</option>
+                                  <option value="cartoon">{{ $t('STYLE_CARTOON') }}</option>
+                                  <option value="sketch">{{ $t('STYLE_SKETCH') }}</option>
+                                  <option value="fantasy">{{ $t('STYLE_FANTASY') }}</option>
+                              </select>
+                          </div>
+                      </div>
+                      
+                      <div class="option-group">
+                          <label>{{ $t('GENERATE_QUALITY') }}:</label>
+                          <div class="quality-select">
+                              <select v-model="selectedQuality">
+                                  <option value="standard">{{ $t('QUALITY_STANDARD') }}</option>
+                                  <option value="high">{{ $t('QUALITY_HIGH') }}</option>
+                                  <option value="ultra">{{ $t('QUALITY_ULTRA') }}</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+              </div>
 
-                <ImageRatioView :initial-ratio="selectedRatio" @ratio-changed="onRatioChanged" />
-                
-                <div class="prompt-input">
-                    <textarea 
-                        :value="imagePrompt" 
-                        @input="updateImagePrompt"
-                        placeholder="Describe the image you want to generate..."
-                        class="prompt-field"
-                        rows="4"
-                    ></textarea>
-                    <div class="input-counter" :class="{ 'warning': promptLength > 450 }">
-                        {{ promptLength }}/500
-                    </div>
-                </div>
-                
-                <div class="action-bar">
-                    <button 
-                        class="btn-generate" 
-                        @click="$emit('generate-image')"
-                        :disabled="!imagePrompt || isGenerating || promptLength > 500"
-                    >
-                        <span class="btn-icon" v-if="isGenerating">
-                            <svg class="spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="30 180"></circle>
-                            </svg>
-                        </span>
-                        <span class="btn-icon" v-else>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                            </svg>
-                        </span>
-                        {{ isGenerating ? 'Generating...' : 'Generate Image' }}
-                    </button>
-                </div>
+              <ImageRatioView :initial-ratio="selectedRatio" @ratio-changed="onRatioChanged" />
+              
+              <div class="prompt-input">
+                  <textarea 
+                      :value="imagePrompt" 
+                      @input="updateImagePrompt"
+                      :placeholder="$t('GENERATE_PROMPT_PLACEHOLDER')"
+                      class="prompt-field"
+                      rows="4"
+                  ></textarea>
+                  <div class="input-counter" :class="{ 'warning': promptLength > 450 }">
+                      {{ promptLength }}/500
+                  </div>
+              </div>
+              
+              <div class="action-bar">
+                  <button 
+                      class="btn-generate" 
+                      @click="$emit('generate-image')"
+                      :disabled="!imagePrompt || isGenerating || promptLength > 500"
+                  >
+                      <span class="btn-icon" v-if="isGenerating">
+                          <svg class="spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="30 180"></circle>
+                          </svg>
+                      </span>
+                      <span class="btn-icon" v-else>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                          </svg>
+                      </span>
+                      {{ isGenerating ? $t('GENERATE_PROCESSING') : $t('GENERATE_BUTTON') }}
+                  </button>
+              </div>
 
-                <div class="suggestions-container">
-                    <div class="suggestions-header">
-                        <span>Suggestions:</span>
-                        <button class="refresh-suggestions" @click="refreshSuggestions">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M23 4v6h-6"></path>
-                                <path d="M1 20v-6h6"></path>
-                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"></path>
-                                <path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="example-tags">
-                        <span 
-                            v-for="(prompt, index) in displayedPrompts" 
-                            :key="index"
-                            @click="$emit('set-example', prompt.description)"
-                        >
-                            {{ prompt.title }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- URL Modal Dialog -->
-        <div class="url-modal" v-if="showUrlModal" @click.self="showUrlModal = false">
-            <div class="url-modal-content">
-                <div class="url-modal-header">
-                    <h3>Enter Image URL</h3>
-                    <button class="modal-close" @click="showUrlModal = false">×</button>
-                </div>
-                <div class="url-modal-body">
-                    <input 
-                        type="text" 
-                        v-model="imageUrl" 
-                        placeholder="https://example.com/image.jpg"
-                        class="url-input"
-                        @keyup.enter="processUrlImage"
-                    />
-                    <div class="url-actions">
-                        <button class="btn-cancel" @click="showUrlModal = false">Cancel</button>
-                        <button 
-                            class="btn-confirm" 
-                            @click="processUrlImage"
-                            :disabled="!isValidUrl"
-                        >
-                            Load Image
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+              <div class="suggestions-container">
+                  <div class="suggestions-header">
+                      <span>{{ $t('GENERATE_SUGGESTIONS') }}:</span>
+                      <button class="refresh-suggestions" @click="refreshSuggestions">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M23 4v6h-6"></path>
+                              <path d="M1 20v-6h6"></path>
+                              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"></path>
+                              <path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"></path>
+                          </svg>
+                      </button>
+                  </div>
+                  <div class="example-tags">
+                      <span 
+                          v-for="(prompt, index) in displayedPrompts" 
+                          :key="index"
+                          @click="$emit('set-example', prompt.description)"
+                      >
+                          {{ prompt.title }}
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      <!-- URL Modal Dialog -->
+      <div class="url-modal" v-if="showUrlModal" @click.self="showUrlModal = false">
+          <div class="url-modal-content">
+              <div class="url-modal-header">
+                  <h3>{{ $t('URL_MODAL_TITLE') }}</h3>
+                  <button class="modal-close" @click="showUrlModal = false">×</button>
+              </div>
+              <div class="url-modal-body">
+                  <input 
+                      type="text" 
+                      v-model="imageUrl" 
+                      :placeholder="$t('URL_MODAL_PLACEHOLDER')"
+                      class="url-input"
+                      @keyup.enter="processUrlImage"
+                  />
+                  <div class="url-actions">
+                      <button class="btn-cancel" @click="showUrlModal = false">{{ $t('URL_MODAL_CANCEL') }}</button>
+                      <button 
+                          class="btn-confirm" 
+                          @click="processUrlImage"
+                          :disabled="!isValidUrl"
+                      >
+                          {{ $t('URL_MODAL_LOAD') }}
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </template>
 
 <script setup>

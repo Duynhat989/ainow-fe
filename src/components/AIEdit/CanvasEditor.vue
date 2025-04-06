@@ -26,7 +26,7 @@
         <!-- Thanh công cụ có thể ẩn/hiện -->
         <div class="tools-panel" :class="{ 'tools-panel-visible': showTools }">
             <div class="panel-header">
-                <h3>Công cụ vẽ</h3>
+                <h3>{{ $t('CANVAS_TOOLS_TITLE') }}</h3>
                 <button class="btn-close" @click="showTools = false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -38,7 +38,7 @@
             <div class="tools-content">
                 <!-- Brush Size -->
                 <div class="control-group">
-                    <label for="brush_size">Kích thước bút:</label>
+                    <label for="brush_size">{{ $t('CANVAS_BRUSH_SIZE') }}:</label>
                     <div class="size-control">
                         <input type="range" id="brush_size" v-model="brushSize" min="1" max="50" class="slider" />
                         <span class="value-display">{{ brushSize }}px</span>
@@ -47,7 +47,7 @@
 
                 <!-- Color Picker -->
                 <div class="control-group">
-                    <label>Màu sắc:</label>
+                    <label>{{ $t('CANVAS_COLOR') }}:</label>
                     <div class="color-palette">
                         <button v-for="color in colorPalette" :key="color" :style="{ backgroundColor: color }"
                             :class="{ active: currentColor === color }" @click="currentColor = color"
@@ -58,7 +58,7 @@
 
                 <!-- Drawing Tools -->
                 <div class="control-group">
-                    <label>Công cụ:</label>
+                    <label>{{ $t('CANVAS_TOOLS') }}:</label>
                     <div class="drawing-tools">
                         <button v-for="tool in drawingTools" :key="tool.name"
                             :class="{ active: currentTool === tool.name }" @click="currentTool = tool.name"
@@ -70,7 +70,7 @@
 
                 <!-- Reset Button -->
                 <div class="control-group">
-                    <button class="btn-reset" @click="resetCanvas">Xóa tất cả</button>
+                    <button class="btn-reset" @click="resetCanvas">{{ $t('CANVAS_RESET') }}</button>
                 </div>
             </div>
         </div>

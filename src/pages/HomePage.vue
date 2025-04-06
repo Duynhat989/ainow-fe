@@ -4,11 +4,11 @@
     <section class="hero-section">
       <div class="container">
         <div class="hero-content">
-          <h1>Chỉnh Sửa Ảnh Thông Minh Với Sức Mạnh AI</h1>
-          <p>Biến đổi ảnh của bạn chỉ trong vài giây với công nghệ trí tuệ nhân tạo tiên tiến</p>
+          <h1>{{ $t('HOME_HERO_TITLE') }}</h1>
+          <p>{{ $t('HOME_HERO_SUBTITLE') }}</p>
           <div class="hero-buttons">
-            <RouterLink to="/editor" class="btn btn-primary">Dùng thử Ngay</RouterLink>
-            <RouterLink to="/pricing" class="btn btn-secondary">Nâng cấp Pro</RouterLink>
+            <RouterLink to="/aieditor" class="btn btn-primary">{{ $t('HOME_HERO_TRY_NOW') }}</RouterLink>
+            <RouterLink to="/pricing" class="btn btn-secondary">{{ $t('HOME_HERO_UPGRADE') }}</RouterLink>
           </div>
         </div>
         <div class="hero-image">
@@ -22,67 +22,67 @@
     <!-- Features Section -->
     <section class="section features-section">
       <div class="container">
-        <h2 class="section-title">Tính Năng Nổi Bật</h2>
+        <h2 class="section-title">{{ $t('HOME_FEATURES_TITLE') }}</h2>
         <div class="features-grid three-columns">
           <div class="feature-card">
             <div class="feature-image">
               <img src="../assets/gifs/removebg.gif" alt="Xóa Phông Tự Động" />
               <div class="feature-overlay">
-                <span>Trước & Sau</span>
+                <span>{{ $t('HOME_BEFORE_AFTER') }}</span>
               </div>
             </div>
-            <h3>Xóa Phông Tự Động</h3>
-            <p>Xóa hoặc thay đổi phông nền chỉ với một cú nhấp chuột</p>
+            <h3>{{ $t('HOME_FEATURE_REMOVEBG_TITLE') }}</h3>
+            <p>{{ $t('HOME_FEATURE_REMOVEBG_DESC') }}</p>
           </div>
           <div class="feature-card">
             <div class="feature-image">
               <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Làm Đẹp Khuôn Mặt" />
               <div class="feature-overlay">
-                <span>Trước & Sau</span>
+                <span>{{ $t('HOME_BEFORE_AFTER') }}</span>
               </div>
             </div>
-            <h3>Làm Đẹp Khuôn Mặt</h3>
-            <p>Tự động làm mịn da, xóa khuyết điểm và tăng cường đường nét</p>
+            <h3>{{ $t('HOME_FEATURE_BEAUTY_TITLE') }}</h3>
+            <p>{{ $t('HOME_FEATURE_BEAUTY_DESC') }}</p>
           </div>
           <div class="feature-card">
             <div class="feature-image">
               <img src="https://images.unsplash.com/photo-1596003906949-67221c37965c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Phục Hồi Ảnh Cũ" />
               <div class="feature-overlay">
-                <span>Trước & Sau</span>
+                <span>{{ $t('HOME_BEFORE_AFTER') }}</span>
               </div>
             </div>
-            <h3>Phục Hồi Ảnh Cũ</h3>
-            <p>Khôi phục ảnh cũ, hư hỏng với công nghệ AI tiên tiến</p>
+            <h3>{{ $t('HOME_FEATURE_RESTORE_TITLE') }}</h3>
+            <p>{{ $t('HOME_FEATURE_RESTORE_DESC') }}</p>
           </div>
           <div class="feature-card">
             <div class="feature-image">
               <img src="https://images.unsplash.com/photo-1607968565043-36af90dde238?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Chỉnh Sửa Bằng Văn Bản" />
               <div class="feature-overlay">
-                <span>Trước & Sau</span>
+                <span>{{ $t('HOME_BEFORE_AFTER') }}</span>
               </div>
             </div>
-            <h3>Chỉnh Sửa Bằng Văn Bản</h3>
-            <p>Chỉ cần mô tả những gì bạn muốn, AI sẽ thực hiện</p>
+            <h3>{{ $t('HOME_FEATURE_TEXT_EDIT_TITLE') }}</h3>
+            <p>{{ $t('HOME_FEATURE_TEXT_EDIT_DESC') }}</p>
           </div>
           <div class="feature-card">
             <div class="feature-image">
               <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Tạo Ảnh AI" />
               <div class="feature-overlay">
-                <span>Trước & Sau</span>
+                <span>{{ $t('HOME_BEFORE_AFTER') }}</span>
               </div>
             </div>
-            <h3>Tạo Ảnh AI</h3>
-            <p>Tạo ra hình ảnh hoàn toàn mới từ mô tả văn bản của bạn</p>
+            <h3>{{ $t('HOME_FEATURE_GENERATE_TITLE') }}</h3>
+            <p>{{ $t('HOME_FEATURE_GENERATE_DESC') }}</p>
           </div>
           <div class="feature-card">
             <div class="feature-image">
               <img src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Tăng Độ Phân Giải" />
               <div class="feature-overlay">
-                <span>Trước & Sau</span>
+                <span>{{ $t('HOME_BEFORE_AFTER') }}</span>
               </div>
             </div>
-            <h3>Tăng Độ Phân Giải</h3>
-            <p>Biến ảnh độ phân giải thấp thành hình ảnh sắc nét chi tiết</p>
+            <h3>{{ $t('HOME_FEATURE_UPSCALE_TITLE') }}</h3>
+            <p>{{ $t('HOME_FEATURE_UPSCALE_DESC') }}</p>
           </div>
         </div>
       </div>
@@ -91,17 +91,17 @@
     <!-- Before/After Examples -->
     <section class="section examples-section">
       <div class="container">
-        <h2 class="section-title">Trước & Sau Khi Chỉnh Sửa</h2>
-        <p class="section-subtitle">Xem sự khác biệt rõ rệt mà công nghệ AI của chúng tôi mang lại</p>
+        <h2 class="section-title">{{ $t('HOME_EXAMPLES_TITLE') }}</h2>
+        <p class="section-subtitle">{{ $t('HOME_EXAMPLES_SUBTITLE') }}</p>
         
         <div class="examples-slider">
           <div class="examples-grid">
             <div class="example-item">
-              <div class="example-title">Xóa phông nền chuyên nghiệp</div>
+              <div class="example-title">{{ $t('HOME_EXAMPLE1_TITLE') }}</div>
               <div class="example-comparison">
                 <div class="example-before">
                   <img src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80" alt="Before editing" />
-                  <span>Trước</span>
+                  <span>{{ $t('HOME_EXAMPLE_BEFORE') }}</span>
                 </div>
                 <div class="example-divider">
                   <div class="divider-line"></div>
@@ -110,17 +110,17 @@
                 </div>
                 <div class="example-after">
                   <img src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80&blend=FFFFFF&blend-alpha=90&blend-mode=normal&blend-w=1000&blend-h=1000" alt="After editing" />
-                  <span>Sau</span>
+                  <span>{{ $t('HOME_EXAMPLE_AFTER') }}</span>
                 </div>
               </div>
             </div>
             
             <div class="example-item">
-              <div class="example-title">Nâng cao chất lượng ảnh cũ</div>
+              <div class="example-title">{{ $t('HOME_EXAMPLE2_TITLE') }}</div>
               <div class="example-comparison">
                 <div class="example-before">
                   <img src="https://images.unsplash.com/photo-1577643816920-65b43ba99fba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=30&sat=-100&blur=8" alt="Before editing" />
-                  <span>Trước</span>
+                  <span>{{ $t('HOME_EXAMPLE_BEFORE') }}</span>
                 </div>
                 <div class="example-divider">
                   <div class="divider-line"></div>
@@ -129,17 +129,17 @@
                 </div>
                 <div class="example-after">
                   <img src="https://images.unsplash.com/photo-1577643816920-65b43ba99fba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80" alt="After editing" />
-                  <span>Sau</span>
+                  <span>{{ $t('HOME_EXAMPLE_AFTER') }}</span>
                 </div>
               </div>
             </div>
             
             <div class="example-item">
-              <div class="example-title">Tối ưu hóa màu sắc và ánh sáng</div>
+              <div class="example-title">{{ $t('HOME_EXAMPLE3_TITLE') }}</div>
               <div class="example-comparison">
                 <div class="example-before">
                   <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80&sat=-50&brightness=-20" alt="Before editing" />
-                  <span>Trước</span>
+                  <span>{{ $t('HOME_EXAMPLE_BEFORE') }}</span>
                 </div>
                 <div class="example-divider">
                   <div class="divider-line"></div>
@@ -148,7 +148,7 @@
                 </div>
                 <div class="example-after">
                   <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80&sat=30&con=20" alt="After editing" />
-                  <span>Sau</span>
+                  <span>{{ $t('HOME_EXAMPLE_AFTER') }}</span>
                 </div>
               </div>
             </div>
@@ -170,8 +170,8 @@
     <!-- How It Works Section -->
     <section class="section how-it-works-section">
       <div class="container">
-        <h2 class="section-title">Cách Hoạt Động</h2>
-        <p class="section-subtitle">Quy trình đơn giản, kết quả chuyên nghiệp</p>
+        <h2 class="section-title">{{ $t('HOME_HOW_IT_WORKS_TITLE') }}</h2>
+        <p class="section-subtitle">{{ $t('HOME_HOW_IT_WORKS_SUBTITLE') }}</p>
         
         <div class="steps-container">
           <div class="step-item">
@@ -179,8 +179,8 @@
             <div class="step-image">
               <img src="../assets/setup/upload.png" alt="Tải Ảnh Lên" />
             </div>
-            <h3>Tải Ảnh Lên</h3>
-            <p>Tải lên ảnh của bạn hoặc chọn từ thư viện có sẵn</p>
+            <h3>{{ $t('HOME_STEP1_TITLE') }}</h3>
+            <p>{{ $t('HOME_STEP1_DESC') }}</p>
           </div>
           <div class="step-connector"></div>
           <div class="step-item">
@@ -188,8 +188,8 @@
             <div class="step-image">
               <img src="https://images.unsplash.com/photo-1579403124614-197f69d8187b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Chọn Công Cụ AI" />
             </div>
-            <h3>Chọn Công Cụ AI</h3>
-            <p>Lựa chọn từ nhiều công cụ chỉnh sửa thông minh</p>
+            <h3>{{ $t('HOME_STEP2_TITLE') }}</h3>
+            <p>{{ $t('HOME_STEP2_DESC') }}</p>
           </div>
           <div class="step-connector"></div>
           <div class="step-item">
@@ -197,8 +197,8 @@
             <div class="step-image">
               <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Tùy Chỉnh" />
             </div>
-            <h3>Tùy Chỉnh</h3>
-            <p>Điều chỉnh các tham số hoặc mô tả bằng văn bản</p>
+            <h3>{{ $t('HOME_STEP3_TITLE') }}</h3>
+            <p>{{ $t('HOME_STEP3_DESC') }}</p>
           </div>
           <div class="step-connector"></div>
           <div class="step-item">
@@ -206,33 +206,12 @@
             <div class="step-image">
               <img src="https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Lưu & Chia Sẻ" />
             </div>
-            <h3>Lưu & Chia Sẻ</h3>
-            <p>Tải xuống, lưu trữ hoặc chia sẻ ảnh đã chỉnh sửa</p>
+            <h3>{{ $t('HOME_STEP4_TITLE') }}</h3>
+            <p>{{ $t('HOME_STEP4_DESC') }}</p>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- Demo Gallery Section -->
-    <!-- <section class="section gallery-section">
-      <div class="container">
-        <h2 class="section-title">Thư Viện Ảnh Mẫu</h2>
-        <p class="section-subtitle">Khám phá những gì AI của chúng tôi có thể làm</p>
-        
-        <div class="gallery-grid">
-          <div class="gallery-item" v-for="(image, index) in galleryImages" :key="index">
-            <img :src="image" :alt="`Gallery image ${index + 1}`" />
-            <div class="gallery-overlay">
-              <div class="gallery-caption">Chỉnh sửa bằng AI</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="gallery-cta">
-          <RouterLink to="/gallery" class="btn btn-outline">Xem thêm ảnh mẫu</RouterLink>
-        </div>
-      </div>
-    </section> -->
 
     <!-- Stats Section -->
     <section class="section stats-section">
@@ -240,19 +219,19 @@
         <div class="stats-grid">
           <div class="stat-item">
             <div class="stat-number">5M+</div>
-            <div class="stat-label">Ảnh Đã Chỉnh Sửa</div>
+            <div class="stat-label">{{ $t('HOME_STAT1_LABEL') }}</div>
           </div>
           <div class="stat-item">
             <div class="stat-number">500K+</div>
-            <div class="stat-label">Người Dùng</div>
+            <div class="stat-label">{{ $t('HOME_STAT2_LABEL') }}</div>
           </div>
           <div class="stat-item">
             <div class="stat-number">50+</div>
-            <div class="stat-label">Công Cụ AI</div>
+            <div class="stat-label">{{ $t('HOME_STAT3_LABEL') }}</div>
           </div>
           <div class="stat-item">
             <div class="stat-number">4.9/5</div>
-            <div class="stat-label">Đánh Giá Trung Bình</div>
+            <div class="stat-label">{{ $t('HOME_STAT4_LABEL') }}</div>
           </div>
         </div>
       </div>
@@ -261,8 +240,8 @@
     <!-- Testimonials Section -->
     <section class="section testimonials-section">
       <div class="container">
-        <h2 class="section-title">Khách Hàng Nói Gì</h2>
-        <p class="section-subtitle">Trải nghiệm từ người dùng thực tế</p>
+        <h2 class="section-title">{{ $t('HOME_TESTIMONIALS_TITLE') }}</h2>
+        <p class="section-subtitle">{{ $t('HOME_TESTIMONIALS_SUBTITLE') }}</p>
         
         <div class="testimonials-slider">
           <div class="testimonials-grid">
@@ -287,7 +266,7 @@
     <!-- FAQ Section -->
     <section class="section faq-section">
       <div class="container">
-        <h2 class="section-title">Câu Hỏi Thường Gặp</h2>
+        <h2 class="section-title">{{ $t('HOME_FAQ_TITLE') }}</h2>
         <div class="faq-list">
           <div class="faq-item" :class="{ active: activeIndex === index }" v-for="(faq, index) in faqs" :key="index">
             <div class="faq-question" @click="toggleFaq(index)">
@@ -306,15 +285,14 @@
     <section class="section cta-section">
       <div class="container">
         <div class="cta-content">
-          <h2>Sẵn Sàng Biến Đổi Ảnh Của Bạn?</h2>
-          <p>Bắt đầu chỉnh sửa ảnh với AI ngay hôm nay - miễn phí!</p>
-          <RouterLink to="/editor" class="btn btn-primary">Bắt Đầu Ngay</RouterLink>
+          <h2>{{ $t('HOME_CTA_TITLE') }}</h2>
+          <p>{{ $t('HOME_CTA_SUBTITLE') }}</p>
+          <RouterLink to="/editor" class="btn btn-primary">{{ $t('HOME_CTA_BUTTON') }}</RouterLink>
         </div>
       </div>
     </section>
   </div>
 </template>
-
 <script setup>
 import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
@@ -338,16 +316,6 @@ const prevSlide = () => {
 const setSlide = (index) => {
   currentSlide.value = index;
 };
-
-// Gallery images
-const galleryImages = [
-  'https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80',
-  'https://images.unsplash.com/photo-1600428577438-a776b8d9b594?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80',
-  'https://images.unsplash.com/photo-1600428577161-e1b53a4c96ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80',
-  'https://images.unsplash.com/photo-1600428577305-e7ff81c18078?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80',
-  'https://images.unsplash.com/photo-1600428577022-a39f3a6a4d1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80',
-  'https://images.unsplash.com/photo-1600428577346-44e9f0805cd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80',
-];
 
 // Testimonials data
 const testimonials = [

@@ -8,11 +8,11 @@
                 <div class="lightbox-controls">
                     <button class="lightbox-btn" @click.stop="downloadImage">
                         <span class="lightbox-btn-icon">💾</span>
-                        Download
+                        {{ $t('LIGHTBOX_DOWNLOAD') }}
                     </button>
                     <button class="lightbox-btn share-btn" @click.stop="shareImage">
                         <span class="lightbox-btn-icon">🔗</span>
-                        Share
+                        {{ $t('LIGHTBOX_SHARE') }}
                     </button>
                 </div>
             </div>

@@ -1,82 +1,130 @@
-
 <template>
     <header class="header">
         <div class="container header-container">
+            <!-- Logo -->
             <div class="logo">
-                <RouterLink to="/" style="display: flex;align-items: center;"> AINow</RouterLink>
+                <RouterLink to="/" class="logo-link">AINow</RouterLink>
             </div>
 
+            <!-- Desktop Navigation -->
             <nav class="nav-desktop">
                 <ul class="nav-links">
-                    <li><RouterLink to="/">Home</RouterLink></li>
-                    <li><RouterLink to="/aiedior">AI Editor</RouterLink></li>
-                    <li><RouterLink to="/explore">AI Trends</RouterLink></li>
-                    <li><RouterLink to="/pricing">Pricing</RouterLink></li>
-                    <li class="dropdown">
+                    <li>
+                        <RouterLink to="/">{{ $t('HEADER_HOME') }}</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/aieditor">{{ $t('HEADER_EDITOR') }}</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/explore">{{ $t('HEADER_GALLERY') }}</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/pricing">{{ $t('Pricing') }}</RouterLink>
+                    </li>
+
+                    <!-- About Us Dropdown -->
+                    <li class="dropdown" ref="aboutDropdownRef">
                         <a href="#" @click.prevent="toggleDropdown('about')">
-                            About Us
-                            <span class="dropdown-icon" :class="{ 'active': activeDropdown == 'about' }">▼</span>
+                            {{ $t('HEADER_ABOUT') }}
+                            <span class="dropdown-icon" :class="{ 'active': activeDropdown === 'about' }">▼</span>
                         </a>
                         <ul class="dropdown-menu" v-show="activeDropdown === 'about'">
-                            <li><RouterLink to="/tutorials">Tutorials</RouterLink></li>
-                            <li><RouterLink to="/about">About Us</RouterLink></li>
-                            <li><RouterLink to="/support">Support</RouterLink></li>
+                            <li>
+                                <RouterLink to="/tutorials" @click="toggleDropdown">{{ $t('HEADER_TUTORIALS') }}
+                                </RouterLink>
+                            </li>
+                            <li>
+                                <RouterLink to="/about" @click="toggleDropdown">{{ $t('HEADER_ABOUT_US') }}</RouterLink>
+                            </li>
+                            <li>
+                                <RouterLink to="/support" @click="toggleDropdown">{{ $t('HEADER_SUPPORT') }}</RouterLink>
+                            </li>
                         </ul>
                     </li>
-                    <li><RouterLink to="/community">Community</RouterLink></li>
+
+                    <!-- <li>
+                        <RouterLink to="/community">{{ $t('HEADER_COMMUNITY') }}</RouterLink>
+                    </li> -->
                 </ul>
             </nav>
 
-            <div v-if="user" :class="`user-profile`">
-                <div class="user-avatar" v-if="user.avatar">
-                    <img :src="user.avatar" alt="User avatar" />
+            <!-- User Profile / Login -->
+            <div v-if="isAuthenticated" class="user-profile">
+                <div class="user-avatar" v-if="user?.avatar">
+                    <img :src="user.avatar" :alt="user.fullName" />
                 </div>
-                <a href="/my-profile"><span class="user-name">{{ user.fullName }}</span></a>
-                <button class="btn btn-outline btn-sm" @click="handleSignOut">Sign Out</button>
+                <RouterLink to="/my-profile" class="user-name">{{ user?.fullName }}</RouterLink>
+                <button class="btn btn-outline btn-sm" @click="signOut">{{ $t('SIGN_OUT') }}</button>
             </div>
-            <div v-else class="gmail-login">
+            <div v-else class="auth-buttons">
                 <button class="btn btn-gmail" @click="handleCustomSignIn" id="btn-gmail">
-                    <img src="/src/assets/images/gmail-icon.jpg" alt="Gmail" class="gmail-icon" />
-                    <span>Sign In with Gmail</span>
+                    <img src="@/assets/images/gmail-icon.jpg" alt="Gmail" class="gmail-icon" />
+                    <span>{{ $t('SIGN_IN') }}</span>
                 </button>
             </div>
 
-            <button class="menu-toggle" @click="toggleMobileMenu">
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" @click="toggleMobileMenu" :aria-expanded="mobileMenuOpen"
+                aria-controls="mobile-menu" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </div>
 
-        <div class="mobile-menu" :class="{ 'active': mobileMenuOpen }">
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu" :class="{ 'active': mobileMenuOpen }" aria-hidden="!mobileMenuOpen">
             <ul class="mobile-nav-links">
-                <li><RouterLink to="/" @click="closeMobileMenu">Home</RouterLink></li>
-                <li><RouterLink to="/aiedior" @click="closeMobileMenu">AI Editor</RouterLink></li>
-                <li><RouterLink to="/explore" @click="closeMobileMenu">AI Trends</RouterLink></li>
-                <li><RouterLink to="/pricing" @click="closeMobileMenu">Pricing</RouterLink></li>
+                <li>
+                    <RouterLink to="/" @click="closeMobileMenu">{{ $t('HEADER_HOME') }}</RouterLink>
+                </li>
+                <li>
+                    <RouterLink to="/aieditor" @click="closeMobileMenu">{{ $t('HEADER_EDITOR') }}</RouterLink>
+                </li>
+                <li>
+                    <RouterLink to="/explore" @click="closeMobileMenu">{{ $t('HEADER_GALLERY') }}</RouterLink>
+                </li>
+                <li>
+                    <RouterLink to="/pricing" @click="closeMobileMenu">{{ $t('Pricing') }}</RouterLink>
+                </li>
+
+                <!-- Mobile About Us Dropdown -->
                 <li>
                     <div class="mobile-dropdown" @click="toggleMobileSubmenu('about')">
-                        <span>About Us</span>
+                        <span>{{ $t('HEADER_ABOUT') }}</span>
                         <span class="mobile-dropdown-icon" :class="{ 'active': mobileSubmenu === 'about' }">▼</span>
                     </div>
                     <ul class="mobile-submenu" :class="{ 'active': mobileSubmenu === 'about' }">
-                        <li><RouterLink to="/about" @click="closeMobileMenu">About Us</RouterLink></li>
-                        <li><RouterLink to="/support" @click="closeMobileMenu">Support</RouterLink></li>
-                        <li><RouterLink to="/tutorials" @click="closeMobileMenu">Tutorials</RouterLink></li>
+                        <li>
+                            <RouterLink to="/tutorials" @click="closeMobileMenu">{{ $t('HEADER_TUTORIALS') }}
+                            </RouterLink>
+                        </li>
+                        <li>
+                            <RouterLink to="/about" @click="closeMobileMenu">{{ $t('HEADER_ABOUT_US') }}</RouterLink>
+                        </li>
+                        <li>
+                            <RouterLink to="/support" @click="closeMobileMenu">{{ $t('HEADER_SUPPORT') }}</RouterLink>
+                        </li>
                     </ul>
                 </li>
-                <li><RouterLink to="/community" @click="closeMobileMenu">Community</RouterLink></li>
-                <li>
-                    <div v-if="user" :class="`user-profile`">
-                        <div class="user-avatar" v-if="user.avatar">
-                            <img :src="user.avatar" alt="User avatar" />
+
+                <!-- <li>
+                    <RouterLink to="/community" @click="closeMobileMenu">{{ $t('HEADER_COMMUNITY') }}</RouterLink>
+                </li> -->
+
+                <!-- Mobile User Profile / Login -->
+                <li class="mobile-auth">
+                    <div v-if="isAuthenticated" class="mobile-user-profile">
+                        <div class="user-avatar" v-if="user?.avatar">
+                            <img :src="user.avatar" :alt="user.fullName" />
                         </div>
-                        <a href="/me"><span class="user-name">{{ user.fullName }}</span></a>
-                        <button class="btn btn-outline btn-sm" @click="handleSignOut">Sign Out</button>
+                        <RouterLink to="/my-profile" @click="closeMobileMenu" class="user-name">{{ user?.fullName }}
+                        </RouterLink>
+                        <button class="btn btn-outline btn-sm" @click="signOut">{{ $t('SIGN_OUT') }}</button>
                     </div>
                     <button v-else class="btn btn-gmail mobile-gmail-btn" @click="handleCustomSignIn">
-                        <img src="/src/assets/images/gmail-icon.jpg" alt="Gmail" class="gmail-icon" />
-                        <span>Sign In with Gmail</span>
+                        <img src="@/assets/images/gmail-icon.jpg" alt="Gmail" class="gmail-icon" />
+                        <span>{{ $t('SIGN_IN') }}</span>
                     </button>
                 </li>
             </ul>
@@ -84,19 +132,21 @@
     </header>
 </template>
 
+
 <script setup>
 import { ref } from 'vue'
 import request from '@/utils/request'
 import { RouterLink, useRouter } from 'vue-router'
 import { googleTokenLogin } from 'vue3-google-login'
 import { onMounted, onUnmounted } from 'vue'
+// Language pack import
 
 const mobileMenuOpen = ref(false)
 const activeDropdown = ref(null)
 const mobileSubmenu = ref(null)
 const user = ref(null)
 const router = useRouter()
-
+const isAuthenticated = ref(false)
 const toggleMobileMenu = () => {
     mobileMenuOpen.value = !mobileMenuOpen.value
     // Đóng submenu khi đóng menu chính
@@ -135,12 +185,13 @@ const handleClickOutside = (event) => {
 
 onMounted(() => {
     document.addEventListener('click', handleClickOutside)
-    
+
     // Kiểm tra người dùng đã đăng nhập chưa
     const storedUser = localStorage.getItem('ainow_user')
     if (storedUser) {
         try {
             user.value = JSON.parse(storedUser)
+            isAuthenticated.value = true
         } catch (error) {
             console.error('Failed to parse user data:', error)
         }
@@ -178,7 +229,7 @@ const handleSignInWithGoogle = async (response) => {
                     user.value = apiResponse.data
                     localStorage.setItem('ainow_user', JSON.stringify(apiResponse.data))
                     localStorage.setItem('ainow_token', apiResponse.data.token)
-                    router.push('/')
+                    location.reload()
                 }
             } catch (error) {
                 console.error('Google login error:', error)
@@ -194,6 +245,7 @@ const handleSignInWithGoogle = async (response) => {
 
 const handleCustomSignIn = async () => {
     try {
+        console.log("sdfsdf")
         const response = await googleTokenLogin({
             prompt: 'select_account', // Hiển thị lựa chọn tài khoản
             scope: "email profile https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email", // Yêu cầu thêm thông tin
@@ -267,13 +319,14 @@ function handleSignOut() {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 0; /* Remove gap to ensure consistent sizing */
+    gap: 0;
+    /* Remove gap to ensure consistent sizing */
     margin: 0;
     padding: 0;
     height: 100%;
 }
 
-.nav-links > li {
+.nav-links>li {
     position: relative;
     height: 100%;
     display: flex;
@@ -298,7 +351,7 @@ function handleSignOut() {
     color: #4f46e5;
 }
 
-.nav-links > li > a::after {
+.nav-links>li>a::after {
     content: '';
     position: absolute;
     width: 0;
@@ -310,18 +363,19 @@ function handleSignOut() {
     transition: width 0.3s ease;
 }
 
-.nav-links > li > a:hover::after,
-.nav-links > li > a.RouterLink-active::after {
+.nav-links>li>a:hover::after,
+.nav-links>li>a.RouterLink-active::after {
     width: 80%;
 }
 
 /* Dropdown styles */
 .dropdown {
-    position: static; /* Changed from relative */
+    position: static;
+    /* Changed from relative */
     height: 100%;
 }
 
-.dropdown > a {
+.dropdown>a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -344,7 +398,8 @@ function handleSignOut() {
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%; /* Match parent width */
+    width: 100%;
+    /* Match parent width */
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -522,12 +577,12 @@ function handleSignOut() {
     margin: 0;
 }
 
-.mobile-nav-links > li {
+.mobile-nav-links>li {
     margin-bottom: 0.5rem;
     border-bottom: 1px solid #f3f4f6;
 }
 
-.mobile-nav-links > li:last-child {
+.mobile-nav-links>li:last-child {
     border-bottom: none;
 }
 

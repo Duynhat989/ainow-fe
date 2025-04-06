@@ -1,5 +1,7 @@
 <template>
   <div class="app">
+    <LanguageSelectorPopup :isVisible="showLanguageSelector" @close="hideLanguageSelector"
+      @language-changed="onLanguageChanged" />
     <AppHeader />
     <main class="main-content">
       <router-view></router-view>
@@ -17,12 +19,33 @@ import AppFooter from './components/layout/AppFooter.vue'
 
 import RequireLoginView from './components/RequireLogin.vue';
 import AlertView from './components/AlertPopup/AlertView.vue';
-import { reactive } from 'vue';
+import LanguageSelectorPopup from './components/LanguageSelectorPopup.vue';
+import { onMounted, ref } from 'vue';
 
 const clickLogin = () => {
   document.querySelector('#btn-gmail').click()
 }
+const showLanguageSelector = ref(false);
 
+// Kiểm tra xem đã chọn ngôn ngữ chưa khi ứng dụng khởi chạy
+onMounted(() => {
+  // Kiểm tra cookie hoặc localStorage để xem người dùng đã chọn ngôn ngữ chưa
+  const hasSelectedLanguage = localStorage.getItem('preferredLanguage');
+
+  // Nếu chưa chọn ngôn ngữ, hiển thị popup
+  if (!hasSelectedLanguage) {
+    showLanguageSelector.value = true;
+  }
+});
+
+const hideLanguageSelector = () => {
+  showLanguageSelector.value = false;
+};
+
+const onLanguageChanged = (languageCode) => {
+  console.log(`User selected language: ${languageCode}`);
+  // Có thể thực hiện các thao tác khác ở đây, ví dụ: tải nội dung mới
+};
 
 </script>
 

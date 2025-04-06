@@ -8,17 +8,17 @@
             </div>
             <div class="editor-tools">
                 <div class="tools-header">
-                    <h3>Editing AI Tools</h3>
-                    <button class="btn-reset" @click="$emit('reset-image')">Reset</button>
+                    <h3>{{ $t('EDITOR_TOOLS_TITLE') }}</h3>
+                    <button class="btn-reset" @click="$emit('reset-image')">{{ $t('EDITOR_RESET_BUTTON') }}</button>
                 </div>
 
                 <div class="layout-data">
                     <div class="model">
-                        <label for="model_ai">Model:</label>
+                        <label for="model_ai">{{ $t('EDITOR_MODEL_LABEL') }}:</label>
                         <div class="model-select-wrapper">
                             <select name="model_ai" id="model_ai">
-                                <option value="mini">AINow 2 mini</option>
-                                <option value="pro">AINow 2 Pro</option>
+                                <option value="mini">{{ $t('EDITOR_MODEL_MINI') }}</option>
+                                <option value="pro">{{ $t('EDITOR_MODEL_PRO') }}</option>
                             </select>
                         </div>
                     </div>
@@ -49,8 +49,8 @@
                 </div>
 
                 <div class="editor-actions">
-                    <button class="btn btn-secondary" @click="$emit('reset-image')">Cancel</button>
-                    <button class="btn btn-primary" @click="$emit('save-image')">Save image</button>
+                    <button class="btn btn-secondary" @click="$emit('reset-image')">{{ $t('EDITOR_CANCEL_BUTTON') }}</button>
+                    <button class="btn btn-primary" @click="$emit('save-image')">{{ $t('EDITOR_SAVE_BUTTON') }}</button>
                 </div>
             </div>
         </div>

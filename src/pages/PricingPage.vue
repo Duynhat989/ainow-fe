@@ -4,8 +4,8 @@
     <section class="pricing-hero-section">
       <div class="container">
         <div class="pricing-hero-content">
-          <h1>Chọn Gói Phù Hợp Với Nhu Cầu Của Bạn</h1>
-          <p>Trải nghiệm sức mạnh của công nghệ AI trong chỉnh sửa ảnh với các gói dịch vụ linh hoạt</p>
+          <h1>{{ $t('PRICING_HERO_TITLE') }}</h1>
+          <p>{{ $t('PRICING_HERO_SUBTITLE') }}</p>
         </div>
       </div>
     </section>
@@ -14,138 +14,135 @@
     <section class="pricing-plans-section">
       <div class="container">
         <div class="pricing-toggle">
-          <span :class="{ 'active': billingType === 'monthly' }" @click="billingType = 'monthly'">Thanh toán
-            tháng</span>
+          <span :class="{ 'active': billingType === 'monthly' }" @click="billingType = 'monthly'">{{ $t('PRICING_BILLING_MONTHLY') }}</span>
           <div class="toggle-switch" @click="toggleBilling">
             <div class="toggle-button" :class="{ 'yearly': billingType === 'yearly' }"></div>
           </div>
-          <span :class="{ 'active': billingType === 'yearly' }" @click="billingType = 'yearly'">Thanh toán năm <span
-              class="discount-badge">Tiết kiệm 35%</span></span>
+          <span :class="{ 'active': billingType === 'yearly' }" @click="billingType = 'yearly'">{{ $t('PRICING_BILLING_YEARLY') }} <span
+              class="discount-badge">{{ $t('PRICING_DISCOUNT_BADGE') }}</span></span>
         </div>
 
         <div class="pricing-grid">
           <!-- Basic Plan -->
           <div class="pricing-card">
             <div class="pricing-header">
-              <h3>Cơ Bản</h3>
+              <h3>{{ $t('PRICING_BASIC_TITLE') }}</h3>
               <div class="pricing-price">
                 <span class="price" v-if="billingType === 'monthly'">0₫</span>
                 <span class="price" v-else>0₫</span>
-                <span class="period">mãi mãi</span>
+                <span class="period">{{ $t('PRICING_BASIC_PERIOD') }}</span>
               </div>
-              <p class="pricing-description">Bắt đầu chỉnh sửa ảnh với các công cụ AI cơ bản</p>
+              <p class="pricing-description">{{ $t('PRICING_BASIC_DESCRIPTION') }}</p>
             </div>
             <div class="pricing-features">
               <ul>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span><strong>Có hiển thị quảng cáo</strong></span>
+                  <span><strong>{{ $t('PRICING_BASIC_FEATURE_ADS') }}</strong></span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span><strong>25 lượt chỉnh sửa</strong> mỗi ngày</span>
+                  <span><strong>{{ $t('PRICING_BASIC_FEATURE_EDITS') }}</strong> {{ $t('PRICING_BASIC_FEATURE_EDITS_PERIOD') }}</span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span>Truy cập các công cụ AI cơ bản</span>
+                  <span>{{ $t('PRICING_BASIC_FEATURE_AI_TOOLS') }}</span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span>Lưu trữ đám mây 1GB</span>
+                  <span>{{ $t('PRICING_BASIC_FEATURE_STORAGE') }}</span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span>Xuất ảnh độ phân giải tiêu chuẩn</span>
+                  <span>{{ $t('PRICING_BASIC_FEATURE_EXPORT') }}</span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span>Hỗ trợ qua email</span>
+                  <span>{{ $t('PRICING_BASIC_FEATURE_SUPPORT') }}</span>
                 </li>
                 <li class="feature-disabled">
                   <span class="feature-cross">×</span>
-                  <span>Có logo watermark trên ảnh</span>
+                  <span>{{ $t('PRICING_BASIC_FEATURE_WATERMARK') }}</span>
                 </li>
                 <li class="feature-disabled">
                   <span class="feature-cross">×</span>
-                  <span>Không có công cụ AI nâng cao</span>
+                  <span>{{ $t('PRICING_BASIC_FEATURE_NO_ADVANCED') }}</span>
                 </li>
               </ul>
             </div>
             <div class="pricing-action">
-              <RouterLink to="/editor" class="btn btn-outline">Đăng Ký Miễn Phí</RouterLink>
+              <RouterLink to="/editor" class="btn btn-outline">{{ $t('PRICING_BASIC_BUTTON') }}</RouterLink>
             </div>
           </div>
 
           <!-- Pro Plan -->
           <div class="pricing-card popular">
-            <div class="popular-badge">Phổ biến</div>
+            <div class="popular-badge">{{ $t('PRICING_POPULAR_BADGE') }}</div>
             <div class="pricing-header">
-              <h3>Pro</h3>
+              <h3>{{ $t('PRICING_PRO_TITLE') }}</h3>
               <div class="pricing-price">
                 <span class="price" v-if="billingType === 'monthly'">9.9$</span>
                 <span class="price" v-else>89$ </span>
-                <span class="period">{{ billingType === 'monthly' ? 'mỗi tháng' : 'mỗi năm' }}</span>
+                <span class="period">{{ billingType === 'monthly' ? $t('PRICING_PRO_PERIOD_MONTHLY') : $t('PRICING_PRO_PERIOD_YEARLY') }}</span>
               </div>
-              <p class="pricing-description">Trải nghiệm đầy đủ sức mạnh của công nghệ AI</p>
+              <p class="pricing-description">{{ $t('PRICING_PRO_DESCRIPTION') }}</p>
             </div>
             <div class="pricing-features">
               <ul>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span><strong>Không có quảng cáo</strong></span>
+                  <span><strong>{{ $t('PRICING_PRO_FEATURE_NO_ADS') }}</strong></span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span><strong>Không giới hạn lượt chỉnh sửa</strong></span>
+                  <span><strong>{{ $t('PRICING_PRO_FEATURE_UNLIMITED_EDITS') }}</strong></span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span>Truy cập <strong>tất cả</strong> công cụ AI</span>
+                  <span>{{ $t('PRICING_PRO_FEATURE_ALL_TOOLS') }}</span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span>Lưu trữ đám mây không giới hạn</span>
+                  <span>{{ $t('PRICING_PRO_FEATURE_UNLIMITED_STORAGE') }}</span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span>Xuất ảnh độ phân giải cao (4K)</span>
+                  <span>{{ $t('PRICING_PRO_FEATURE_HIGH_RES') }}</span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span><strong>Không có watermark</strong></span>
+                  <span><strong>{{ $t('PRICING_PRO_FEATURE_NO_WATERMARK') }}</strong></span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span>Ưu tiên xử lý trên máy chủ</span>
+                  <span>{{ $t('PRICING_PRO_FEATURE_PRIORITY') }}</span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span>Tải xuống hàng loạt</span>
+                  <span>{{ $t('PRICING_PRO_FEATURE_BATCH') }}</span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span>Truy cập ứng dụng di động Pro</span>
+                  <span>{{ $t('PRICING_PRO_FEATURE_MOBILE') }}</span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span>Hỗ trợ ưu tiên 24/7</span>
+                  <span>{{ $t('PRICING_PRO_FEATURE_SUPPORT') }}</span>
                 </li>
                 <li>
                   <span class="feature-check">✓</span>
-                  <span><strong>Hoàn tiền trong 7 ngày nếu không hài lòng!</strong></span>
+                  <span><strong>{{ $t('PRICING_PRO_FEATURE_REFUND') }}</strong></span>
                 </li>
               </ul>
             </div>
             <div class="pricing-action">
-              <a class="btn btn-primary" :href="billingType !== monthly ? `/payment` : `/payment?package=pro`">Dùng Thử 7
-                Ngày</a>
+              <a class="btn btn-primary" :href="billingType !== monthly ? `/payment` : `/payment?package=pro`">{{ $t('PRICING_PRO_BUTTON') }}</a>
             </div>
           </div>
         </div>
 
         <div class="pricing-note">
-          <p>Tất cả các gói đều bao gồm hỗ trợ kỹ thuật và cập nhật thường xuyên. Để biết thêm về các gói doanh nghiệp
-            tùy chỉnh, <a href="/contact">liên hệ với chúng tôi</a>.</p>
+          <p>{{ $t('PRICING_NOTE') }}</p>
         </div>
       </div>
     </section>
@@ -153,103 +150,103 @@
     <!-- Features Comparison -->
     <section class="features-comparison-section">
       <div class="container">
-        <h2 class="section-title">So Sánh Chi Tiết Các Gói</h2>
+        <h2 class="section-title">{{ $t('PRICING_COMPARISON_TITLE') }}</h2>
 
         <div class="comparison-table-wrapper">
           <table class="comparison-table">
             <thead>
               <tr>
-                <th class="feature-name">Tính năng</th>
-                <th class="plan-basic">Cơ Bản</th>
-                <th class="plan-pro">Pro</th>
+                <th class="feature-name">{{ $t('PRICING_TABLE_HEADER_FEATURE') }}</th>
+                <th class="plan-basic">{{ $t('PRICING_BASIC_TITLE') }}</th>
+                <th class="plan-pro">{{ $t('PRICING_PRO_TITLE') }}</th>
               </tr>
             </thead>
             <tbody>
               <tr class="section-header">
-                <td colspan="3">Giới hạn sử dụng</td>
+                <td colspan="3">{{ $t('PRICING_TABLE_SECTION_LIMITS') }}</td>
               </tr>
               <tr>
-                <td>Lượt chỉnh sửa ảnh</td>
-                <td>25 yêu cầu/ngày</td>
-                <td>Không giới hạn</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_EDITS') }}</td>
+                <td>{{ $t('PRICING_TABLE_BASIC_EDITS') }}</td>
+                <td>{{ $t('PRICING_TABLE_PRO_EDITS') }}</td>
               </tr>
               <tr>
-                <td>Lưu trữ đám mây</td>
-                <td>1GB</td>
-                <td>Không giới hạn</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_STORAGE') }}</td>
+                <td>{{ $t('PRICING_TABLE_BASIC_STORAGE') }}</td>
+                <td>{{ $t('PRICING_TABLE_PRO_STORAGE') }}</td>
               </tr>
 
               <tr class="section-header">
-                <td colspan="3">Công cụ AI</td>
+                <td colspan="3">{{ $t('PRICING_TABLE_SECTION_AI_TOOLS') }}</td>
               </tr>
               <tr>
-                <td>Xóa phông nền</td>
-                <td><span class="feature-included">✓</span></td>
-                <td><span class="feature-included">✓</span></td>
-              </tr>
-              <tr>
-                <td>Làm đẹp khuôn mặt cơ bản</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_REMOVE_BG') }}</td>
                 <td><span class="feature-included">✓</span></td>
                 <td><span class="feature-included">✓</span></td>
               </tr>
               <tr>
-                <td>Phục hồi ảnh cũ</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_FACE_RETOUCH') }}</td>
                 <td><span class="feature-included">✓</span></td>
                 <td><span class="feature-included">✓</span></td>
               </tr>
               <tr>
-                <td>Chỉnh sửa bằng chat AI</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_RESTORE') }}</td>
+                <td><span class="feature-included">✓</span></td>
+                <td><span class="feature-included">✓</span></td>
+              </tr>
+              <tr>
+                <td>{{ $t('PRICING_TABLE_FEATURE_AI_CHAT') }}</td>
                 <td><span class="feature-not-included">×</span></td>
                 <td><span class="feature-included">✓</span></td>
               </tr>
               <tr>
-                <td>Tạo ảnh từ văn bản</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_TEXT_TO_IMAGE') }}</td>
                 <td><span class="feature-not-included">×</span></td>
                 <td><span class="feature-included">✓</span></td>
               </tr>
               <tr>
-                <td>Tăng độ phân giải ảnh</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_UPSCALE') }}</td>
                 <td><span class="feature-not-included">×</span></td>
                 <td><span class="feature-included">✓</span></td>
               </tr>
               <tr>
-                <td>Xóa vật thể không mong muốn</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_OBJECT_REMOVE') }}</td>
                 <td><span class="feature-not-included">×</span></td>
                 <td><span class="feature-included">✓</span></td>
               </tr>
               <tr>
-                <td>Thay đổi phong cách ảnh</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_STYLE_TRANSFER') }}</td>
                 <td><span class="feature-not-included">×</span></td>
                 <td><span class="feature-included">✓</span></td>
               </tr>
 
               <tr class="section-header">
-                <td colspan="3">Tính năng khác</td>
+                <td colspan="3">{{ $t('PRICING_TABLE_SECTION_OTHER') }}</td>
               </tr>
               <tr>
-                <td>Watermark</td>
-                <td>Có</td>
-                <td>Không</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_WATERMARK') }}</td>
+                <td>{{ $t('PRICING_TABLE_BASIC_WATERMARK') }}</td>
+                <td>{{ $t('PRICING_TABLE_PRO_WATERMARK') }}</td>
               </tr>
               <tr>
-                <td>Tải xuống hàng loạt</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_BATCH') }}</td>
                 <td><span class="feature-not-included">×</span></td>
                 <td><span class="feature-included">✓</span></td>
               </tr>
               <tr>
-                <td>Ưu tiên xử lý trên máy chủ</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_PRIORITY') }}</td>
                 <td><span class="feature-not-included">×</span></td>
                 <td><span class="feature-included">✓</span></td>
               </tr>
               <tr>
-                <td>Ứng dụng di động</td>
-                <td>Giới hạn</td>
-                <td>Đầy đủ</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_MOBILE') }}</td>
+                <td>{{ $t('PRICING_TABLE_BASIC_MOBILE') }}</td>
+                <td>{{ $t('PRICING_TABLE_PRO_MOBILE') }}</td>
               </tr>
               <tr>
-                <td>Hỗ trợ kỹ thuật</td>
-                <td>Email</td>
-                <td>Ưu tiên 24/7</td>
+                <td>{{ $t('PRICING_TABLE_FEATURE_SUPPORT') }}</td>
+                <td>{{ $t('PRICING_TABLE_BASIC_SUPPORT') }}</td>
+                <td>{{ $t('PRICING_TABLE_PRO_SUPPORT') }}</td>
               </tr>
             </tbody>
           </table>
@@ -261,14 +258,14 @@
     <section class="pricing-cta-section">
       <div class="container">
         <div class="pricing-cta-content">
-          <h2>Bắt Đầu Trải Nghiệm Ngay Hôm Nay</h2>
-          <p>Dùng thử miễn phí 7 ngày với gói Pro - không cần thông tin thẻ tín dụng</p>
+          <h2>{{ $t('PRICING_CTA_TITLE') }}</h2>
+          <p>{{ $t('PRICING_CTA_SUBTITLE') }}</p>
           <div class="cta-buttons">
-            <RouterLink to="/pricing" class="btn btn-primary">Dùng Thử Pro</RouterLink>
-            <RouterLink to="/editor" class="btn btn-secondary">Đăng Ký Miễn Phí</RouterLink>
+            <RouterLink to="/pricing" class="btn btn-primary">{{ $t('PRICING_CTA_TRY_PRO') }}</RouterLink>
+            <RouterLink to="/editor" class="btn btn-secondary">{{ $t('PRICING_CTA_FREE_SIGNUP') }}</RouterLink>
           </div>
           <div class="cta-note">
-            <p>Không yêu cầu cam kết dài hạn. Hủy bất cứ lúc nào.</p>
+            <p>{{ $t('PRICING_CTA_NOTE') }}</p>
           </div>
         </div>
       </div>

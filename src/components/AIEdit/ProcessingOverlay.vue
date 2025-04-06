@@ -3,8 +3,8 @@
         <div class="processing-content">
             <div class="spinner"></div>
             <p>{{ isGenerating ?
-                'AI is generating an image from your description...'
-                : 'AI is processing your image...' }}</p>
+                $t('PROCESSING_GENERATING_DESC')
+                : $t('PROCESSING_IMAGE_DESC') }}</p>
         </div>
     </div>
 </template>

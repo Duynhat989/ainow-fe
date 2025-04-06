@@ -97,7 +97,7 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
-      path: '/aiedior',
+      path: '/aieditor',
       name: 'Aiedior',
       component: AIImageEditorPage,
       meta: { requiresAuth: true }

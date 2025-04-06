@@ -1,9 +1,8 @@
 <template>
     <div class="editor-page">
         <div class="container">
-            <h1 class="page-title">AI Image Editor Tool</h1>
-            <p class="page-subtitle">Edit your images with the power of artificial intelligence</p>
-
+            <h1 class="page-title">{{ $t('EDITOR_PAGE_TITLE') }}</h1>
+            <p class="page-subtitle">{{ $t('EDITOR_PAGE_SUBTITLE') }}</p>
             <div class="editor-container">
                 <!-- Upload/Generate Section -->
                 <UploadSection v-if="!selectedImage" :selected-ratio="selectedRatio" :image-prompt="imagePrompt"
@@ -11,7 +10,6 @@
                     @drop-file="handleDrop" @ratio-changed="handleRatioChange"
                     @update:image-prompt="imagePrompt = $event" @generate-image="generateImage"
                     @set-example="setExamplePrompt" />
-
                 <!-- Editor Workspace -->
                 <EditorWorkspace v-else :image-preview="imagePreview" :chat-messages="chatMessages"
                     :chat-attachments="chatAttachments" :chat-input="chatInput" @reset-image="resetImage"
@@ -21,10 +19,8 @@
                     @update-image="updateImage" @update:chat-input="chatInput = $event"
                     @set-chat-messages-ref="chatMessagesRef = $event" />
             </div>
-
             <!-- AI Processing Overlay -->
             <ProcessingOverlay :is-visible="isProcessing || isGenerating" :is-generating="isGenerating" />
-
             <!-- Lightbox Modal -->
             <LightboxModal :image="lightboxImage" @close="closeLightbox" />
         </div>
@@ -32,7 +28,6 @@
     <SubscriptionLimitPopup :is-visible="showLimitPopup" :type="popupType" :is-persistent="isPersistentPopup"
         :usage-info="userUsageInfo" @close="closeLimitPopup" @upgrade="handleUpgrade" />
 </template>
-
 <script setup>
 import { ref, reactive, watch, nextTick, onMounted } from 'vue';
 import request from '@/utils/request';
@@ -385,7 +380,7 @@ const applyAIEffect = async (effect) => {
             isProcessing.value = false;
         }
     }
-    if (effect === 'restore-photo' || effect === 'enhance-photo' || effect === 'retouch-skin'|| effect === 'remove-bg') {
+    if (effect === 'restore-photo' || effect === 'enhance-photo' || effect === 'retouch-skin' || effect === 'remove-bg') {
         chatMessages.value.push({
             sender: 'ai',
             text: `I have ${effect} your image. Would you like any additional adjustments?`
