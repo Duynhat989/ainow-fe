@@ -9,6 +9,10 @@
             <div class="editor-tools">
                 <div class="tools-header">
                     <h3>{{ $t('EDITOR_TOOLS_TITLE') }}</h3>
+                    <div class="history flex">
+                        <button class="btn-reset" @click="$emit('reset-image')"><i class='bx bx-undo'></i> Undo</button>
+                        <button class="btn-reset" @click="$emit('reset-image')"><i class='bx bx-redo' ></i> Redo</button>
+                    </div>
                     <button class="btn-reset" @click="$emit('reset-image')">{{ $t('EDITOR_RESET_BUTTON') }}</button>
                 </div>
 
@@ -49,7 +53,8 @@
                 </div>
 
                 <div class="editor-actions">
-                    <button class="btn btn-secondary" @click="$emit('reset-image')">{{ $t('EDITOR_CANCEL_BUTTON') }}</button>
+                    <button class="btn btn-secondary" @click="$emit('reset-image')">{{ $t('EDITOR_CANCEL_BUTTON')
+                        }}</button>
                     <button class="btn btn-primary" @click="$emit('save-image')">{{ $t('EDITOR_SAVE_BUTTON') }}</button>
                 </div>
             </div>
@@ -124,6 +129,7 @@ const toolTabs = [];  // Currently empty as we only have one tab
     position: relative;
     overflow: hidden;
     max-width: 100%;
+    width: 100%;
 }
 
 .image-preview img {
@@ -140,10 +146,11 @@ const toolTabs = [];  // Currently empty as we only have one tab
 }
 
 .editor-tools {
-    padding: 25px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     background-color: white;
+    padding-right: 30px;
 }
 
 .tools-header {
@@ -170,6 +177,7 @@ const toolTabs = [];  // Currently empty as we only have one tab
     display: flex;
     align-items: center;
     gap: 6px;
+    margin-left: 10px;
 }
 
 .btn-reset:hover {
@@ -377,6 +385,7 @@ const toolTabs = [];  // Currently empty as we only have one tab
 
 @media (max-width: 1024px) {
     .editor-tools {
+        width: 100vw;
         border-left: none;
         border-top: 1px solid #e2e8f0;
     }
