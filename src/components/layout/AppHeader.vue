@@ -54,7 +54,7 @@
                     <img :src="user.avatar" :alt="user.fullName" />
                 </div>
                 <RouterLink to="/my-profile" class="user-name">{{ user?.fullName }}</RouterLink>
-                <button class="btn btn-outline btn-sm" @click="signOut">{{ $t('SIGN_OUT') }}</button>
+                <button class="btn btn-outline btn-sm" @click="handleSignOut">{{ $t('SIGN_OUT') }}</button>
             </div>
             <div v-else class="auth-buttons">
                 <button class="btn btn-gmail" @click="handleCustomSignIn" id="btn-gmail">
@@ -120,7 +120,7 @@
                         </div>
                         <RouterLink to="/my-profile" @click="closeMobileMenu" class="user-name">{{ user?.fullName }}
                         </RouterLink>
-                        <button class="btn btn-outline btn-sm" @click="signOut">{{ $t('SIGN_OUT') }}</button>
+                        <button class="btn btn-outline btn-sm" @click="handleSignOut">{{ $t('SIGN_OUT') }}</button>
                     </div>
                     <button v-else class="btn btn-gmail mobile-gmail-btn" @click="handleCustomSignIn">
                         <img src="@/assets/images/gmail-icon.jpg" alt="Gmail" class="gmail-icon" />
