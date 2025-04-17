@@ -44,7 +44,7 @@ request.interceptors.request.use(config => {
     }
 
     // Mã hóa body của request nếu có
-    console.log('Request data before encryption:', config.data);
+    // console.log('Request data before encryption:', config.data);
     if (config.data) {
         // Đánh dấu là dữ liệu đã được mã hóa
         config.headers['X-Encrypted'] = 'true';
@@ -65,7 +65,7 @@ request.interceptors.response.use(
         if (response.headers && response.headers['x-encrypted'] === 'true' && response.data && response.data.r) {
             let temp = decryptData(response.data.r)
             // Kiểm tra xem dữ liệu đã được giải mã hay chưa
-            console.log('Decrypted response data:', temp);
+            // console.log('Decrypted response data:', temp);
             return temp;
         }
         return response.data;
