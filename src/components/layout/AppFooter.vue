@@ -6,10 +6,10 @@
           <h3>{{ $t('FOOTER_TITLE') }}</h3>
           <p>{{ $t('FOOTER_DESCRIPTION') }}</p>
           <div class="social-links">
-            <a href="#" class="social-link">{{ $t('SOCIAL_FACEBOOK') }}</a>
-            <a href="#" class="social-link">{{ $t('SOCIAL_TWITTER') }}</a>
-            <a href="#" class="social-link">{{ $t('SOCIAL_INSTAGRAM') }}</a>
-            <a href="#" class="social-link">{{ $t('SOCIAL_YOUTUBE') }}</a>
+            <a href="#" class="social-link"><i class='bx bxl-facebook'></i></a>
+            <a href="#" class="social-link"><i class='bx bxl-twitter' ></i></a>
+            <a href="#" class="social-link"><i class='bx bxl-instagram' ></i></a>
+            <a href="#" class="social-link"><i class='bx bxl-youtube' ></i></a>
           </div>
         </div>
         <div class="footer-section">
