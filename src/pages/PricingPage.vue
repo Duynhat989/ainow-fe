@@ -136,7 +136,7 @@
               </ul>
             </div>
             <div class="pricing-action">
-              <a class="btn btn-primary" :href="billingType !== monthly ? `/payment` : `/payment?package=pro`">{{ $t('PRICING_PRO_BUTTON') }}</a>
+              <a class="btn btn-primary" :href="billingType == 'monthly' ? `/payment` : `/payment?package=pro`">{{ $t('PRICING_PRO_BUTTON') }}</a>
             </div>
           </div>
         </div>
