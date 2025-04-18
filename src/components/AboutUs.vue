@@ -1,7 +1,7 @@
 <template>
     <div class="about-page">
       <div class="container">
-        <h1 class="page-title">About Our AI Image Editor</h1>
+        <h1 class="page-title">About Our AI Editor</h1>
         <p class="page-subtitle">Bringing professional image editing to everyone through the power of AI</p>
   
         <div class="about-container">
@@ -21,7 +21,7 @@
                    Our team of AI researchers and user experience designers came together to build a tool that could 
                    understand what users want to achieve and make it happen with minimal effort.</p>
                    
-                <p>Today, our AI Image Editor empowers creators of all skill levels to bring their visual ideas to life, 
+                <p>Today, our AI Editor empowers creators of all skill levels to bring their visual ideas to life, 
                    whether it's enhancing a personal photo, creating content for social media, or developing professional 
                    designs for business.</p>
               </div>

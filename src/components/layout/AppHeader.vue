@@ -15,6 +15,9 @@
                     <li>
                         <RouterLink to="/aieditor">{{ $t('HEADER_EDITOR') }}</RouterLink>
                     </li>
+                    <!-- <li>
+                        <RouterLink to="/explore">Flast Tool</RouterLink>
+                    </li> -->
                     <li>
                         <RouterLink to="/explore">{{ $t('HEADER_GALLERY') }}</RouterLink>
                     </li>

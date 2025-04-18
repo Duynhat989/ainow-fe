@@ -180,7 +180,7 @@ const faqs = [
   {
     category: 'getting-started',
     question: 'Can I edit images on my mobile device?',
-    answer: 'Yes! Our AI Image Editor is fully responsive and works on smartphones and tablets. Simply visit our website on your mobile browser to access all editing features.'
+    answer: 'Yes! Our AI Editor is fully responsive and works on smartphones and tablets. Simply visit our website on your mobile browser to access all editing features.'
   },
   {
     category: 'getting-started',

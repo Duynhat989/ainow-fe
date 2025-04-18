@@ -18,7 +18,7 @@ export default {
     "MY_PROFILE": "Hồ sơ của tôi",
 
     // Footer sections
-    "FOOTER_TITLE": "AI Image Editor",
+    "FOOTER_TITLE": "AI Editor",
     "FOOTER_DESCRIPTION": "Công cụ chỉnh sửa ảnh thông minh với sức mạnh của AI",
     "FOOTER_PRODUCT": "Sản Phẩm",
     "FOOTER_EDIT_PHOTO": "Chỉnh Sửa Ảnh",

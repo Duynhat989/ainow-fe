@@ -2,7 +2,7 @@
     <div class="community-page">
       <div class="container">
         <h1 class="page-title">Community Gallery</h1>
-        <p class="page-subtitle">See what others are creating with our AI Image Editor and join the conversation</p>
+        <p class="page-subtitle">See what others are creating with our AI Editor and join the conversation</p>
   
         <!-- Featured Works Banner -->
         <section class="featured-section">

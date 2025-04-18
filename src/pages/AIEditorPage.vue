@@ -1,7 +1,7 @@
 <template>
     <div class="editor-page">
         <div class="container">
-            <h1 class="page-title">AI Image Editor Tool</h1>
+            <h1 class="page-title">AI Editor Tool</h1>
             <p class="page-subtitle">Edit your images with the power of artificial intelligence</p>
 
             <div class="editor-container">
@@ -770,7 +770,7 @@ const saveImage = () => {
     align-items: center;
 }
 
-/* Modern CSS Improvements for AI Image Editor */
+/* Modern CSS Improvements for AI Editor */
 .editor-page {
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 40px 0;

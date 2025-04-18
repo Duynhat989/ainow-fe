@@ -1,7 +1,7 @@
 export default {
   // Header navigation
   "HEADER_HOME": "Home",
-  "HEADER_EDITOR": "AI Image Editor",
+  "HEADER_EDITOR": "AI Editor",
   "HEADER_PROMPT": "Image Prompt",
   "HEADER_GALLERY": "Gallery",
   "HEADER_PRICE": "Pricing",
@@ -18,7 +18,7 @@ export default {
   "MY_PROFILE": "My Profile",
   
   // Footer sections
-  "FOOTER_TITLE": "AI Image Editor",
+  "FOOTER_TITLE": "AI Editor",
   "FOOTER_DESCRIPTION": "Smart image editing tool with the power of AI",
   "FOOTER_PRODUCT": "Product",
   "FOOTER_EDIT_PHOTO": "Edit Photo",

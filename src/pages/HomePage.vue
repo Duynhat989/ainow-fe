@@ -14,7 +14,7 @@
         <div class="hero-image">
           <img
             src="/src/assets/images/banner.jpg"
-            alt="AI Image Editor Demo" />
+            alt="AI Editor Demo" />
         </div>
       </div>
     </section>
@@ -287,7 +287,7 @@
         <div class="cta-content">
           <h2>{{ $t('HOME_CTA_TITLE') }}</h2>
           <p>{{ $t('HOME_CTA_SUBTITLE') }}</p>
-          <RouterLink to="/editor" class="btn btn-primary">{{ $t('HOME_CTA_BUTTON') }}</RouterLink>
+          <RouterLink to="/aieditor" class="btn btn-primary" style="color: aliceblue;">{{ $t('HOME_CTA_BUTTON') }}</RouterLink>
         </div>
       </div>
     </section>
