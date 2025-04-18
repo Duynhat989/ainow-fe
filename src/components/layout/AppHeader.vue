@@ -260,6 +260,7 @@ const handleCustomSignIn = async () => {
 // Hàm đăng xuất
 function handleSignOut() {
     user.value = null
+    isAuthenticated.value = false
     localStorage.removeItem('ainow_user')
     localStorage.removeItem('ainow_token')
     console.log('Đã đăng xuất')
