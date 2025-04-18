@@ -12,7 +12,7 @@
         </button>
 
         <div class="canvas-main" ref="canvasContainer">
-            <canvas ref="canvasElement" :width="canvasWidth - 10" :height="canvasHeight - 10"
+            <canvas ref="canvasElement" :width="canvasWidth" :height="canvasHeight"
                     @mousedown="startDrawing" @mousemove="draw" @mouseup="stopDrawing"
                     @mouseleave="stopDrawing" @touchstart="handleTouchStart"
                     @touchmove="handleTouchMove" @touchend="stopDrawing"></canvas>

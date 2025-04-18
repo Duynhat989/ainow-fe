@@ -387,7 +387,35 @@ const applyAIEffect = async (effect) => {
         });
     }
 };
+const getImageDimensions = (base64String) => {
+    return new Promise((resolve, reject) => {
+        if (!base64String) {
+            reject(new Error("Chuỗi base64 không hợp lệ."));
+            return;
+        }
 
+        const img = new Image(); // Tạo một đối tượng Image mới
+
+        // Gán sự kiện onload để xử lý khi ảnh đã tải xong
+        img.onload = () => {
+            // Lấy kích thước thực của ảnh
+            const width = img.naturalWidth;
+            const height = img.naturalHeight;
+            // Tính tỷ lệ (tránh chia cho 0)
+            const ratio = height > 0 ? width / height : 0;
+
+            resolve({ width, height, ratio }); // Trả về kích thước và tỷ lệ
+        };
+
+        // Gán sự kiện onerror để xử lý nếu có lỗi khi tải ảnh
+        img.onerror = (error) => {
+            reject(new Error("Không thể tải ảnh từ chuỗi base64. " + error));
+        };
+
+        // Gán chuỗi base64 vào thuộc tính src để bắt đầu tải ảnh
+        img.src = base64String;
+    });
+};
 const sendChatMessage = async () => {
     if (!processImage()) return;
     if (!chatInput.value && (!chatAttachments.value || chatAttachments.value.length === 0)) return;
@@ -404,7 +432,8 @@ const sendChatMessage = async () => {
 
     const hadAttachments = chatAttachments.value.length > 0;
     chatAttachments.value = [];
-
+    const sizeRadio = await getImageDimensions(imagePreview.value);
+    console.log("sizeRadio: ",sizeRadio)
     isProcessing.value = true;
     let attachments = [];
     attachments.push({
@@ -418,7 +447,7 @@ const sendChatMessage = async () => {
     }
 
     const response = await request.post('/api/ainow/generate-image-edit', {
-        prompt: `${message.text}. `,
+        prompt: `Return Image Radio ${sizeRadio.width}*${sizeRadio.height}.Change the original image as follows: ${message.text}. `,
         imageArrays: attachments
     });
 
