@@ -34,7 +34,8 @@ onMounted(() => {
 
   // Nếu chưa chọn ngôn ngữ, hiển thị popup
   if (!hasSelectedLanguage) {
-    showLanguageSelector.value = true;
+    localStorage.setItem('preferredLanguage', 'en'); // Mặc định là tiếng Anh
+    // showLanguageSelector.value = true;
   }
 });
 

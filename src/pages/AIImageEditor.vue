@@ -433,7 +433,7 @@ const sendChatMessage = async () => {
     const hadAttachments = chatAttachments.value.length > 0;
     chatAttachments.value = [];
     const sizeRadio = await getImageDimensions(imagePreview.value);
-    console.log("sizeRadio: ",sizeRadio)
+    // console.log("sizeRadio: ",sizeRadio)
     isProcessing.value = true;
     let attachments = [];
     attachments.push({
