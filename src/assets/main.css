@@ -27,3 +27,18 @@ h1{
 @media (hover: hover) {
   
 }
+
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --secondary: #f3f4f6;
+    --secondary-hover: #e5e7eb;
+    --correct: #10b981;
+    --correct-bg: #d1fae5;
+    --wrong: #ef4444;
+    --wrong-bg: #fee2e2;
+    --text: #1f2937;
+    --text-light: #6b7280;
+    --border: #e5e7eb;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

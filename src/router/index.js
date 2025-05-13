@@ -20,6 +20,7 @@ import ProfilePage from '@/components/Profile.vue'
 import PaymentPage from '@/components/Payment.vue'
 import TrendPage from '@/components/Trend.vue'
 import AIImageEditorPage from '@/pages/AIImageEditor.vue'
+import GplxView from '../views/GplxView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -101,6 +102,12 @@ const router = createRouter({
       name: 'Aiedior',
       component: AIImageEditorPage,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/gplx',
+      name: 'Gplx',
+      component: GplxView,
+      meta: { requiresAuth: false }
     },
     {
       path: '/:catchAll(.*)',
