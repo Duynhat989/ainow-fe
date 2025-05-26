@@ -3,8 +3,9 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <h3>{{ $t('FOOTER_TITLE') }}</h3>
-          <p>{{ $t('FOOTER_DESCRIPTION') }}</p>
+          <h4>Tung Fung Business Consultancy Co., Limited</h4>
+          <!-- Company -->
+          <p>Address: Unit 506, Beverly Commercial Centre87-105 Chatham Road SouthTsim Sha Tsui Hong Kong</p>
           <div class="social-links">
             <a href="#" class="social-link"><i class='bx bxl-facebook'></i></a>
             <a href="#" class="social-link"><i class='bx bxl-twitter' ></i></a>
@@ -32,6 +33,7 @@
         </div>
         <div class="footer-section">
           <h4>{{ $t('FOOTER_COMPANY') }}</h4>
+          
           <ul>
             <li><router-link to="/about">{{ $t('FOOTER_ABOUT') }}</router-link></li>
             <li><router-link to="/terms">{{ $t('FOOTER_TERMS') }}</router-link></li>
