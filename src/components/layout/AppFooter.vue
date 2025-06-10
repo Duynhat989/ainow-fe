@@ -6,8 +6,7 @@
           <h4>COPIAH SUPPLY INC</h4>
           <!-- Company -->
            <p>Email: <span>contact@copiahsupplyinc.com</span></p>
-          <p>Address 1: 441 EXTENSION ST</p>
-          <p>Address 2: HAZLE HURST MS 39083</p>
+          <p>Address: 441 EXTENSION ST HAZLE HURST MS 39083</p>
           <div class="social-links">
             <a href="#" class="social-link"><i class='bx bxl-facebook'></i></a>
             <a href="#" class="social-link"><i class='bx bxl-twitter' ></i></a>

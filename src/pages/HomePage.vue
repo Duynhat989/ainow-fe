@@ -317,23 +317,22 @@ const setSlide = (index) => {
   currentSlide.value = index;
 };
 
-// Testimonials data
 const testimonials = [
   {
-    content: "Công cụ này đã giúp tôi tiết kiệm rất nhiều thời gian. Tôi không cần phải thuê nhà thiết kế đồ họa nữa, AI làm mọi thứ cho tôi!",
-    name: "Nguyễn Văn A",
-    title: "Chủ cửa hàng trực tuyến",
+    content: "This tool has saved me a lot of time. I no longer need to hire a graphic designer—AI does everything for me!",
+    name: "Nguyen Van A",
+    title: "Online Store Owner",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80"
   },
   {
-    content: "Tôi đã thử nhiều công cụ chỉnh sửa ảnh khác nhau, nhưng đây là công cụ tốt nhất. Giao diện dễ sử dụng và kết quả thật đáng kinh ngạc.",
-    name: "Trần Thị B",
-    title: "Nhiếp ảnh gia",
+    content: "I've tried many photo editing tools, but this is the best one. The interface is easy to use, and the results are truly amazing.",
+    name: "Tran Thi B",
+    title: "Photographer",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80"
   },
   {
-    content: "Tính năng xóa phông nền tự động hoạt động hoàn hảo. Tôi đã sử dụng nó cho tất cả sản phẩm trong cửa hàng trực tuyến của mình.",
-    name: "Lê Văn C",
+    content: "The automatic background removal feature works perfectly. I've used it for all the products in my online store.",
+    name: "Le Van C",
     title: "Marketer",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80"
   }
@@ -342,26 +341,27 @@ const testimonials = [
 // FAQ data
 const faqs = [
   {
-    question: "Tôi có cần kỹ năng chỉnh sửa ảnh không?",
-    answer: "Không, bạn không cần bất kỳ kỹ năng chỉnh sửa ảnh nào. Công cụ của chúng tôi được thiết kế để mọi người đều có thể sử dụng, với giao diện trực quan và các công cụ AI tự động."
+    question: "Do I need photo editing skills?",
+    answer: "No, you don't need any photo editing skills. Our tool is designed for everyone, with an intuitive interface and automated AI features."
   },
   {
-    question: "Ảnh của tôi có an toàn không?",
-    answer: "Có, chúng tôi coi trọng quyền riêng tư của bạn. Tất cả các ảnh tải lên đều được mã hóa và không bao giờ được sử dụng cho bất kỳ mục đích nào khác. Bạn có thể xóa ảnh của mình bất cứ lúc nào."
+    question: "Are my photos safe?",
+    answer: "Yes, we value your privacy. All uploaded photos are encrypted and never used for any other purpose. You can delete your photos at any time."
   },
   {
-    question: "Tôi có thể sử dụng ảnh cho mục đích thương mại không?",
-    answer: "Có, tất cả các ảnh bạn chỉnh sửa đều thuộc về bạn và có thể được sử dụng cho mục đích cá nhân hoặc thương mại. Tuy nhiên, nếu bạn sử dụng AI để tạo ảnh mới, vui lòng kiểm tra các điều khoản sử dụng cụ thể."
+    question: "Can I use the photos for commercial purposes?",
+    answer: "Yes, all the photos you edit belong to you and can be used for personal or commercial purposes. However, if you use AI to generate new images, please check the specific terms of use."
   },
   {
-    question: "Tôi có thể hủy đăng ký bất cứ lúc nào không?",
-    answer: "Có, bạn có thể hủy đăng ký bất kỳ lúc nào. Không có hợp đồng ràng buộc và không có phí hủy. Bạn sẽ tiếp tục có quyền truy cập vào các tính năng gói cho đến khi kết thúc chu kỳ thanh toán hiện tại."
+    question: "Can I cancel my subscription at any time?",
+    answer: "Yes, you can cancel your subscription at any time. There are no binding contracts or cancellation fees. You will retain access to your plan's features until the end of your current billing cycle."
   },
   {
-    question: "Các định dạng ảnh nào được hỗ trợ?",
-    answer: "Chúng tôi hỗ trợ tất cả các định dạng ảnh phổ biến như JPG, PNG, WEBP, HEIC, và nhiều định dạng khác. Bạn có thể xuất ảnh sang nhiều định dạng khác nhau tùy thuộc vào nhu cầu của mình."
+    question: "Which image formats are supported?",
+    answer: "We support all popular image formats such as JPG, PNG, WEBP, HEIC, and many more. You can also export images in various formats depending on your needs."
   }
 ];
+
 </script>
 
 <style scoped>
