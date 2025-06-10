@@ -14,6 +14,7 @@ import TemplatesPage from '@/pages/TemplatesPage.vue'
 import PricingPage from '@/pages/PricingPage.vue'
 import TutorialsPage from '@/pages/TutorialsPage.vue'
 import AboutUsPage from '@/components/AboutUs.vue'
+import PrivacyPage from '@/components/Privacy.vue'
 import SupportPage from '@/components/Support.vue'
 import CommunityPage from '@/components/Community.vue'
 import ProfilePage from '@/components/Profile.vue'
@@ -102,6 +103,10 @@ const router = createRouter({
       name: 'Aiedior',
       component: AIImageEditorPage,
       meta: { requiresAuth: true }
+    },{
+      path: '/privacy',
+      name: 'privacy',
+      component: PrivacyPage
     },
     {
       path: '/gplx',

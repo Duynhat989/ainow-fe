@@ -1,7 +1,7 @@
 <template>
     <div class="about-page">
       <div class="container">
-        <h1 class="page-title">About Our - Tung Fung Business Consultancy Co., Limited</h1>
+        <h1 class="page-title">About Our - COPIAH SUPPLY INC</h1>
         <p class="page-subtitle">Bringing professional image editing to everyone through the power of AI</p>
   
         <div class="about-container">

@@ -40,11 +40,14 @@
                                 <RouterLink to="/about" @click="toggleDropdown">{{ $t('HEADER_ABOUT_US') }}</RouterLink>
                             </li>
                             <li>
-                                <RouterLink to="/support" @click="toggleDropdown">{{ $t('HEADER_SUPPORT') }}</RouterLink>
+                                <RouterLink to="/support" @click="toggleDropdown">{{ $t('HEADER_SUPPORT') }}
+                                </RouterLink>
                             </li>
                         </ul>
                     </li>
-
+                    <li>
+                        <RouterLink to="/privacy" @click="closeMobileMenu">Privacy Policy</RouterLink>
+                    </li>
                     <!-- <li>
                         <RouterLink to="/community">{{ $t('HEADER_COMMUNITY') }}</RouterLink>
                     </li> -->
@@ -110,7 +113,9 @@
                         </li>
                     </ul>
                 </li>
-
+                <li>
+                    <RouterLink to="/privacy" @click="closeMobileMenu">Privacy Policy</RouterLink>
+                </li>
                 <!-- <li>
                     <RouterLink to="/community" @click="closeMobileMenu">{{ $t('HEADER_COMMUNITY') }}</RouterLink>
                 </li> -->
